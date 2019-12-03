@@ -17,12 +17,12 @@
     //sql kode for å registrere bruker, bruk INSERT-setning
 	echo "test ";
 
-	$mysqli = new mysqli("localhost", "root", "", "users");
+	$mysqli = new mysqli("localhost", "root", "", "klima");
 	if ($mysqli->connect_errno) {
 		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	}
 	echo $mysqli->host_info . "\n";
-	echo 'test2 ';
+	
 	
 	mysqli_query($mysqli,"INSERT INTO users (epost, passord, fornavn, etternavn, tlf, kjønn, fdato) VALUES ('{$epost}', '{$pw}''{$fnavn}','{$enavn}','{$tlf}','{$kjønn}','{$fdato}');" );
 	
