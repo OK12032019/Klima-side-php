@@ -8,7 +8,7 @@ if (! EMPTY($_SESSION['bruker'] )) {
 } else {
 	$DISPLAYNAME = ['bruker'];
 }
-
+// elias push
 ?>
 
 <html>
