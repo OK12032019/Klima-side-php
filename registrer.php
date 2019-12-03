@@ -24,7 +24,7 @@
 	echo $mysqli->host_info . "\n";
 	echo 'test2 ';
 	
-	mysqli_query($mysqli,"INSERT INTO users (Username, DB_Password) VALUES ('{$epost}', '{$pw}');" );
+	mysqli_query($mysqli,"INSERT INTO users (epost, passord, fornavn, etternavn, tlf, kjønn, fdato) VALUES ('{$epost}', '{$pw}''{$fnavn}','{$enavn}','{$tlf}','{$kjønn}','{$fdato}');" );
 	
 	echo "New record has id: " . mysqli_insert_id($mysqli);
 	}
