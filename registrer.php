@@ -26,8 +26,20 @@
     }
     echo $mysqli->host_info . "\n",'   ';
 
+
+    if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, enavn, epost, passord) VALUES (?,?,?,?)'))) {
+      echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+    }
+    if (!$stmt->bind_param('ssss',$epost, $enavn, $epost, $pw)) {
+      echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+    }
+
+    if (!$stmt->execute()) {
+      echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+    }
+
     //echo $epost ,'	', $pw ,'	' , $fnavn ,'	' , $enavn , '	' , $tlf ,'		' , $kjønn ,'	', $fdato;
-    mysqli_query($mysqli,"INSERT INTO bruker (brukernavn, enavn, epost, passord) VALUES ('{$epost}','{$enavn}','{$epost}','{$pw}');");
+    //mysqli_query($mysqli,"INSERT INTO bruker (brukernavn, enavn, epost, passord) VALUES ('{$epost}','{$enavn}','{$epost}','{$pw}');");
     //mysqli_query($mysqli,"INSERT INTO users (epost, passord) VALUES ('testtest', 'testtest');");
     
     
