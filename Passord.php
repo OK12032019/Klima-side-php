@@ -20,7 +20,7 @@
         if (!($stmt = $mysqli->prepare('UPDATE bruker SET passord =  (?) WHERE epost = (?) AND passord =(?)'))) {
             echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
           }
-          if (!$stmt->bind_param('ssss',$epost, $enavn, $epost, $pw)) {
+          if (!$stmt->bind_param('sss',$pw, $epost, $gpw)) {
             echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
           }
       
@@ -28,8 +28,8 @@
             echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
           }
 
-        mysqli_query($mysqli,"UPDATE bruker SET passord = '{$pw}' WHERE epost = '{$epost}' AND passord = '{$gpw}';");
+        //mysqli_query($mysqli,"UPDATE bruker SET passord = '{$pw}' WHERE epost = '{$epost}' AND passord = '{$gpw}';");
 
-        echo "New record has id: " . mysqli_insert_id($mysqli);
+       //  echo "New record has id: " . mysqli_insert_id($mysqli);
     }
 ?>
