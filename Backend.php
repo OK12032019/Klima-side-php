@@ -23,7 +23,7 @@ if (! EMPTY($_SESSION['bruker'] )) {
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
-                <li><a href="default.html">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>   
         </header>
         <div class="textbox1">
