@@ -8,7 +8,6 @@
   $fnavn = $_POST['Fornavn'];
   $enavn = $_POST['Etternavn'];
   $tlf = $_POST['Telefonnr'];
-  $kjønn = $_POST['Kjønn'];
   $fdato = $_POST['Fødselsdato'];
   
 //  if($kjønn == 'Mann') {$kjønn = '0';}
@@ -19,20 +18,20 @@
     //Krypterer passord
     $pw = sha1($salt.$pw);
     //sql kode for å registrere bruker, bruk INSERT-setning
-	echo "test2 ";
+    echo "test2 ";
 
-	$mysqli = new mysqli("localhost", "root", "", "klima");
-	if ($mysqli->connect_errno) {
-		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-  }
-  echo $mysqli->host_info . "\n",'   ';
+    $mysqli = new mysqli("localhost", "root", "", "klima");
+    if ($mysqli->connect_errno) {
+      echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+    echo $mysqli->host_info . "\n",'   ';
 
-	//echo $epost ,'	', $pw ,'	' , $fnavn ,'	' , $enavn , '	' , $tlf ,'		' , $kjønn ,'	', $fdato;
-	mysqli_query($mysqli,"INSERT INTO users (epost, passord, fornavn, etternavn, tlf, kjOnn, fdato) VALUES ('{$epost}','{$pw}','{$fnavn}','{$enavn}','{$tlf}','{$kjønn}','{$fdato}');" );
-	//mysqli_query($mysqli,"INSERT INTO users (epost, passord) VALUES ('testtest', 'testtest');");
-	
-	
-	
-	echo "New record has id: " . mysqli_insert_id($mysqli);
+    //echo $epost ,'	', $pw ,'	' , $fnavn ,'	' , $enavn , '	' , $tlf ,'		' , $kjønn ,'	', $fdato;
+    mysqli_query($mysqli,"INSERT INTO bruker (brukernavn, enavn, epost, passord) VALUES ('{$epost}','{$enavn}','{$epost}','{$pw}');");
+    //mysqli_query($mysqli,"INSERT INTO users (epost, passord) VALUES ('testtest', 'testtest');");
+    
+    
+    
+    echo "New record has id: " . mysqli_insert_id($mysqli);
 	}
 ?>

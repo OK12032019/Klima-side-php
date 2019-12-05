@@ -12,7 +12,7 @@
 	
 	$PW= sha1($SALT.$PASS);
 	
-	$mysqli = new mysqli("localhost", "root", "", "users");
+	$mysqli = new mysqli("localhost", "root", "", "bruker");
 	if ($mysqli->connect_errno) {
 		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	}
@@ -29,6 +29,6 @@
 	}
 	
 	else {
-         header("Location: uvelkommen.php");
+         header("Location: uvelkommen.html");
 	}
 ?>
