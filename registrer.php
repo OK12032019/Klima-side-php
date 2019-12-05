@@ -9,7 +9,7 @@
   $enavn = $_POST['Etternavn'];
   $tlf = $_POST['Telefonnr'];
   $fdato = $_POST['Fødselsdato'];
-  
+  $brukerType = '1';
 //  if($kjønn == 'Mann') {$kjønn = '0';}
 //  if($kjønn == 'Kvinne') {$kjønn = '1';}
 //  if($kjønn == 'Annen') {$kjønn = '2';}
@@ -27,10 +27,10 @@
     echo $mysqli->host_info . "\n",'   ';
 
 
-    if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, enavn, epost, passord) VALUES (?,?,?,?)'))) {
+    if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, enavn, epost, passord, brukertype) VALUES (?,?,?,?,?)'))) {
       echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }
-    if (!$stmt->bind_param('ssss',$epost, $enavn, $epost, $pw)) {
+    if (!$stmt->bind_param('sssss',$epost, $enavn, $epost, $pw, $brukerType)) {
       echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     }
 
