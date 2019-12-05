@@ -17,6 +17,17 @@
         }
         echo $mysqli->host_info . "\n",'   ';
 
+        if (!($stmt = $mysqli->prepare('UPDATE bruker SET passord =  (?) WHERE epost = (?) AND passord =(?)'))) {
+            echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+          }
+          if (!$stmt->bind_param('ssss',$epost, $enavn, $epost, $pw)) {
+            echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+          }
+      
+          if (!$stmt->execute()) {
+            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+          }
+
         mysqli_query($mysqli,"UPDATE bruker SET passord = '{$pw}' WHERE epost = '{$epost}' AND passord = '{$gpw}';");
 
         echo "New record has id: " . mysqli_insert_id($mysqli);

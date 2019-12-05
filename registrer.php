@@ -15,7 +15,7 @@
 //  if($kjønn == 'Annen') {$kjønn = '2';}
   echo "test1 ";
   if($pw == $pwSjekk and strlen($epost) <= 50 and strlen($pw) <= 40 and strlen($fnavn) <= 50 and strlen($enavn) <= 50
-     and strlen($tlf) <= 50{
+  and strlen($tlf) <= 50) {
     //Krypterer passord
     $pw = sha1($salt.$pw);
     //sql kode for å registrere bruker, bruk INSERT-setning
