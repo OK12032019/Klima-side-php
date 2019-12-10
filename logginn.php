@@ -12,15 +12,16 @@
 	
 	$PW= sha1($SALT.$PASS);
 	
-	$mysqli = new mysqli("localhost", "root", "", "bruker");
+	$mysqli = new mysqli("localhost", "root", "", "klima");
 	if ($mysqli->connect_errno) {
 		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	}
 	echo $mysqli->host_info . "\n";
 	
 	
-	$RESULT = mysqli_query($mysqli, "select * from users where epost = '{$USER}' and passord = '{$PW}'");
+	$RESULT = mysqli_query($mysqli, "select * from bruker where epost = '{$USER}' and passord = '{$PW}'");
 	$ROW = mysqli_fetch_array($RESULT);
+	
 	if ($ROW['epost'] == $USER && $ROW['passord'] == $PW) {
 		header('Location: backend.php');
 		$_SESSIONS['bruker'] = $bruker;
@@ -29,6 +30,7 @@
 	}
 	
 	else {
-         header("Location: uvelkommen.html");
+		echo $ROW,' ', $USER,' ', $PW;
+         //header("Location: uvelkommen.html");
 	}
 ?>
