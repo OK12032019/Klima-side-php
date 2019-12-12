@@ -24,7 +24,6 @@
     }
     echo $mysqli->host_info . "\n",'   ';
 
-    //sql kode for å registrere bruker, bruk INSERT-setning
 
     if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, passord, fnavn, enavn, epost, telefon, brukertype) VALUES (?,?,?,?,?,?,?)'))) {
       echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
