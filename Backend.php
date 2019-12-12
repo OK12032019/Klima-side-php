@@ -1,11 +1,13 @@
 <?php
 
 SESSION_START();
-if (! EMPTY($_SESSION['bruker'] )) {
-	
+if (EMPTY($_SESSION['brukernavn'] )) {
+    
+    #echo 'hahahaha';
 	header('Location: uvelkommen.html');
 
-} else {
+} 
+else {
 	$DISPLAYNAME = ['bruker'];
 }
 // elias push
