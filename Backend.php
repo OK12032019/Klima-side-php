@@ -1,14 +1,14 @@
 <?php
 
 SESSION_START();
-if (EMPTY($_SESSION['brukernavn'] )) {
+if (EMPTY($_SESSION['brukertype'] )) {
     
     #echo 'hahahaha';
-	header('Location: uvelkommen.html');
+	header('Location: default.php');
 
 } 
 else {
-	$DISPLAYNAME = ['bruker'];
+	$DISPLAYNAME = ['brukernavn'];
 }
 // elias push
 ?>
@@ -21,7 +21,7 @@ else {
 <body>
     
         <header class="hovedheader">
-            <a href="default.html" class="logoen">LOGO</a>
+            <a href="default.php" class="logoen">LOGO</a>
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">

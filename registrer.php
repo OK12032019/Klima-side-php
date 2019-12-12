@@ -15,7 +15,7 @@
   and strlen($tlf) <= 40) {
     //Krypterer passord
     $pw = sha1($salt.$pw);
-    //sql kode for å registrere bruker, bruk INSERT-setning
+
     echo "test2 ";
 
     $mysqli = new mysqli("localhost", "root", "", "klima");
@@ -24,6 +24,7 @@
     }
     echo $mysqli->host_info . "\n",'   ';
 
+    //sql kode for å registrere bruker, bruk INSERT-setning
 
     if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, passord, fnavn, enavn, epost, telefon, brukertype) VALUES (?,?,?,?,?,?,?)'))) {
       echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -36,10 +37,8 @@
       echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
     }
 
-    //echo $epost ,'	', $pw ,'	' , $fnavn ,'	' , $enavn , '	' , $tlf ,'		' , $kjønn ,'	', $fdato;
     mysqli_query($mysqli,"INSERT INTO bruker (brukernavn, passord, fnavn, enavn, epost, telefon, brukertype) 
     VALUES ('{$bnavn}','{$pw}','{$epost}','{$fnavn}','{$enavn}','{$epost}','{$tlf}');");
-    //mysqli_query($mysqli,"INSERT INTO users (epost, passord) VALUES ('testtest', 'testtest');");
     
     
     

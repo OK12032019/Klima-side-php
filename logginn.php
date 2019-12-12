@@ -32,7 +32,7 @@
 		echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 	}
 
-	echo 'test A ';
+	#echo 'test A ';
 
 	// Sett resultat som variabel
 	$Resultat = mysqli_stmt_get_result($stmt);
@@ -44,7 +44,7 @@
 	//sjekk for <5 feil
 	$feilAntall = $ROW['feillogginnteller'];
 
-	echo 'feilAntall : ',$feilAntall;
+	echo 'feilAntall : ',$feilAntall, '.   ';
 
 	if ($ROW['feillogginnteller'] < 5) {
 		// $RESULT = mysqli_query($mysqli, "select * from bruker where epost = '{$USER}' and passord = '{$PW}'");
@@ -63,7 +63,7 @@
 		$Resultat = mysqli_stmt_get_result($stmt);
 		//echo ' Resultat: ',$Resultat;
 		$ROW = mysqli_fetch_array($Resultat);
-		echo 'mambo nr. 5 : ', $ROW['brukernavn'], $ROW['passord'];
+		#echo 'mambo nr. 5 : ', $ROW['brukernavn'], $ROW['passord'];
 
 		if ($ROW['brukernavn'] == $USER && $ROW['passord'] == $PW) {
 			echo ' test 1';
@@ -101,8 +101,9 @@
 			if (!$stmt->execute()) {
 				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 			}
-			echo 'add på teller';
-			#header("Location: uvelkommen.html");
+			echo 'feil u pw combo';
+			$_SESSION['brukernavn'] = $USER;
+			#header("Location: uvelkommen.php");
 		}
 	}
 	else {
@@ -126,12 +127,12 @@
 		#echo ' ',$ROW;
 		
 
-		$timeNow = date('Y-m-d H:i:s', strtotime('-1 minutes'));
+		$timeNow = date('Y-m-d H:i:s', strtotime('-5 minutes'));
 		if ($ROW['feillogginnsiste'] < $timeNow) {
 			
 
 			// reset counter
-			if (!($stmt = $mysqli->prepare('UPDATE bruker SET feillogginnteller = 0 AND SET feillogginnsiste = 0 WHERE brukernavn = ? ;'))) {
+			if (!($stmt = $mysqli->prepare('UPDATE bruker SET feillogginnteller = 0 WHERE brukernavn = ? ;'))) {
 				echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			}
 			
@@ -142,12 +143,26 @@
 			if (!$stmt->execute()) {
 				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
 			}
+			/*
+			if (!($stmt = $mysqli->prepare('UPDATE bruker SET feillogginnsiste = now() WHERE brukernavn = ? ;'))) {
+				echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+			}
+			
+			if (!$stmt->bind_param('s',$USER)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+			*/
+			#echo 'Thank god!';
 			header("Location: logginn.html");
 		}
 		else {
 			echo 'test tid og shit ';
-
-			#header("Location: uvelkommen.html");
+			$_SESSION['brukernavn'] = $USER;
+			header("Location: uvelkommen.php");
 		}
 	}
 	
