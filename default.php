@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!EMPTY($_SESSION['brukernavn'] )) {
@@ -12,6 +11,7 @@ else {
 }
 
 ?>
+
 <html>
 	<head>
 	<meta charset ="UTF-8">
@@ -21,7 +21,9 @@ else {
 
 <body>
     <header class="hovedheader">
+
         <a href="default.php" class="logoen">LOGO</a>
+
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
