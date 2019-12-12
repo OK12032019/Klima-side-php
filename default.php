@@ -1,5 +1,16 @@
 
 <?php
+session_start();
+if (!EMPTY($_SESSION['brukernavn'] )) {
+    
+    $USER = $_SESSION['brukernavn'];
+    $Brukertype = $_SESSION['brukertype'];
+
+} 
+else {
+	
+}
+
 ?>
 <html>
 	<head>

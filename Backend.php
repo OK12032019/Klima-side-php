@@ -1,6 +1,8 @@
 <?php
 
 SESSION_START();
+$USER = $_SESSION['brukernavn'];
+$Brukertype = $_SESSION['brukertype'];
 if (EMPTY($_SESSION['brukertype'] )) {
     
     #echo 'hahahaha';
@@ -30,7 +32,7 @@ else {
             </ul>   
         </header>
         <div class="textbox1">
-                
+            <p> velkomen <?php echo $USER; ?>
               <textarea id="subject" name="subject" placeholder="Velkomen" readonly style="height:200px; width:55%; margin-top:2em;"></textarea> 
         </div>
             
