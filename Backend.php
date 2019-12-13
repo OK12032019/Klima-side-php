@@ -1,6 +1,8 @@
 <?php
 
 SESSION_START();
+$USER = $_SESSION['brukernavn'];
+$Brukertype = $_SESSION['brukertype'];
 if (EMPTY($_SESSION['brukertype'] )) {
     
     #echo 'hahahaha';
@@ -25,12 +27,12 @@ else {
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
-                <li><a href="logout.php">Logout</a></li>
-                <li><a href="Passord.html">Passord</a></li>
+                <li><a href="logout.php">Logg ut</a></li>
+                <li><a href="passordLoggetInn.html">Nullstill Passord</a></li>
             </ul>   
         </header>
         <div class="textbox1">
-                
+            <p> velkomen <?php echo $USER; ?>
               <textarea id="subject" name="subject" placeholder="Velkomen" readonly style="height:200px; width:55%; margin-top:2em;"></textarea> 
         </div>
             
