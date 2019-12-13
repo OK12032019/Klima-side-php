@@ -28,7 +28,7 @@ else {
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
                 <li><a href="logout.php">Logg ut</a></li>
-                <li><a href="passordLoggetInn.html">Nullstill Passord</a></li>
+                <li><a href="PassordLoggetInn.html">Nullstill Passord</a></li>
             </ul>   
         </header>
         <div class="textbox1">
