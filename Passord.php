@@ -18,7 +18,7 @@
         if (!($stmt = $mysqli->prepare('UPDATE bruker SET passord =  (?) WHERE epost = (?)'))) {
             echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
           }
-          if (!$stmt->bind_param('sss',$pw, $epost, $gpw)) {
+          if (!$stmt->bind_param('ss',$pw, $epost,)) {
             echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
           }
       
