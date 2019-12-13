@@ -15,10 +15,10 @@
         }
         echo $mysqli->host_info . "\n",'   ';
 
-        if (!($stmt = $mysqli->prepare('UPDATE bruker SET passord =  (?) WHERE epost = (?) AND passord =(?)'))) {
+        if (!($stmt = $mysqli->prepare('UPDATE bruker SET passord =  (?) WHERE epost = (?)'))) {
             echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
           }
-          if (!$stmt->bind_param('sss',$pw, $epost, $gpw)) {
+          if (!$stmt->bind_param('ss',$pw, $epost,)) {
             echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
           }
       
@@ -26,8 +26,9 @@
             echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
           }
 
-        mysqli_query($mysqli,"UPDATE bruker SET passord = '{$pw}' WHERE epost = '{$epost}' AND passord = '{$gpw}';");
 
          echo "New record has id: " . mysqli_insert_id($mysqli);
+		 
+		 header("Location: logginn.html");
     }
 ?>

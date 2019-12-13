@@ -1,20 +1,62 @@
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
 <html>
     <head>
         <meta charset='utf-8'>
         <link rel='stylesheet' type="text/css" href="logginn.css"/>
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		   <script language="Javascript" src=""></script>
+  <link rel="stylesheet" href="FellesCSS.css">  
         <title>Logg inn</title>
     </head>
     <body>
         <h1>Logg inn</h1>
+		    <header class="hovedheader">
+         <a href="default.php" class="logoen">LOGO</a>
+         <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+            <ul class="menu">
+              <li><a href="registrer.html">Registrer</a></li>
+            </ul> 
+            </header>
+		
+		<div class="login-box">
         <form action="logginn.php" method="POST">
             <fieldset>
                 <legend>Logg inn</legend>
+				<div class="textbox">
                 <label>Epost</label>
-				<input type ='text' name='brukernavn' id='brukernavn' />
+				<i class="fas fa-user"></i>
+				<input type ='text' name='brukernavn' placeholder="Username"/>
+				</div>
+				
+				<div class="textbox">
                 <label>Password</label>
-				<input type ='password' name = 'pass' id='pass' />
-                <input type='submit' id='btn' value='Login' />
-            </fieldset>
+				<i class="fas fa-lock"></i>
+				<input type ='password' name = 'pass' placeholder="Password"/>
+				</div>
+                <input type='submit' class="btn"  value='Login' />
+          
 		</form>
-    </body>
+		<form action="Passord.html">
+		 <input type='submit' class="btn"  value='Glemt passord' />
+		 </form>
+		</fieldset>	
+		</div>
+    </body> 
+	
+			<footer class="hovedfooter">
+		  <section class="lenker_footer">
+			<a href="">Om oss</a>
+			<a href="">Sidekart</a>
+			<a href="">Kariarre</a>
+			<a href="">Støtt oss</a>
+			<a href="">In English</a>
+		  </section>
+		  <section class="copyright">Gruppe 30 | copyright 2019</section>
+		</footer>
+	</main>
+</body>
+</html>
+	
+
