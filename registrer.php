@@ -23,8 +23,9 @@
       echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     echo $mysqli->host_info . "\n",'   ';
-
+	  
     //sql kode for å registrere bruker, bruk INSERT-setning
+
 
     if (!($stmt = $mysqli->prepare('INSERT INTO bruker(brukernavn, passord, fnavn, enavn, epost, telefon, brukertype) VALUES (?,?,?,?,?,?,?)'))) {
       echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
