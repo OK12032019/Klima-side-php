@@ -27,8 +27,8 @@ else {
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="logginn.html">Login</a></li>
-            <li><a href="registrer.html">Registrer</a></li>
+            <li><a href="logginn.php">Login</a></li>
+            <li><a href="registrer.php">Registrer</a></li>
         </ul>   
     </header>
   

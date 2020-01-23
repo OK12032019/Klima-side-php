@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSIONS = array();
+    $_SESSION = array();
     session_destroy();
     header("Location: default.php");
 ?>
