@@ -3,4 +3,5 @@
     $_SESSION = array();
     session_destroy();
     header("Location: default.php");
+	exit();
 ?>
