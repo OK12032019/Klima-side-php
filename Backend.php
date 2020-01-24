@@ -1,11 +1,9 @@
 <?php
 
 SESSION_START();
-$USER = $_SESSION['brukernavn'];
-$Brukertype = $_SESSION['brukertype'];
-if (EMPTY($_SESSION['brukertype'] )) {
+$USER = $_SESSION['user_session'];
+if (EMPTY($_SESSION['user_session'] )) {
     
-    #echo 'hahahaha';
 	header('Location: default.php');
 
 } 
@@ -27,8 +25,8 @@ else {
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
-                <li><a href="loggut.php">Logg ut</a></li>
-                <li><a href="PassordLoggetInn.html">Nullstill Passord</a></li>
+                <li><a href="logout.php">Logg ut</a></li>
+                <li><a href="Passord.php">Nullstill Passord</a></li>
             </ul>   
         </header>
         <div class="textbox1">
