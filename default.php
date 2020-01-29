@@ -64,7 +64,8 @@ else {
         <a href="">Støtt oss</a>
         <a href="">In English</a>
         </section>
-        <section class="copyright">Gruppe 30 | copyright 2019</section>
+        <section class="copyright">Gruppe 30 | copyright 2019 - <?php echo date("Y"); ?>
+</section>
       </footer>
   </body>
 </html>

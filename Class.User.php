@@ -61,6 +61,115 @@ class USER
            echo $e->getMessage();
        }    
     }
+    public function sjekkOgNullstill($bnavn)
+    {
+      try
+      {
+         $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1");
+         $stmt->execute(array(':bnavn'=>$bnavn,));
+         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+         if (strtotime($userRow['feillogginnsiste']) < time()-(5*60))
+         {
+            $null = '0';
+            $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nopp WHERE brukernavn =:bnavn");
+            $stmt->execute(array(':bnavn'=>$bnavn, ':nopp'=>$null));
+            return True;
+         }
+         else
+         {
+            return False;
+         }
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+      
+    }
+    public function feilLoginAntall($bnavn)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1");
+         $stmt->execute(array(':bnavn'=>$bnavn,));
+         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+         if($userRow['feillogginnteller']=5)
+         {
+            return True;
+         }
+         else
+         {
+            $_SESSION['feilAntall']=$userRow['feillogginnteller'];
+            return False;
+         }
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+    }
+/*    public function feilLoginTeller($bnavn)
+    {
+       try
+       {
+         $nyAntall = $_SESSION['feilAntall'];
+         $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nyAntall WHERE brukernavn =:bnavn");
+         $stmt->execute(array(':bnavn'=>$bnavn, ':nyAntall'=>$nyAntall));
+       }
+       catch(PDOException $e)
+         {
+            echo $e->getMessage();
+         } 
+    }
+*/
+    public function getFeilLoginSiste($bnavn)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn =:bnavn");
+         $stmt->execute(array(':bnavn'=>$bnavn));
+         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+         if($stmt->rowCount() > 0)
+          {
+            try
+            {
+               $nyAntall = "1";
+               $nyAntall = $nyAntall + $userRow['feillogginnteller'];
+               $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nyAntall WHERE brukernavn =:bnavn");
+               $stmt->execute(array(':bnavn'=>$bnavn, ':nyAntall'=>$nyAntall));
+            }
+            catch(PDOException $e)
+            {
+               echo $e->getMessage();
+            } 
+            return True;
+          }
+          else
+          {
+             return False;
+          }
+
+       }
+       catch(PDOException $e)
+         {
+            echo $e->getMessage();
+         } 
+    }
+    public function setFeilLoginSiste($bnavn)
+    {
+      try
+      {
+         $timeNow = time();
+         $stmt = $this->db->prepare("UPDATE bruker SET feillogginnsiste = :timeNow WHERE brukernavn =:bnavn");
+         $stmt->execute(array(':bnavn'=>$bnavn, ':timeNow'=>$timeNow));
+         return True;
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+    }
  
     public function login($bnavn,$pw)
     {
@@ -76,6 +185,8 @@ class USER
              if($userRow['passord']==$pw)
              {
                 $_SESSION['user_session'] = $userRow['idbruker'];
+                $_SESSION['fnavn'] = $userRow['fnavn'];
+                $_SESSION['enavn'] = $userRow['enavn'];
                 return true;
              }
              else
