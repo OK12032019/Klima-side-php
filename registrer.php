@@ -1,5 +1,6 @@
 <?php
 require_once 'PDO.php';
+
 $btype = '1';
 
 if($user->is_loggedin()!="")
@@ -12,6 +13,9 @@ if(isset($_POST['registrer']))
    $bnavn = trim($_POST['Brukernavn']);
    $epost = trim($_POST['Epost']);
    $pw = trim($_POST['Passord']);
+   $fnavn = trim($_POST['Fnavn']);
+   $enavn = trim($_POST['Enavn']);
+   $telefon = trim($_POST['Telefon']);
  
    if($bnavn=="") {
       $error[] = "provide username !"; 
@@ -44,7 +48,7 @@ if(isset($_POST['registrer']))
          }
          else
          {
-            if($user->register($bnavn,$epost,$pw,$btype)) 
+            if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)) 
             {
                 $user->redirect('logginn.php');
             }
@@ -100,6 +104,15 @@ if(isset($_POST['registrer']))
             </div>
             <div class="form-group">
              <input type="password" class="form-control" name="Passord" placeholder="Enter Password" />
+            </div>
+            <div class="form-group">
+             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" />
+            </div>
+            <div class="form-group">
+             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" />
+            </div>
+            <div class="form-group">
+             <input type="text" class="form-control" name="Telefon" placeholder="Telefon nummer" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">

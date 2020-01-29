@@ -8,24 +8,26 @@ class USER
       $this->db = $DB_con;
     }
     
-    public function register($bnavn,$epost,$pw,$btype)
+    public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
        try
        {
-         $btype ='1';
          $salt = 'IT2_2020';
          $new_password = sha1($salt.$pw);
 
          $stmt = $this->db->prepare("INSERT INTO bruker(brukernavn,passord,fnavn,enavn,epost,telefon,brukertype) 
-                                                      VALUES(:bnavn, :pw, 'Fornavn', 'Etternavn', :epost, 'telefonnr', :btype)");
+                                                VALUES(:bnavn, :pw, :fnavn, :enavn, :epost, :telefon, :btype)");
             
          $stmt->bindparam(":bnavn", $bnavn);
-         $stmt->bindparam(":epost", $epost);
          $stmt->bindparam(":pw", $new_password);
-         $stmt->bindparam(":btype", $btype);            
+         $stmt->bindparam(":fnavn", $fnavn); 
+         $stmt->bindparam(":enavn", $enavn);
+         $stmt->bindparam(":epost", $epost);
+         $stmt->bindparam(":telefon", $telefon);
+         $stmt->bindparam(":btype", $btype);              
          $stmt->execute(); 
 
-         return $stmt; 
+         return true; 
        }
        catch(PDOException $e)
        {
@@ -109,20 +111,7 @@ class USER
           echo $e->getMessage();
       }
     }
-/*    public function feilLoginTeller($bnavn)
-    {
-       try
-       {
-         $nyAntall = $_SESSION['feilAntall'];
-         $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nyAntall WHERE brukernavn =:bnavn");
-         $stmt->execute(array(':bnavn'=>$bnavn, ':nyAntall'=>$nyAntall));
-       }
-       catch(PDOException $e)
-         {
-            echo $e->getMessage();
-         } 
-    }
-*/
+
     public function getFeilLoginSiste($bnavn)
     {
        try
