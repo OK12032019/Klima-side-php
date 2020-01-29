@@ -1,6 +1,8 @@
 <?php
 require_once 'PDO.php';
 
+$url='backend.php';
+
 if($user->is_loggedin()!="")
 {
  $user->redirect('Backend.php');
@@ -9,16 +11,36 @@ if($user->is_loggedin()!="")
 if(isset($_POST['btn-login']))
 {
 	$bnavn = $_POST['brukernavn'];
-	$pw = $_POST['pass'];
-
-	if($user->login($bnavn,$pw))
-	{
-	$user->redirect('Backend.php');
-	}
-	else
-	{
-	$error = "Wrong Details !";
-	} 
+    $pw = $_POST['pass'];
+    
+    
+    if($user->feilLoginAntall($bnavn))
+    {
+        if($user->sjekkOgNullstill($bnavn))
+        {
+            if($user->login($bnavn, $pw));
+            {
+                $user->redirect($url);
+            }
+        }
+        else
+        {
+            $error =  "du må vente 5 minuter før du kan prøve igjen";
+        }
+    }
+    else
+    {
+        if($user->login($bnavn,$pw))
+        {
+            
+            $user->redirect($url);
+        }
+        else
+        {
+            $user->setFeilLoginSiste($bnavn);
+            $user->feilLoginTeller($bnavn);
+        }     
+    }
 }
 ?>
 <!DOCTYPE html>
