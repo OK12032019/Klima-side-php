@@ -1,10 +1,8 @@
 <?php
 session_start();
-if (!EMPTY($_SESSION['brukernavn'] )) {
-    
-    $USER = $_SESSION['brukernavn'];
-    $Brukertype = $_SESSION['brukertype'];
-
+if($user->is_loggedin()!="")
+{
+    $user->redirect('Backend.php');
 } 
 else {
 	
