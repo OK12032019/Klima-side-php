@@ -3,7 +3,7 @@
 include_once "PDO.php";
 
 SESSION_START();
-$USER = $_SESSION['user_session'];
+$user = $_SESSION['user_session'];
 if (EMPTY($_SESSION['user_session'] )) {
     
 	header('Location: default.php');
