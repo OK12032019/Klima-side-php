@@ -36,6 +36,15 @@ class USER
            echo $e->getMessage();
        }    
     }
+    public function brukerListe()
+    {
+       try
+       {
+         $stmt = $this->db->prepare('SELECT * FROM bruker');
+         $stmt->execute;
+         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+       }
+    }
     public function PassordReset($bnavn,$pw,$npw)
     {
        try
