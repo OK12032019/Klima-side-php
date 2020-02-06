@@ -2,13 +2,10 @@
 
 include_once "PDO.php";
 
-SESSION_START();
-$user = $_SESSION['user_session'];
-if (EMPTY($_SESSION['user_session'] )) {
-    
-	header('Location: default.php');
-
-} 
+if($user->is_loggedin()=="")
+{
+    $user->redirect('default.php');
+}
 else {
 	$fnavn = $_SESSION['fnavn'];
 	$enavn = $_SESSION['enavn'];
