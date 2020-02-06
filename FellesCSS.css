@@ -96,6 +96,10 @@ a{
   text-decoration: none;
 }
 
+.hovedheader .logoen img {
+  width:80px;
+}
+
 .hovedheader .menu{
   clear: both;
   max-height: 0;
