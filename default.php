@@ -1,13 +1,11 @@
 <?php
 require_once "PDO.php";
 session_start();
-if($user->is_loggedin()!="")
+if($user->is_loggedin()==True)
 {
     $user->redirect('Backend.php');
 } 
-else {
-	
-}
+
 
 ?>
 
