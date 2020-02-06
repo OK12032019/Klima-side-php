@@ -525,11 +525,6 @@ p.preview-text{
 
 
 
-
-
-
-
-
 /* MEDIA QUERY */
 @media (min-width: 760px) {
 
@@ -548,6 +543,13 @@ p.preview-text{
       display: none;
   }
 
+  .hovedheader .logoen{
+    float: left;
+    display: block;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+    }
 
 }
 
@@ -568,9 +570,61 @@ p.preview-text{
   .registrering select{
     font-size: 125%;
   }  
-   .textbox {
-	  width: 100%;
-	  margin-bottom: 50px;
-	}
-}
+  .textbox {
+	width: 100%;
+	margin-bottom: 50px;
+  }
+  .logoen1{
+    margin-left:203px;
+    padding-left:203px;
+    left:203px;
+    padding:1px;
+    margin-bottom:20px;
+    padding-bottom:20px;
+    bottom:20px;
+    }
+    
+  .logoen2{
+    margin-left:210px;
+    margin-right:210px;
+    padding-left:210px;
+    left:210px;
+    padding-top:30px;
+    top:30px;
+    }
+    
+  .logoen3{
+    margin-left:190px;
+    margin-right:190px;
+    padding-left:190px;
+    left:190px;
+    }
+            
+        
+  .nullpass{
+    margin-left:180px;
+    margin-right:180px;
+    left:180px;
+    }
+    
+  .hovedheader .menu{
+    padding:11px;
+    }
+    
+  .a123{
+    margin-left:105px;
+    margin-right:105px;
+    padding-left:105px;
+    left:105px;
+    margin-bottom:500px;
+    }
+    
+  .textbox1{
+    padding:1px;
+    top:25px;
+    padding-top:25px;
+    margin-top:25px;
+    }
 
+
+}
