@@ -1,14 +1,11 @@
 <?php
+require_once "PDO.php";
 session_start();
-if (!EMPTY($_SESSION['brukernavn'] )) {
-    
-    $USER = $_SESSION['brukernavn'];
-    $Brukertype = $_SESSION['brukertype'];
-
+if($user->is_loggedin()==True)
+{
+    $user->redirect('Backend.php');
 } 
-else {
-	
-}
+
 
 ?>
 
@@ -22,13 +19,13 @@ else {
 <body>
     <header class="hovedheader">
 
-        <a href="default.php" class="logoen">LOGO</a>
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
 
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="logginn.html">Login</a></li>
-            <li><a href="registrer.html">Registrer</a></li>
+            <li><a href="logginn.php">Login</a></li>
+            <li><a href="registrer.php">Registrer</a></li>
         </ul>   
     </header>
   
@@ -64,7 +61,8 @@ else {
         <a href="">Støtt oss</a>
         <a href="">In English</a>
         </section>
-        <section class="copyright">Gruppe 30 | copyright 2019</section>
+        <section class="copyright">Gruppe 30 | copyright 2019 - <?php echo date("Y"); ?>
+</section>
       </footer>
   </body>
 </html>
