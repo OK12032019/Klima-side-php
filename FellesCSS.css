@@ -628,3 +628,16 @@ p.preview-text{
 
 
 }
+
+/*Bukerside*/
+
+.brukerbilde {
+  width:200px; 
+  margin:10px;
+  margin-left:40px;
+}
+
+.brukerside {
+  margin-left:50px;
+  margin-top:200px;
+}
