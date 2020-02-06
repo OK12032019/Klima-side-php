@@ -18,19 +18,19 @@ if(isset($_POST['registrer']))
    $telefon = trim($_POST['Telefon']);
  
    if($bnavn=="") {
-      $error[] = "provide username !"; 
+      $error[] = "Oppgi brukernavn!"; 
    }
    else if($epost=="") {
-      $error[] = "provide email id !"; 
+      $error[] = "Oppgi epost!"; 
    }
    else if(!filter_var($epost, FILTER_VALIDATE_EMAIL)) {
-      $error[] = 'Please enter a valid email address !';
+      $error[] = 'Oppgi gyldig epost!';
    }
    else if($pw=="") {
-      $error[] = "provide password !";
+      $error[] = "Oppgi passord!";
    }
    else if(strlen($pw) < 6){
-      $error[] = "Password must be atleast 6 characters"; 
+      $error[] = "Passord må være i hvert fall 6 tegn"; 
    }
    else
    {
@@ -41,10 +41,10 @@ if(isset($_POST['registrer']))
          $row=$stmt->fetch(PDO::FETCH_ASSOC);
     
          if($row['brukernavn']==$bnavn) {
-            $error[] = "sorry username already taken !";
+            $error[] = "Bekalger, brukernavnen er allerede i bruk!";
          }
          else if($row['epost']==$epost) {
-            $error[] = "sorry email id already taken !";
+            $error[] = "Beklager, emailen er allerede i bruk!";
          }
          else
          {
@@ -74,7 +74,7 @@ if(isset($_POST['registrer']))
 <div class="container">
      <div class="form-container">
         <form method="post">
-            <h2>Sign up.</h2><hr />
+            <h2>Registrering</h2><hr />
             <?php
             if(isset($error))
             {
@@ -91,19 +91,19 @@ if(isset($_POST['registrer']))
             {
                  ?>
                  <div class="alert alert-info">
-                      <i class="glyphicon glyphicon-log-in"></i> &nbsp; Successfully registered <a href='index.php'>login</a> here
+                      <i class="glyphicon glyphicon-log-in"></i> &nbsp; Registrering vellykket. <a href='index.php'>Log inn</a> her
                  </div>
                  <?php
             }
             ?>
             <div class="form-group">
-            <input type="text" class="form-control" name="Brukernavn" placeholder="Enter Username" value="<?php if(isset($error)){echo $bnavn;}?>" />
+            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" name="Epost" placeholder="Enter E-Mail ID" value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="Passord" placeholder="Enter Password" />
+             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" />
             </div>
             <div class="form-group">
              <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" />
@@ -112,16 +112,16 @@ if(isset($_POST['registrer']))
              <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Telefon" placeholder="Telefon nummer" />
+             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
              <button type="submit" class="btn btn-block btn-primary" name="registrer">
-                 <i class="glyphicon glyphicon-open-file"></i>&nbsp;SIGN UP
+                 <i class="glyphicon glyphicon-open-file"></i>&nbsp;REGISTRER
                 </button>
             </div>
             <br />
-            <label>have an account ! <a href="index.php">Sign In</a></label>
+            <label>Har du konto? <a href="index.php">Log inn</a></label>
         </form>
        </div>
 </div>

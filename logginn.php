@@ -25,7 +25,7 @@ if(isset($_POST['btn-login']))
         }
         else
         {
-            $error =  "du må vente 5 minuter før du kan prøve igjen";
+            $error =  "Du må vente 5 minuter før du kan prøve igjen";
         }
     }
     else
@@ -70,10 +70,10 @@ if(isset($_POST['btn-login']))
             }
             ?>
             <div class="form-group">
-             <input type="text" class="form-control" name="brukernavn" placeholder="Username or E mail ID" required />
+             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="pass" placeholder="Your Password" required />
+             <input type="password" class="form-control" name="pass" placeholder="Passord" required />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -82,7 +82,7 @@ if(isset($_POST['btn-login']))
                 </button>
             </div>
             <br />
-            <label>Don't have account yet ! <a href="registrer.php">Sign Up</a></label>
+            <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 </div>

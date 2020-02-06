@@ -227,7 +227,7 @@ class USER
         session_destroy();
         unset($_SESSION['user_session']);
         return true;
-   
+
    }
 
    public function InteresseFinnes($input)
@@ -257,6 +257,7 @@ class USER
           echo $e->getMessage();
       }
    }
+
    public function nyInteresse($input)
    {
       try
