@@ -44,6 +44,11 @@ class USER
          $stmt->execute;
          $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
        }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }   
+
     }
     public function PassordReset($bnavn,$pw,$npw)
     {
