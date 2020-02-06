@@ -110,6 +110,7 @@ if(isset($_POST['btn-logout']))
             </div>
         </div>
     </section>
+
     <footer class="hovedfooter">
             <section class="lenker_footer">
             <a href="">Om oss</a>

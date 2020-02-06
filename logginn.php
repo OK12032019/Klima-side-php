@@ -1,34 +1,105 @@
 <?php
-	session_start();
-    $SALT = 'IT2_2020';
-	
-	$USER = $_POST['user'];
-	$PASS = $_POST['pass'];
-	
-	$USER = stripcslashes($USER);
-	$PASS = stripcslashes($PASS);
-	// $USER = mysql_real_escape_string($USER);
-	// $USER = mysql_real_escape_string($PASS);
-	
-	$PW= sha1($SALT.$PASS);
-	
-	$mysqli = new mysqli("localhost", "root", "", "bruker");
-	if ($mysqli->connect_errno) {
-		echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-	}
-	echo $mysqli->host_info . "\n";
-	
-	
-	$RESULT = mysqli_query($mysqli, "select * from users where epost = '{$USER}' and passord = '{$PW}'");
-	$ROW = mysqli_fetch_array($RESULT);
-	if ($ROW['epost'] == $USER && $ROW['passord'] == $PW) {
-		header('Location: backend.php');
-		$_SESSIONS['bruker'] = $bruker;
-		$_SESSIONS['brukertype'] = $row['brukertype'];
-		
-	}
-	
-	else {
-         header("Location: uvelkommen.html");
-	}
+require_once 'PDO.php';
+
+$url='backend.php';
+
+if($user->is_loggedin()!="")
+{
+ $user->redirect('Backend.php');
+}
+
+if(isset($_POST['btn-login']))
+{
+	$bnavn = $_POST['brukernavn'];
+    $pw = $_POST['pass'];
+    
+    
+    if($user->feilLoginAntall($bnavn))
+    {
+        if($user->sjekkOgNullstill($bnavn))
+        {
+            if($user->login($bnavn, $pw));
+            {
+                $user->redirect($url);
+            }
+        }
+        else
+        {
+            $error =  "du må vente 5 minuter før du kan prøve igjen";
+        }
+    }
+    else
+    {
+        if($user->login($bnavn,$pw))
+        {
+            
+            $user->redirect($url);
+        }
+        else
+        {
+            $user->setFeilLoginSiste($bnavn);
+            $user->feilLoginTeller($bnavn);
+        }     
+    }
+}
 ?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' type="text/css" href="logginn.css"/>
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		   <script language="Javascript" src=""></script>
+  <link rel="stylesheet" href="FellesCSS.css">  
+        <title>Logg inn</title>
+    </head>
+    <body>
+<div class="container">
+     <div class="form-container">
+        <form method="post">
+            <h2>Sign in.</h2><hr />
+            <?php
+            if(isset($error))
+            {
+                  ?>
+                  <div class="alert alert-danger">
+                      <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
+                  </div>
+                  <?php
+            }
+            ?>
+            <div class="form-group">
+             <input type="text" class="form-control" name="brukernavn" placeholder="Username or E mail ID" required />
+            </div>
+            <div class="form-group">
+             <input type="password" class="form-control" name="pass" placeholder="Your Password" required />
+            </div>
+            <div class="clearfix"></div><hr />
+            <div class="form-group">
+             <button type="submit" name="btn-login" class="btn btn-block btn-primary">
+                 <i class="glyphicon glyphicon-log-in"></i>&nbsp;SIGN IN
+                </button>
+            </div>
+            <br />
+            <label>Don't have account yet ! <a href="registrer.php">Sign Up</a></label>
+        </form>
+       </div>
+</div>
+
+</body>
+	
+			<footer class="hovedfooter">
+		  <section class="lenker_footer">
+			<a href="">Om oss</a>
+			<a href="">Sidekart</a>
+			<a href="">Kariarre</a>
+			<a href="">Støtt oss</a>
+			<a href="">In English</a>
+		  </section>
+		  <section class="copyright">Gruppe 30 | copyright 2019</section>
+		</footer>
+	</main>
+</html>
+	
+
