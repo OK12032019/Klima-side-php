@@ -1,10 +1,8 @@
 <?php
 session_start();
-if (!EMPTY($_SESSION['brukernavn'] )) {
-    
-    $USER = $_SESSION['brukernavn'];
-    $Brukertype = $_SESSION['brukertype'];
-
+if($user->is_loggedin()!="")
+{
+    $user->redirect('Backend.php');
 } 
 else {
 	
@@ -22,7 +20,7 @@ else {
 <body>
     <header class="hovedheader">
 
-        <a href="default.php" class="logoen">LOGO</a>
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
 
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
