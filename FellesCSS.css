@@ -96,10 +96,6 @@ a{
   text-decoration: none;
 }
 
-.hovedheader .logoen img {
-  width:80px;
-}
-
 .hovedheader .menu{
   clear: both;
   max-height: 0;
@@ -302,11 +298,20 @@ left: 50%;
 border-bottom: 1px solid #4caf50;
 
 }
+
 .hovedheaderadmin{
   background-color: red;
 
-	
 }
+
+
+
+#subject {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 	
 .hovedfooteradmin {
 	position:static;
@@ -329,11 +334,7 @@ border-bottom: 1px solid #4caf50;
 margin-top:5%; 
 text-align:center;
 }
-#subject{
-height:200px; 
-width:55%; 
-margin-top:2em;
-}
+
 
 /* Login CSS*/
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
@@ -389,9 +390,147 @@ margin-top:2em;
 }
 
 	
-	
+/* CSS ARTICLE-FEED PAGE */
 
 
+a.post-lenke {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 115%;
+}
+a.post-lenke:hover {
+  color: lightskyblue; 
+}
+
+p.preview-text{
+  font-size: 90%;
+}
+
+
+.content {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+}
+
+
+.content .main-content {
+  width: 100%;
+}
+
+
+.content .main-content .articlefeed1{
+    width: 100%;
+    margin-left: auto;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.content .main-content .articlefeed2{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .articlefeed3{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .articlefeed4{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content .main-content .post-lenke {
+  font-size: 25px;
+}
+
+.content .main-content .nylig-artikkel-overskrift{
+    text-align: center;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/* CSS FOR ARTICLE-POST PAGE */
+
+.content-artikkel-side {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+  background: white;
+  border: 2px solid gray;
+  border-radius: 7px;
+}
+
+.content-artikkel-side .main-content-artikkel-side {
+  width: 100%;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-overskrift {
+  text-align: center;
+  font-size: 40px;
+  width: 95%;
+  margin-left: 11px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-tekst-innhold {
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-info {
+  float: right;
+  padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+/* MEDIA QUERY */
 @media (min-width: 760px) {
 
   .hovedheader li{
@@ -434,3 +573,4 @@ margin-top:2em;
 	  margin-bottom: 50px;
 	}
 }
+
