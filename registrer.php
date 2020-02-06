@@ -1,7 +1,7 @@
 <?php
 require_once 'PDO.php';
 
-$btype = '1';
+$btype = '3';
 
 if($user->is_loggedin()!="")
 {
