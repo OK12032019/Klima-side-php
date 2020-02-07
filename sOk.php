@@ -76,31 +76,3 @@ if(isset($_POST['registrer']))
 </main>
 </body>
 </html>
-
-<!-- <table border="1" cellspacing="5" cellpadding="5" width="100%">
-	<thead>
-		<tr>
-			<th>No.</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>User Name</th>
-		</tr>
-	</thead>
-	<tbody>
-
-<?php/* 
-$db = $DB_con;
-$getPlayers = $db->query("SELECT * FROM bruker");
-foreach ($getPlayers as $row) {
-	?>
-		<tr>
-			<td><label><?php echo $row['idbruker']; ?></label></td>
-			<td><label><?php echo $row['fnavn']; ?></label></td>
-			<td><label><?php echo $row['enavn']; ?></label></td>
-			<td><label><?php echo $row['brukernavn']; ?></label></td>
-		</tr>
-        <?php 
-        
-        } ?>
-        
-</table> */ ?>
