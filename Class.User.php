@@ -7,6 +7,20 @@ class USER
     {
       $this->db = $DB_con;
     }
+    public function sOk($brukersOk)
+    {
+      try{
+         $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE brukernavn = :brukersOk LIMIT 1"); 
+         $stmt->execute(array(':brukersOk'=>$brukersOk));
+         $result=($stmt->fetch(PDO::FETCH_ASSOC));
+         return $result;
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }    
+    }
+
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
@@ -36,13 +50,29 @@ class USER
            echo $e->getMessage();
        }    
     }
+
+    public function antallBrukere()
+    {
+      try
+      {
+         $stmt = $this->db->prepare('SELECT * FROM bruker ORDER BY idbruker ASC');
+         $stmt->execute();
+         $count = $stmt->rowCount();
+         return $count;
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }  
+    }
     public function brukerListe()
     {
        try
        {
-         $stmt = $this->db->prepare('SELECT * FROM bruker');
-         $stmt->execute;
-         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+         $stmt = $this->db->prepare('SELECT * FROM bruker ORDER BY idbruker ASC');
+         $stmt->execute();
+         $result=($stmt->fetch(PDO::FETCH_ASSOC));
+         return $result;
        }
        catch(PDOException $e)
        {
