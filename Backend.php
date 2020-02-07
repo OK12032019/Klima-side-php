@@ -26,7 +26,7 @@ if(isset($_POST['btn-logout']))
 
 <html>
 <head>
-    <link rel="stylesheet" href="FellesCSS9.css">
+    <link rel="stylesheet" href="FellesCSS.css">
     <title>Test Backend</title>
 </head>
 <body>
@@ -64,7 +64,7 @@ if(isset($_POST['btn-logout']))
         </ul>   
 
     </header>
-    <div class="container">
+    <div class="container1">
         <h1>Klima</h1>
       </div>
 		
