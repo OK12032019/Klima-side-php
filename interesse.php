@@ -174,6 +174,22 @@ if(isset($_POST['btn-logout']))
           $user->SubmitButton2($username,$input);
         }
         echo ('<p>'.$error.'</p>');
+        
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
+{
+  // mottar  brukerid og interest id
+  $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
+  $result = $mysqli->query($stmt);
+  $row = mysqli_fetch_array($result);
+  $userid = $row['idbruker'];
+  $interestid = $_POST['delete'];
+
+  // slettinv av brukerens interesser. 
+  $stmt = $mysqli->prepare("DELETE FROM userinterest WHERE userid = ? AND interestid = ?");
+  $stmt->bind_param("ss", $userid, $interestid);
+  $stmt->execute();
+  $stmt->close();
+}
         ?>    
 	
                   </div>      
