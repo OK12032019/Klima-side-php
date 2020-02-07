@@ -113,7 +113,7 @@ if(isset($_POST['PassordReset']))
                         </tr>
                         <tr>
                             <td>Gammelt Passord:</td> 
-                            <td class="regtextbox"><input type="password" name="pass" placeholder="passord" value="<?php if(isset($error)){echo $pass;}?>"></td>
+                            <td class="regtextbox"><input type="password" name="pass" placeholder="Passord" value="<?php if(isset($error)){echo $pass;}?>"></td>
                         </tr>
                         <tr>
                             <td>Nytt Passord:</td> 
