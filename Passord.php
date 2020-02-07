@@ -74,7 +74,7 @@ if(isset($_POST['PassordReset']))
 			
 
 			
-              <a href="Passord.php" class="nullpass">Nullstill Passord</a>
+              
 			
 			
         <div class="a123">
