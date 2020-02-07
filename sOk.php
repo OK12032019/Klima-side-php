@@ -39,7 +39,7 @@ if(isset($_POST['btn-logout']))
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		
 		            <a href="#" class="w3-bar-item" title="Konto">
-                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
+                <a href="Brukerside.php"><img src="img/Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
             </a>
 			
         <ul class="menu">

@@ -36,12 +36,12 @@ if(isset($_POST['btn-logout']))
 <body>
     
         <header class="hovedheader">
-            <a href="default.php" class="logoen"> LOGO</a>
+            <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
             <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside Backend</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
 			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
