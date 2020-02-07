@@ -70,7 +70,19 @@ if(isset($_POST['registrer']))
   <link rel="stylesheet" href="FellesCSS.css">  
   <title>Registrering</title>
   </head>
+  	    <header class="hovedheader">
+
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li><a href="Default.php">Hovedside</a></li>
+            <li><a href="logginn.php">Logg inn</a></li>
+        </ul>   
+    </header>
   <body>
+  <div class="femti">
 <div class="container">
      <div class="form-container">
         <form method="post">
@@ -121,9 +133,10 @@ if(isset($_POST['registrer']))
                 </button>
             </div>
             <br />
-            <label>Har du konto? <a href="index.php">Log inn</a></label>
+            <label>Har du konto? <a href="logginn.php">Log inn</a></label>
         </form>
        </div>
+</div>
 </div>
 
 </body>
