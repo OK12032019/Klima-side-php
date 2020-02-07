@@ -53,15 +53,40 @@ if(isset($_POST['PassordReset']))
 
     <body>
         <main>
-            <header class="hovedheader">
-                <a href="default.php" class="logoen">LOGO</a>
-                <input class="menu-btn" type="checkbox" id="menu-btn" />
-                <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-                <ul class="menu">
-                  <li><a href="logginn.html">Logg inn</a></li>
-                  <li><a href="registrer.html">Registrer</a></li>
-                </ul>
-            </header>
+        <header class="hovedheader">
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+		
+		            <a href="#" class="w3-bar-item" title="Konto">
+                <a href="Brukerside.php" img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
+            </a>
+			
+        <ul class="menu">
+		
+            <a href="#" class="logoen1">Artikler</a>
+			
+            <a href="Brukerside.php" class="logoen2">Profil</a>
+			
+			
+            <a href="#" class="logoen3">Arrangementer</a>
+			
+			
+
+			
+              <a href="Passord.php" class="nullpass">Nullstill Passord</a>
+			
+			
+        <div class="a123">
+        <form method="post">
+            <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
+                <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
+            </button>
+            </form>
+        </div>
+        </ul>   
+
+    </header>
 
             
             <div class="Passord">
