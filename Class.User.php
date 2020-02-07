@@ -7,6 +7,33 @@ class USER
     {
       $this->db = $DB_con;
     }
+    public function artikkel($forrigeArtikkelID)
+    {
+      $stmt = $this->db->prepare("SELECT * FROM artikkel WHERE idartikkel < :forrigeArtikkelID ORDER BY idartikkel DESC"); 
+      $stmt->execute(array(':forrigeArtikkelID'=>$forrigeArtikkelID));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+    }
+    public function largeArtikkel($tittel, $artikkel, $brukerid)
+    {
+      try{
+         $artinngress = ('test');
+         $stmt = $this->db->prepare("INSERT INTO artikkel (artnavn, artinngress, arttekst, bruker)
+         VALUES(:artnavn, :artinngress, :arttekst, :bruker)");
+
+         $stmt->bindparam(":artnavn", $tittel);
+         $stmt->bindparam(":artinngress", $artinngress);
+         $stmt->bindparam(":arttekst", $artikkel);
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->execute(); 
+
+            return true; 
+      }
+      catch(PDOException $e)
+      {
+            echo $e->getMessage();
+      } 
+    }
     public function sOk($brukersOk)
     {
       try{
