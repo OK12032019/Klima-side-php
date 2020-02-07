@@ -50,6 +50,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
     <link rel="stylesheet" href="FellesCSS.css">
     <title>Test Backend</title>
 </head>
+
+
+    <header class="hovedheader">
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li><a href="interesse.php" class="mellomrom1">Intereser</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
+			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
+			 <div class="e123">
+            <form method="post">
+        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
+            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
+        </button>
+        </form>
+        </div>
+    </ul>   
+        </ul> 
+    </header>
+
+
 <body>
     <!-- <header class="hovedheader">
         <a href="default.php" class="logoen"> LOGO</a>
@@ -67,31 +90,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
     </header>
     -->
 
-    <aside class="brukertekst">
-        <div class="artikkeltekstarea">
-        <form method="post">
-            <textarea name="tittel" id="artikkeltittel" cols="30" rows="10"></textarea>
-            <textarea name="artikkeltekst" id="artikkelinnhold" cols="30" rows="10"></textarea>
-           
-        
-            <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">
-            <input type="text" name="brukerartikkel" class="brukerinnlegg"> -->
-        </div>
 
-        <div class="form-container">
-           
-                <div class="form-group">
-                </div>
-                    <div class="clearfix"></div><hr />
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-primary" name="registrer">
-                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-    </aside>
 
     <?php
         if(isset($_POST['registrer']))
@@ -195,6 +194,37 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 
                 <input type="submit" name="SubmitButton2"/>
                 </form>
+				
+				<h1> Skriv artikkel </h1> 
+    <aside class="brukertekst">
+        <div class="artikkeltekstarea">
+        <form method="post">
+		<h2> tittel </h2>
+            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2"></textarea>
+			<h2> Artikkelinnhold</h2>
+            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8"></textarea>
+           
+        
+            <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">
+            <input type="text" name="brukerartikkel" class="brukerinnlegg"> -->
+        </div>
+
+        <div class="form-container">
+           
+                <div class="form-group">
+                </div>
+                    <div class="clearfix"></div><hr />
+                    <div class="form-group">
+					<div class="a1">
+                        <button type="submit" class="btn btn-block btn-primary" name="registrer">
+                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
+							</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </aside>
                 
             <?php
             //echo ('$username: ');
