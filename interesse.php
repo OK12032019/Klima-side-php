@@ -41,7 +41,7 @@ if(isset($_POST['btn-logout']))
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
             <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside Backend</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
 			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
