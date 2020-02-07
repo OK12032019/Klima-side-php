@@ -7,6 +7,61 @@ class USER
     {
       $this->db = $DB_con;
     }
+    public function sletteInteresse($userid, $interesseid)
+    {
+       try
+       {
+      echo ('test69');
+      $stmt = $this->db->prepare("DELETE FROM brukerinteresse WHERE bruker = :userid AND interesse = :interesseid"); 
+      $stmt->execute(array(':userid'=>$userid, ':interesseid'=>$interesseid));
+      
+      return true;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       } 
+    }
+    public function artikkel($forrigeArtikkelID)
+    {
+      $stmt = $this->db->prepare("SELECT * FROM artikkel WHERE idartikkel < :forrigeArtikkelID ORDER BY idartikkel DESC"); 
+      $stmt->execute(array(':forrigeArtikkelID'=>$forrigeArtikkelID));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+    }
+    public function artikkelsOk()
+    {
+      try{
+         $stmt = $this->db->prepare('SELECT * FROM artikkel');
+         $stmt->execute();
+         $count = $stmt->rowCount();
+         return $count;
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }    
+    }
+    public function largeArtikkel($tittel, $artikkel, $brukerid)
+    {
+      try{
+         $artinngress = ('test');
+         $stmt = $this->db->prepare("INSERT INTO artikkel (artnavn, artinngress, arttekst, bruker)
+         VALUES(:artnavn, :artinngress, :arttekst, :bruker)");
+
+         $stmt->bindparam(":artnavn", $tittel);
+         $stmt->bindparam(":artinngress", $artinngress);
+         $stmt->bindparam(":arttekst", $artikkel);
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->execute(); 
+
+            return true; 
+      }
+      catch(PDOException $e)
+      {
+            echo $e->getMessage();
+      } 
+    }
     public function sOk($brukersOk)
     {
       try{
