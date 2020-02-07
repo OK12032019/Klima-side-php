@@ -83,11 +83,7 @@ if(isset($_POST['btn-logout']))
                     while($forrigeArtikkelID != '1'){
                         $result = $user->artikkel($forrigeArtikkelID);
                         
-                        ?>
-                        <div class="container">
-                            <h1><?php echo $result['artnavn']; ?></h1>
-                        </div>
-                            
+                        ?>                            
                         <section id="tekst">
                             <div class="content-artikkel-side clearfix">
                                 
@@ -116,48 +112,6 @@ if(isset($_POST['btn-logout']))
                         echo $forrigeArtikkelID;
                     }?>
                 </div>
-                
-                <div class="articlefeed2">
-                    <img src="img/ice_formation.jpg" width="290" height="150" alt="" class="artikkel-bilde">
-                    <div class="post-preview">
-                        <h2><a href="article-globalwarming.html" class="post-lenke">Global Warming</a></h2>
-                        <i class="far fa-user">Alvin King</i>
-                        &nbsp;
-                        <i class="far calendar"> Feb 01, 2020</i>
-                        <p class="preview-text">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore facere, magnam veritatis quae non, vitae accusantium similique, nemo officiis harum recusandae a quos? Accusantium, non id odit commodi error mollitia!
-                        </p>
-                    </div>
-                </div> 
-
-                <div class="articlefeed3">
-                    <img src="img/africa_forest_fire.jpg" width="290" height="150" alt="" class="artikkel-bilde">
-                    <div class="post-preview">
-                        <h2><a href="article-afrikaregnskogbrann.html" class="post-lenke">Tusenvis av branner i Afrikas største regnskog</a></h2>
-                        <i class="far fa-user">Alvin King</i>
-                        &nbsp;
-                        <i class="far calendar"> Feb 01, 2020</i>
-                        <p class="preview-text">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore facere, magnam veritatis quae non, vitae accusantium similique, nemo officiis harum recusandae a quos? Accusantium, non id odit commodi error mollitia!
-                        </p>
-                    </div>
-                </div> 
-
-                <div class="articlefeed4">
-                    <img src="img/earth_desert_dry.jpg" width="290" height="150" alt="" class="artikkel-bilde">
-                    <div class="post-preview">
-                        <h2><a href="article-iskaldtiorkenen.html" class="post-lenke">Iskaldt i ørkenen</a></h2>
-                        <i class="far fa-user">Alvin King</i>
-                        &nbsp;
-                        <i class="far calendar"> Feb 01, 2020</i>
-                        <p class="preview-text">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore facere, magnam veritatis quae non, vitae accusantium similique, nemo officiis harum recusandae a quos? Accusantium, non id odit commodi error mollitia!
-                        </p>
-                    </div>
-                </div> 
-
-              
-
             </div>
         </div>
     </section>
