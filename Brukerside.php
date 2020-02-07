@@ -25,63 +25,72 @@ if(isset($_POST['btn-logout']))
     {
     $error = "Kunne ikke logge ut";
     } 
-}
 
+}
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
+{
+    $mysqli = new mysqli("localhost", "root", "", "klima");
+  // mottar  brukerid og interest id
+  $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
+  $result = $mysqli->query($stmt);
+  $row = mysqli_fetch_array($result);
+  $userid = $row['idbruker'];
+  $interesseid = $_POST['delete'];
+
+  // slettinv av brukerens interesser. 
+  echo $userid;
+  echo $interesseid;
+  $user->sletteInteresse($userid, $interesseid);
+}
 
 ?>
 
 <html>
 <head>
     <link rel="stylesheet" href="FellesCSS.css">
-    <title>Brukerside for <?php echo $username;?></title>
+    <title>Test Backend</title>
 </head>
-<body>
+
+
     <header class="hovedheader">
-
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-
+        <a href="default.php" class="logoen"> LOGO</a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="Passord.php">Nullstill Passord</a></li>
-            <li><a href="sOk.php">Søk etter brukere</a></li>
-            <li>
+            <li><a href="interesse.php" class="mellomrom1">Intereser</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
+			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
+			 <div class="e123">
             <form method="post">
-                <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
-                <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-            </button>
-            </form>
-            </li>
-        </ul> 
-        <div class="a123">
+        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
+            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
+        </button>
+        </form>
         </div>
+    </ul>   
+        </ul> 
     </header>
 
-    <aside class="brukertekst">
-        <div class="artikkeltekstarea">
-        <form method="post">
-            <textarea name="tittel" id="artikkeltittel" cols="30" rows="10"></textarea>
-            <textarea name="artikkeltekst" id="artikkelinnhold" cols="30" rows="10"></textarea>
-           
-        
-            <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">
-            <input type="text" name="brukerartikkel" class="brukerinnlegg"> -->
-        </div>
 
-        <div class="form-container">
-           
-                <div class="form-group">
-                </div>
-                    <div class="clearfix"></div><hr />
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-primary" name="registrer">
-                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+<body>
+    <!-- <header class="hovedheader">
+        <a href="default.php" class="logoen"> LOGO</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li><a href="interesse.php">Intereser</a></li>
+                <form method="post">
+                    <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
+                        <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
+                    </button>
+                </form>
+             <li><a href="Passord.php">Nullstill Passord</a></li>
+        </ul> 
+    </header>
+    -->
 
-    </aside>
+
 
     <?php
         if(isset($_POST['registrer']))
@@ -90,7 +99,6 @@ if(isset($_POST['btn-logout']))
             $tittel = trim($_POST['tittel']);
             $artikkel = trim($_POST['artikkeltekst']);
             $user->largeArtikkel($tittel, $artikkel, $brukerid);
-
             echo $tittel;
             echo $artikkel;
         }
@@ -123,15 +131,19 @@ if(isset($_POST['btn-logout']))
                 if ($result) {
                 $old_result = $result;
                 while($row = mysqli_fetch_array($old_result)) {
-                    $stmt = "SELECT interessenavn FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
-
+                    $stmt = "SELECT * FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
+                    
                     $result = $mysqli->query($stmt);
                     $row = mysqli_fetch_array($result);
                     $label = $row['interessenavn'];
-                    echo ' - ',$label;
+                    $interesseid = $row['idinteresse'];
+                    echo ' - ',$label,'<form action="" method="post">
+				    <button type="submit" name="delete" value="', $interesseid, '" class="btn-link">Delete</button>
+				    </form>';
                     echo '<br />';
                     
                 }
+
 
                 }
                 else {
@@ -168,39 +180,7 @@ if(isset($_POST['btn-logout']))
                                     while($row = mysqli_fetch_array($result)) {
                                     echo "<option value='",$row['interessenavn'],"'>",$row['interessenavn'],"</option>";
                                     }
-            }
-            else {
-            echo ('Du har foreløpig ingen interesser');
-            }
-        ?>
-        <br />
 
-        <form action="Brukerside.php" method="POST">
-
-            <h2>Legg til din ny interesse</h2>
-            <table>
-                <tr>
-                    <td>interesse</td>
-                    <td class="interesse"><input type="text" name="interesse1" placeholder="interesse"></td>
-                </tr>
-            </table>
-            
-            <input type="submit" name="SubmitButton1"/>
-
-            <h2> Velg en interesse</h2>
-            <table>
-                <tr> 
-                    <td>interesse</td>
-                    <td>
-                    <select name="interesse2">
-                        <?php 
-                            $mysqli = new mysqli("localhost", "root", "", "klima");
-
-                            $sql = "SELECT * FROM interesse";
-                            $result = $mysqli->query($sql);
-                            if ($result) {
-                                while($row = mysqli_fetch_array($result)) {
-                                echo "<option value='",$row['interessenavn'],"'>",$row['interessenavn'],"</option>";
                                 }
                                 else {
                                     echo mysql_error();
@@ -214,6 +194,37 @@ if(isset($_POST['btn-logout']))
                 
                 <input type="submit" name="SubmitButton2"/>
                 </form>
+				
+				<h1> Skriv artikkel </h1> 
+    <aside class="brukertekst">
+        <div class="artikkeltekstarea">
+        <form method="post">
+		<h2> tittel </h2>
+            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2"></textarea>
+			<h2> Artikkelinnhold</h2>
+            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8"></textarea>
+           
+        
+            <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">
+            <input type="text" name="brukerartikkel" class="brukerinnlegg"> -->
+        </div>
+
+        <div class="form-container">
+           
+                <div class="form-group">
+                </div>
+                    <div class="clearfix"></div><hr />
+                    <div class="form-group">
+					<div class="a1">
+                        <button type="submit" class="btn btn-block btn-primary" name="registrer">
+                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
+							</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </aside>
                 
             <?php
             //echo ('$username: ');
@@ -258,9 +269,10 @@ if(isset($_POST['btn-logout']))
                 $user->SubmitButton2($username,$input);
             }
             echo ('<p>'.$error.'</p>');
+
+        
             ?>           
     </div>
-
     <footer class="hovedfooter">
 
         <section class="lenker_footer">
