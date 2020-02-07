@@ -524,9 +524,66 @@ p.preview-text{
 }
 
 
+.w3-bar-item{
+margin-left:750px;
+margin-right:1px;
+hover:blue;
+text-decoration: none;
+}
+.w3-circle
+{
+	height:23px;
+	width:23px;
+}
 
 
+  .nullpass{
+    
+    float:left;
+	margin-right:1px;
+    
 
+    }
+
+  .logoen1{
+	   float:left;
+    margin-right:1px;
+
+    padding:1px;
+
+    }
+    
+  .logoen2{
+	   float:left;
+    margin-right:1px;
+ 
+
+    }
+    
+  .logoen3{
+	   float:left;
+    margin-right:1px;
+  }	
+  
+
+    .container{
+		margin-top:20px;
+		margin-left:700px;
+	}
+   
+   .btn{
+	   color:#000000;
+	 
+   }
+   .a123{
+	   float:left;
+		margin-right:100px;
+		
+		
+		
+		
+   }
+            
 
 
 
@@ -548,6 +605,14 @@ p.preview-text{
       display: none;
   }
 
+  .hovedheader .logoen{
+    float: left;
+    display: block;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+    }
+
 
 }
 
@@ -568,9 +633,100 @@ p.preview-text{
   .registrering select{
     font-size: 125%;
   }  
-   .textbox {
-	  width: 100%;
-	  margin-bottom: 50px;
+  .textbox {
+	width: 100%;
+	margin-bottom: 50px;
+  }
+  
+  .btn{
+  width: 100%;
+  background: none;
+  border: 2px solid  #8FBE00;
+  color: #8FBE00;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+  .hovedheader .logoen{
+  margin-left:170px;
+  
+}
+  
+  
+  .logoen1{
+    margin-left:175px;
+    padding-left:203px;
+    left:203px;
+    padding:1px;
+
+    }
+    
+  .logoen2{
+    margin-left:175px;
+    margin-right:203px;
+    padding-left:203px;
+    left:203px;
+
+    }
+    
+  .logoen3{
+    margin-left:146px;
+    margin-right:180px;
+    padding-left:180px;
+    left:180px;
+
+    }
+            
+        
+  .nullpass{
+    margin-left:170px;
+    margin-right:170px;
+    left:170px;
+
+    }
+	
+    
+  .hovedheader .menu{
+    padding:11px;
+    }
+	
+	
+	.w3-bar-item{
+display:none;
+}
+.w3-circle
+{
+	display:none;
+	height:1px;
+	width:1px;
+}
+
+.btn{
+	color:black;
+}
+    
+  .a123{
+    margin-left:69px;
+    margin-right:150px;
+    padding-left:105px;
+    left:105px;
+    margin-bottom:1px;
+	background-color:#8FBE00;
+    }
+    
+  .textbox1{
+    padding:1px;
+    top:25px;
+    padding-top:25px;
+    margin-top:25px;
+    }
+	
+	.container{
+		margin-top:20px;
+		margin-left:190px;
 	}
 }
 
+}
