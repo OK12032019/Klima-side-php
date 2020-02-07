@@ -96,10 +96,6 @@ a{
   text-decoration: none;
 }
 
-.hovedheader .logoen img {
-  width:80px;
-}
-
 .hovedheader .menu{
   clear: both;
   max-height: 0;
@@ -302,11 +298,20 @@ left: 50%;
 border-bottom: 1px solid #4caf50;
 
 }
+
 .hovedheaderadmin{
   background-color: red;
 
-	
 }
+
+
+
+#subject {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 	
 .hovedfooteradmin {
 	position:static;
@@ -329,11 +334,7 @@ border-bottom: 1px solid #4caf50;
 margin-top:5%; 
 text-align:center;
 }
-#subject{
-height:200px; 
-width:55%; 
-margin-top:2em;
-}
+
 
 /* Login CSS*/
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
@@ -389,9 +390,204 @@ margin-top:2em;
 }
 
 	
-	
+/* CSS ARTICLE-FEED PAGE */
 
 
+a.post-lenke {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 115%;
+}
+a.post-lenke:hover {
+  color: lightskyblue; 
+}
+
+p.preview-text{
+  font-size: 90%;
+}
+
+
+.content {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+}
+
+
+.content .main-content {
+  width: 100%;
+}
+
+
+.content .main-content .articlefeed1{
+    width: 100%;
+    margin-left: auto;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.content .main-content .articlefeed2{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .articlefeed3{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .articlefeed4{
+  width: 100%;
+  margin-left: auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+.content .main-content .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content .main-content .post-lenke {
+  font-size: 25px;
+}
+
+.content .main-content .nylig-artikkel-overskrift{
+    text-align: center;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/* CSS FOR ARTICLE-POST PAGE */
+
+.content-artikkel-side {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+  background: white;
+  border: 2px solid gray;
+  border-radius: 7px;
+}
+
+.content-artikkel-side .main-content-artikkel-side {
+  width: 100%;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-overskrift {
+  text-align: center;
+  font-size: 40px;
+  width: 95%;
+  margin-left: 11px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-tekst-innhold {
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-info {
+  float: right;
+  padding-right: 10px;
+}
+
+
+.w3-bar-item{
+margin-left:750px;
+margin-right:1px;
+hover:blue;
+text-decoration: none;
+}
+.w3-circle
+{
+	height:23px;
+	width:23px;
+}
+
+
+  .nullpass{
+    
+    float:left;
+	margin-right:1px;
+    
+
+    }
+
+  .logoen1{
+	   float:left;
+    margin-right:1px;
+
+    padding:1px;
+
+    }
+    
+  .logoen2{
+	   float:left;
+    margin-right:1px;
+ 
+
+    }
+    
+  .logoen3{
+	   float:left;
+    margin-right:1px;
+  }	
+  
+
+    .container{
+		margin-top:20px;
+		margin-left:700px;
+	}
+   
+   .btn{
+	   color:#000000;
+	 
+   }
+   .a123{
+	   float:left;
+		margin-right:100px;
+		
+		
+		
+		
+   }
+            
+
+
+
+/* MEDIA QUERY */
 @media (min-width: 760px) {
 
   .hovedheader li{
@@ -408,6 +604,14 @@ margin-top:2em;
   .hovedheader .menu-icon{
       display: none;
   }
+
+  .hovedheader .logoen{
+    float: left;
+    display: block;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+    }
 
 
 }
@@ -429,21 +633,100 @@ margin-top:2em;
   .registrering select{
     font-size: 125%;
   }  
-   .textbox {
-	  width: 100%;
-	  margin-bottom: 50px;
+  .textbox {
+	width: 100%;
+	margin-bottom: 50px;
+  }
+  
+  .btn{
+  width: 100%;
+  background: none;
+  border: 2px solid  #8FBE00;
+  color: #8FBE00;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+  .hovedheader .logoen{
+  margin-left:170px;
+  
+}
+  
+  
+  .logoen1{
+    margin-left:175px;
+    padding-left:203px;
+    left:203px;
+    padding:1px;
+
+    }
+    
+  .logoen2{
+    margin-left:175px;
+    margin-right:203px;
+    padding-left:203px;
+    left:203px;
+
+    }
+    
+  .logoen3{
+    margin-left:146px;
+    margin-right:180px;
+    padding-left:180px;
+    left:180px;
+
+    }
+            
+        
+  .nullpass{
+    margin-left:170px;
+    margin-right:170px;
+    left:170px;
+
+    }
+	
+    
+  .hovedheader .menu{
+    padding:11px;
+    }
+	
+	
+	.w3-bar-item{
+display:none;
+}
+.w3-circle
+{
+	display:none;
+	height:1px;
+	width:1px;
+}
+
+.btn{
+	color:black;
+}
+    
+  .a123{
+    margin-left:69px;
+    margin-right:150px;
+    padding-left:105px;
+    left:105px;
+    margin-bottom:1px;
+	background-color:#8FBE00;
+    }
+    
+  .textbox1{
+    padding:1px;
+    top:25px;
+    padding-top:25px;
+    margin-top:25px;
+    }
+	
+	.container{
+		margin-top:20px;
+		margin-left:190px;
 	}
 }
 
-/*Bukerside*/
-
-.brukerbilde {
-  width:200px; 
-  margin:10px;
-  margin-left:40px;
-}
-
-.brukerside {
-  margin-left:50px;
-  margin-top:200px;
 }
