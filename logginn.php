@@ -85,11 +85,10 @@ if(isset($_POST['btn-login']))
             <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
-</div>
+    </div>
 
-</body>
-	
-			<footer class="hovedfooter">
+    </body>
+        <footer class="hovedfooter">
 		  <section class="lenker_footer">
 			<a href="">Om oss</a>
 			<a href="">Sidekart</a>
