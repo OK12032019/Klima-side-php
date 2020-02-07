@@ -72,7 +72,7 @@ if(isset($_POST['btn-login']))
 <div class="containers">
      <div class="form-container">
         <form method="post">
-            <h2>Sign in.</h2><hr />
+            <h2>Logg Inn</h2><hr />
             <?php
             if(isset($error))
             {
@@ -92,7 +92,7 @@ if(isset($_POST['btn-login']))
             <div class="clearfix"></div><hr />
             <div class="form-group">
              <button type="submit" name="btn-login" class="btn btn-block btn-primary">
-                 <i class="glyphicon glyphicon-log-in"></i>&nbsp;SIGN IN
+                 <i class="glyphicon glyphicon-log-in"></i>&nbsp;LOGG INN
                 </button>
             </div>
             <br />
