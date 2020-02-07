@@ -34,7 +34,7 @@ if(isset($_POST['btn-logout']))
 <body>
 
     <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="n.png"style="width:80px;"></a>
+        <a href="default.php" class="logoen"><img src="Klimalogo.png"style="width:80px;"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		
