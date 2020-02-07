@@ -25,8 +25,23 @@ if(isset($_POST['btn-logout']))
     {
     $error = "Kunne ikke logge ut";
     } 
-}
 
+}
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
+{
+    $mysqli = new mysqli("localhost", "root", "", "klima");
+  // mottar  brukerid og interest id
+  $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
+  $result = $mysqli->query($stmt);
+  $row = mysqli_fetch_array($result);
+  $userid = $row['idbruker'];
+  $interesseid = $_POST['delete'];
+
+  // slettinv av brukerens interesser. 
+  echo $userid;
+  echo $interesseid;
+  $user->sletteInteresse($userid, $interesseid);
+}
 
 ?>
 
@@ -85,7 +100,6 @@ if(isset($_POST['btn-logout']))
             $tittel = trim($_POST['tittel']);
             $artikkel = trim($_POST['artikkeltekst']);
             $user->largeArtikkel($tittel, $artikkel, $brukerid);
-
             echo $tittel;
             echo $artikkel;
         }
@@ -118,15 +132,19 @@ if(isset($_POST['btn-logout']))
                 if ($result) {
                 $old_result = $result;
                 while($row = mysqli_fetch_array($old_result)) {
-                    $stmt = "SELECT interessenavn FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
-
+                    $stmt = "SELECT * FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
+                    
                     $result = $mysqli->query($stmt);
                     $row = mysqli_fetch_array($result);
                     $label = $row['interessenavn'];
-                    echo ' - ',$label;
+                    $interesseid = $row['idinteresse'];
+                    echo ' - ',$label,'<form action="" method="post">
+				    <button type="submit" name="delete" value="', $interesseid, '" class="btn-link">Delete</button>
+				    </form>';
                     echo '<br />';
                     
                 }
+
 
                 }
                 else {
@@ -221,6 +239,8 @@ if(isset($_POST['btn-logout']))
                 $user->SubmitButton2($username,$input);
             }
             echo ('<p>'.$error.'</p>');
+
+        
             ?>           
     </div>
     <footer class="hovedfooter">

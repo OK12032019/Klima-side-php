@@ -76,7 +76,9 @@ if(isset($_POST['btn-logout']))
             
                 <div class="articlefeed1">
                     <?php 
-                    $forrigeArtikkelID = '999999999';
+                    $count=$user->artikkelsOk();
+                    $count=$count+1;
+                    $forrigeArtikkelID = $count;
                     while($forrigeArtikkelID != '1'){
                         $result = $user->artikkel($forrigeArtikkelID);
                         
@@ -99,7 +101,7 @@ if(isset($_POST['btn-logout']))
                                             </p>
                                         </div>
                                         <div class="artikkel-info">
-                                            <i class="far fa-user"><?php echo $result['bruker'] ?></i>
+                                            <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
                                             <i class="far calendar"> Feb 01, 2020</i>
                                         </div>
