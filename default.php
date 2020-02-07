@@ -31,8 +31,10 @@ if($user->is_loggedin()==True)
   
       <section id="showcase">
       <div class="container">
+	  <div class="bildetekst">
         <h1>Klima</h1>
         <p>Klimadebatten pågår, la oss redde verden!</p>
+		</div>
       </div>
     </section>
 		

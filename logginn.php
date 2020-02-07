@@ -48,14 +48,28 @@ if(isset($_POST['btn-login']))
 <html>
     <head>
         <meta charset='utf-8'>
-        <link rel='stylesheet' type="text/css" href="logginn.css"/>
+        <link rel='stylesheet' type="text/css" href="FellesCSS.css"/>
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
 		   <script language="Javascript" src=""></script>
   <link rel="stylesheet" href="FellesCSS.css">  
         <title>Logg inn</title>
     </head>
+	  	    <header class="hovedheader">
+
+        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li><a href="Default.php">Hovedside</a></li>
+            <li><a href="registrer.php">Registrer</a></li>
+        </ul>   
+    </header>
     <body>
-<div class="container">
+	
+
+<div class="femtien">
+<div class="containers">
      <div class="form-container">
         <form method="post">
             <h2>Sign in.</h2><hr />
@@ -85,11 +99,15 @@ if(isset($_POST['btn-login']))
             <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
+
+</div>
+</div>
 </div>
 
 </body>
-	
+<div class="c123">	
 			<footer class="hovedfooter">
+
 		  <section class="lenker_footer">
 			<a href="">Om oss</a>
 			<a href="">Sidekart</a>
@@ -99,6 +117,7 @@ if(isset($_POST['btn-login']))
 		  </section>
 		  <section class="copyright">Gruppe 30 | copyright 2019</section>
 		</footer>
+</div>
 	</main>
 </html>
 	

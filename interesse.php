@@ -40,19 +40,24 @@ if(isset($_POST['btn-logout']))
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
-                <li><a href="interesse.php">Intereser</a></li>
-                <<form method="post">
+            <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside Backend</a></li>
+			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
+			 <div class="e123">
+                <form method="post">
             <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
                 <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
             </button>
             </form>
-            <li><a href="Passord.php">Nullstill Passord</a></li>
+           </div>
         </ul>   
             </ul>   
         </header>
         <br />
         <br />
         <br />
+		<div class="intresseside">
         <h1> Dine Intresser </h1>
         <?php
           $mysqli = new mysqli("localhost", "root", "", "klima");
@@ -186,7 +191,9 @@ if(isset($_POST['btn-logout']))
   $stmt->close();
 }
         ?>    
-                        
+	
+                  </div>      
+				  	<div class="g123">	
         <footer class="hovedfooter">
 
            <section class="lenker_footer">
@@ -199,5 +206,6 @@ if(isset($_POST['btn-logout']))
            </section>
         <section class="copyright">Gruppe 30 | copyright 2019</section>
       </footer>
+	  </div>
 </body>
 </html>

@@ -36,17 +36,17 @@ if(isset($_POST['btn-logout']))
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		
 		            <a href="#" class="w3-bar-item" title="Konto">
-                <img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar">
+                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
             </a>
 			
         <ul class="menu">
 		
-            <a href="defaultr.php" class="logoen1">Artikler</a>
+            <a href="#" class="logoen1">Artikler</a>
 			
-            <a href="defaulte.php" class="logoen2">Profil</a>
+            <a href="Brukerside.php" class="logoen2">Profil</a>
 			
 			
-            <a href="defaultp.php" class="logoen3">Arrangementer</a>
+            <a href="#" class="logoen3">Arrangementer</a>
 			
 			
 
@@ -64,7 +64,7 @@ if(isset($_POST['btn-logout']))
         </ul>   
 
     </header>
-    <div class="container">
+    <div class="container1">
         <h1>Klima</h1>
       </div>
 		
@@ -75,6 +75,7 @@ if(isset($_POST['btn-logout']))
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
                 <div class="articlefeed1">
+
                     <?php 
                     $count=$user->artikkelsOk();
                     $count=$count+1;
@@ -116,7 +117,7 @@ if(isset($_POST['btn-logout']))
                     }?>
                 </div>
                 
-                <!-- <div class="articlefeed2">
+                <div class="articlefeed2">
                     <img src="img/ice_formation.jpg" width="290" height="150" alt="" class="artikkel-bilde">
                     <div class="post-preview">
                         <h2><a href="article-globalwarming.html" class="post-lenke">Global Warming</a></h2>
@@ -154,7 +155,7 @@ if(isset($_POST['btn-logout']))
                         </p>
                     </div>
                 </div> 
-                    -->
+
               
 
             </div>
