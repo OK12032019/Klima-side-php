@@ -42,13 +42,15 @@ if(isset($_POST['PassordReset']))
 }
 }
 ?>
+
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script language="Javascript" src=""></script>
         <link rel="stylesheet" href="FellesCSS.css">  
-        <title>Passord</title>
+        <title>Passord Nullstilling</title>
     </head>
 
     <body>
