@@ -107,7 +107,6 @@ if(isset($_POST['btn-logout']))
                                         <div class="artikkel-info">
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
-                                            <i class="far calendar"> Feb 01, 2020</i>
                                         </div>
                                     </div>
 

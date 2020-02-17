@@ -172,10 +172,10 @@ class USER
          $stmt->execute(array(':bnavn'=>$bnavn,));
          $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
-         if (strtotime($userRow['feilloginnsiste']) < time()-(5*60))
+         if (strtotime($userRow['feillogginnsiste']) < time()-(5*60))
          {
             $null = '0';
-            $stmt = $this->db->prepare("UPDATE bruker SET feilloginnteller = :nopp WHERE brukernavn =:bnavn");
+            $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nopp WHERE brukernavn =:bnavn");
             $stmt->execute(array(':bnavn'=>$bnavn, ':nopp'=>$null));
             return True;
          }
@@ -197,7 +197,7 @@ class USER
          $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1");
          $stmt->execute(array(':bnavn'=>$bnavn,));
          $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-         if($userRow['feilloginnteller']=5)
+         if($userRow['feillogginnteller']=5)
          {
             return True;
          }

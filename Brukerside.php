@@ -30,7 +30,7 @@ if(isset($_POST['btn-logout']))
 }
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
-    $mysqli = new mysqli("localhost", "root", "", "klima");
+    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
   // mottar  brukerid og interest id
   $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
   $result = $mysqli->query($stmt);
@@ -123,7 +123,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
             <h2> Dine Intresser </h2>
 
             <?php
-                $mysqli = new mysqli("localhost", "root", "", "klima");
+                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                 $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
                 $result = $mysqli->query($stmt);
@@ -176,7 +176,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                         <td>
                         <select name="interesse2">
                             <?php 
-                                $mysqli = new mysqli("localhost", "root", "", "klima");
+                                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                                 $sql = "SELECT * FROM interesse";
                                 $result = $mysqli->query($sql);
