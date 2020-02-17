@@ -28,10 +28,13 @@ if(isset($_POST['btn-logout']))
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="FellesCSS.css">
-    <title>Test Backend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset ="UTF-8">
+  <link rel="stylesheet" href="FellesCSS.css">
+  <title><?php echo $username;?> sine interesser</title>
 </head>
 <body>
     

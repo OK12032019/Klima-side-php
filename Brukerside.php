@@ -1,3 +1,4 @@
+<>
 <?php
 $error = '';
 require_once 'PDO.php';
@@ -45,10 +46,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
-    <title>Test Backend</title>
+    <title>Brukerside for <?php echo $username;?></title>
 </head>
 
 
