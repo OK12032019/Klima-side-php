@@ -60,7 +60,7 @@ if(isset($_POST['btn-logout']))
 		<div class="intresseside">
         <h1> Dine Intresser </h1>
         <?php
-          $mysqli = new mysqli("localhost", "root", "", "klima");
+          $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
           $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
           $result = $mysqli->query($stmt);
@@ -108,7 +108,7 @@ if(isset($_POST['btn-logout']))
                     <td>
                     <select name="interesse2">
                         <?php 
-                            $mysqli = new mysqli("localhost", "root", "", "klima");
+                            $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                             $sql = "SELECT * FROM interesse";
                             $result = $mysqli->query($sql);
