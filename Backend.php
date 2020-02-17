@@ -24,10 +24,13 @@ if(isset($_POST['btn-logout']))
 }
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
-    <title>Test Backend</title>
+    <title>Klima Logget Inn</title>
 </head>
 <body>
     <header class="hovedheader">

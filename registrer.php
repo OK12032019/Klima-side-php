@@ -62,6 +62,8 @@ if(isset($_POST['registrer']))
 }
 
 ?>
+
+<!DOCTYPE HTML>
 <html>
   <head>
   <meta charset="utf-8">

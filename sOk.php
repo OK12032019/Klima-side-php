@@ -26,15 +26,19 @@ if(isset($_POST['btn-logout']))
 
 
 ?>
+
+<!DOCTYPE HTML>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
     <title>Søk på Bruker</title>
 </head>
 <body>
 
     <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="n.png"style="width:80px;"></a>
+        <a href="default.php" class="logoen"><img src="/imgKlimalogo.png"style="width:80px;"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		

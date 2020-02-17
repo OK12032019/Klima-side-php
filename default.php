@@ -9,8 +9,10 @@ if($user->is_loggedin()==True)
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 	<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset ="UTF-8">
 	<title> Klima</title>
 	<link rel="stylesheet" type="text/css" href="FellesCSS.css">	
