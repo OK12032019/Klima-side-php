@@ -4,7 +4,7 @@ include_once "PDO.php";
 
 if($user->is_loggedin()=="")
 {
-    $user->redirect('default.php');
+    $user->redirect('Default.php');
 }
 else {
 	$fnavn = $_SESSION['fnavn'];
@@ -34,7 +34,7 @@ if(isset($_POST['btn-logout']))
 </head>
 <body>
     <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
 
 
         <input class="menu-btn" type="checkbox" id="menu-btn" />

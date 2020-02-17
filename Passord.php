@@ -6,7 +6,7 @@ SESSION_START();
 $USER = $_SESSION['user_session'];
 if (EMPTY($_SESSION['user_session'] )) {
     
-	header('Location: default.php');
+	header('Location: Default.php');
 
 } 
 
@@ -56,7 +56,7 @@ if(isset($_POST['PassordReset']))
     <body>
         <main>
         <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		
