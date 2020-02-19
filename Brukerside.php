@@ -63,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
         <ul class="menu">
             <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
 			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
             <form method="post">

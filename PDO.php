@@ -18,5 +18,5 @@ catch(PDOException $e)
 }
 
 
-include_once 'class.user.php';
+include_once 'Class.User.php';
 $user = new USER($DB_con);
