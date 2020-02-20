@@ -57,13 +57,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 
     <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="interesse.php" class="mellomrom1">Intereser</a></li>
+            <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
 			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
             <form method="post">
@@ -79,11 +79,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 <body>
     <!-- <header class="hovedheader">
-        <a href="default.php" class="logoen"> LOGO</a>
+        <a href="Default.php" class="logoen"> LOGO</a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="interesse.php">Intereser</a></li>
+            <li><a href="Interesse.php">Intereser</a></li>
                 <form method="post">
                     <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
                         <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
