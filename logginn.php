@@ -12,8 +12,7 @@ if(isset($_POST['btn-login']))
 {
 	$bnavn = $_POST['brukernavn'];
     $pw = $_POST['pass'];
-    
-    
+        
     if($user->feilLoginAntall($bnavn))
     {
         if($user->sjekkOgNullstill($bnavn))
@@ -31,8 +30,7 @@ if(isset($_POST['btn-login']))
     else
     {
         if($user->login($bnavn,$pw))
-        {
-            
+        {      
             $user->redirect($url);
         }
         else
@@ -97,7 +95,7 @@ if(isset($_POST['btn-login']))
                 </button>
             </div>
             <br />
-            <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
+            <label>Har du ikke konto?<?php $timeNow = date("Y-m-d H:i:s"); echo($timeNow); ?> <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 

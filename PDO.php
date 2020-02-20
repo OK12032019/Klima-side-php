@@ -2,9 +2,9 @@
 
 session_start();
 
-$DB_host = "128.39.19.159";
-$DB_user = "usr_klima";
-$DB_pass = "pw_klima";
+$DB_host = "localhost";
+$DB_user = "Logginn";
+$DB_pass = "asd";
 $DB_name = "klima";
 
 try

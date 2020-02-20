@@ -30,7 +30,7 @@ if(isset($_POST['btn-logout']))
 }
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
-    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
+    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
   // mottar  brukerid og interest id
   $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
   $result = $mysqli->query($stmt);
@@ -123,7 +123,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
             <h2> Dine Intresser </h2>
 
             <?php
-                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
+                $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
 
                 $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
                 $result = $mysqli->query($stmt);
@@ -255,7 +255,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
                     $interesseid = $_SESSION['interesseid'];
                     $error = $_SESSION['interesseid'];
-                    $user->SubmitButton1($interesseid,$brukerid);
+                    if($user->SubmitButton1($interesseid,$brukerid))
+                    {
+
+                        header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+                        header("Pragma: no-cache"); // HTTP 1.0.
+                        header("Expires: 0");
+                        header('refresh:0');
+                    }
+                    else
+                    {
+                        $error='error etter eller annet';
+                    }
                 }
                 else
                 {
