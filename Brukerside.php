@@ -1,4 +1,3 @@
-<>
 <?php
 $error = '';
 require_once 'PDO.php';
@@ -96,17 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 
 
-    <?php
-        if(isset($_POST['registrer']))
-        {   
-   
-            $tittel = trim($_POST['tittel']);
-            $artikkel = trim($_POST['artikkeltekst']);
-            $user->largeArtikkel($tittel, $artikkel, $brukerid);
-            echo $tittel;
-            echo $artikkel;
-        }
-    ?>
+ 
 
     <div  class="brukerside">
         <h1>Brukerside for '<?php echo $username;?>'</h1>
@@ -227,6 +216,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 </div>
             </form>
         </div>
+        <?php
+        if(isset($_POST['registrer']))
+        {   
+   
+            $tittel = trim($_POST['tittel']);
+            $artikkel = trim($_POST['artikkeltekst']);
+            $user->largeArtikkel($tittel, $artikkel, $brukerid);
+            echo $tittel;
+            echo $artikkel;
+        }
+    ?>
 
     </aside>
                 
@@ -241,9 +241,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 $error = 'test1';
                 if($user->InteresseFinnes($input))
                 {
-                $interesseid = $_SESSION['interesseid'];
-                $error = 'test2';
-                $user->SubmitButton1($brukerid,$input);
+                    $interesseid = $_SESSION['interesseid'];
+                    $error = 'test2';
+                    $user->SubmitButton1($brukerid,$input);
                 }
                 else
                 {  
