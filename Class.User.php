@@ -62,7 +62,7 @@ class USER
             echo $e->getMessage();
       } 
     }
-    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid, )
+    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid)
     { 
       try
       {

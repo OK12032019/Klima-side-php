@@ -79,6 +79,11 @@ if(isset($_POST['btn-logout']))
 	    <div class="content clearfix">
             
             <div class="main-content">
+            <div class="calendar">
+            <?php
+            $calendar = new Calendar();
+            echo $calendar->show();
+            ?>
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
                 <div class="articlefeed1">
