@@ -108,6 +108,22 @@ if(isset($_POST['btn-logout']))
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
                                         </div>
+                                        <div class="kommentar">
+                                        <?php 
+                                            if(isset($_POST['kommenter']))
+                                                {   
+                                                    $ingress = (' test ');
+                                                    $tittel = trim($_POST['tittel']);
+                                                    $artikkel = trim($_POST['artikkeltekst']);
+                                                    $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid);
+                                                    
+                                                }
+                                        ?>
+                                            <div class="a1">
+                                            <button type="submit" class="btn btn-block btn-primary" name="kommenter">
+                                                <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>

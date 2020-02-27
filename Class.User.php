@@ -62,6 +62,27 @@ class USER
             echo $e->getMessage();
       } 
     }
+    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid, )
+    { 
+      try
+      {
+        
+         $stmt = $this->db->prepare("INSERT INTO kommentar (ingress, tekst, tid, artikkelid)
+         VALUES(:ingress, :tekst, :tid, :artikkelid)");
+
+         $stmt->bindparam(":ingress", $ingress);
+         $stmt->bindparam(":tekst", $tekst);
+         $stmt->bindparam(":tid", $tid);
+         $stmt->bindparam(":artikkelid", $artikkelid);
+         $stmt->execute(); 
+
+            return true; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+      } 
+    }
     public function sOk($brukersOk)
     {
       try{
