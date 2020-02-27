@@ -28,21 +28,24 @@ if(isset($_POST['btn-logout']))
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
-    <link rel="stylesheet" href="FellesCSS.css">
-    <title>Test Backend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset ="UTF-8">
+  <link rel="stylesheet" href="FellesCSS.css">
+  <title><?php echo $username;?> sine interesser</title>
 </head>
 <body>
     
         <header class="hovedheader">
-            <a href="default.php" class="logoen"> LOGO</a>
+            <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
             <input class="menu-btn" type="checkbox" id="menu-btn" />
             <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
             <ul class="menu">
             <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside Backend</a></li>
-			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
+			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
                 <form method="post">
@@ -89,7 +92,7 @@ if(isset($_POST['btn-logout']))
         ?>
         <br />
 
-        <form action="interesse.php" method="POST">
+        <form action="Interesse.php" method="POST">
 
             <h1>Legg til din ny interesse</h1>
             <table>

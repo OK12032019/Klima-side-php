@@ -172,10 +172,10 @@ class USER
          $stmt->execute(array(':bnavn'=>$bnavn,));
          $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
-         if (strtotime($userRow['feilloginnsiste']) < time()-(5*60))
+         if (strtotime($userRow['feillogginnsiste']) < time()-(5*60))
          {
             $null = '0';
-            $stmt = $this->db->prepare("UPDATE bruker SET feilloginnteller = :nopp WHERE brukernavn =:bnavn");
+            $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nopp WHERE brukernavn =:bnavn");
             $stmt->execute(array(':bnavn'=>$bnavn, ':nopp'=>$null));
             return True;
          }
@@ -194,16 +194,16 @@ class USER
     {
        try
        {
-         $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1");
+         $stmt = $this->db->prepare("SELECT * FROM bruker WHERE brukernavn=':bnavn' LIMIT 1");
          $stmt->execute(array(':bnavn'=>$bnavn,));
          $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-         if($userRow['feilloginnteller']=5)
+         if($userRow['feillogginnteller']==5)
          {
             return True;
          }
          else
          {
-            $_SESSION['feilAntall']=$userRow['feilloginnteller'];
+            $_SESSION['feilAntall']=$userRow['feillogginnteller'];
             return False;
          }
       }
@@ -213,7 +213,7 @@ class USER
       }
     }
 
-    public function getFeilLoginSiste($bnavn)
+    public function feilLoginTeller($bnavn)
     {
        try
        {
@@ -225,8 +225,8 @@ class USER
             try
             {
                $nyAntall = "1";
-               $nyAntall = $nyAntall + $userRow['feilloginnteller'];
-               $stmt = $this->db->prepare("UPDATE bruker SET feilloginnteller = :nyAntall WHERE brukernavn =:bnavn");
+               $nyAntall = $nyAntall + $userRow['feillogginnteller'];
+               $stmt = $this->db->prepare("UPDATE bruker SET feillogginnteller = :nyAntall WHERE brukernavn =:bnavn");
                $stmt->execute(array(':bnavn'=>$bnavn, ':nyAntall'=>$nyAntall));
             }
             catch(PDOException $e)
@@ -250,9 +250,9 @@ class USER
     {
       try
       {
-         $timeNow = time();
-         $stmt = $this->db->prepare("UPDATE bruker SET feilloginnsiste = :timeNow WHERE brukernavn =:bnavn");
-         $stmt->execute(array(':bnavn'=>$bnavn, ':timeNow'=>$timeNow));
+         $timeNow = date("Y-m-d H:i:s");
+         $stmt = $this->db->prepare("UPDATE bruker SET feillogginnsiste = :timeNow WHERE brukernavn =:bnavn");
+         $stmt->execute(array(':timeNow'=>$timeNow, ':bnavn'=>$bnavn));
          return True;
       }
       catch(PDOException $e)

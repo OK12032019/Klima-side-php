@@ -622,6 +622,9 @@ margin-top:35px;
 	margin-top:259px;
 }
 
+.a1{
+	margin-right:550px;
+}
 
 .femtien{
 	margin-left:50px;
@@ -794,12 +797,25 @@ display:none;
 	margin-right:250px;
 }
 
+
 .femtien{
 	margin-top:200px;	
 }
 .bildetekst{
 	margin-right:200px;
 }
+
+.btn{
+	padding-right:100px;
+}
+.brukerside{
+
+margin-left:130px;
+margin-top:35px;	
+}
+
+
+
 #tekst{
 	margin-right:260px;
 }

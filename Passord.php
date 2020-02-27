@@ -6,7 +6,7 @@ SESSION_START();
 $USER = $_SESSION['user_session'];
 if (EMPTY($_SESSION['user_session'] )) {
     
-	header('Location: default.php');
+	header('Location: Default.php');
 
 } 
 
@@ -42,19 +42,21 @@ if(isset($_POST['PassordReset']))
 }
 }
 ?>
+
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script language="Javascript" src=""></script>
         <link rel="stylesheet" href="FellesCSS.css">  
-        <title>Passord</title>
+        <title>Passord Nullstilling</title>
     </head>
 
     <body>
         <main>
         <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		
@@ -74,7 +76,7 @@ if(isset($_POST['PassordReset']))
 			
 
 			
-              <a href="Passord.php" class="nullpass">Nullstill Passord</a>
+              
 			
 			
         <div class="a123">
@@ -113,7 +115,7 @@ if(isset($_POST['PassordReset']))
                         </tr>
                         <tr>
                             <td>Gammelt Passord:</td> 
-                            <td class="regtextbox"><input type="password" name="pass" placeholder="passord" value="<?php if(isset($error)){echo $pass;}?>"></td>
+                            <td class="regtextbox"><input type="password" name="pass" placeholder="Passord" value="<?php if(isset($error)){echo $pass;}?>"></td>
                         </tr>
                         <tr>
                             <td>Nytt Passord:</td> 
