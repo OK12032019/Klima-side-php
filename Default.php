@@ -9,8 +9,10 @@ if($user->is_loggedin()==True)
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 	<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset ="UTF-8">
 	<title> Klima</title>
 	<link rel="stylesheet" type="text/css" href="FellesCSS.css">	
@@ -19,12 +21,12 @@ if($user->is_loggedin()==True)
 <body>
     <header class="hovedheader">
 
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
 
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="logginn.php">Login</a></li>
+            <li><a href="Logginn.php">Login</a></li>
             <li><a href="registrer.php">Registrer</a></li>
         </ul>   
     </header>

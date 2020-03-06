@@ -5,6 +5,7 @@ require_once 'PDO.php';
 $Brukertype = $_SESSION['btype'];
 $brukerid = $_SESSION['brukerid'];
 
+
 if($user->is_loggedin()=="")
 {
   $user->redirect('Default.php');
@@ -27,9 +28,10 @@ if(isset($_POST['btn-logout']))
     } 
 
 }
+$mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
-    $mysqli = new mysqli("localhost", "root", "", "klima");
+    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
   // mottar  brukerid og interest id
   $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
   $result = $mysqli->query($stmt);
@@ -45,21 +47,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 ?>
 
+<!DOCTYPE HTML>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
-    <title>Test Backend</title>
+    <title>Brukerside for <?php echo $username;?></title>
 </head>
 
 
     <header class="hovedheader">
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="interesse.php" class="mellomrom1">Intereser</a></li>
+            <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
 			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="sok.php" class="mellomrom2">Søk</a></li>
+			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
 			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
 			 <div class="e123">
             <form method="post">
@@ -75,11 +80,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 <body>
     <!-- <header class="hovedheader">
-        <a href="default.php" class="logoen"> LOGO</a>
+        <a href="Default.php" class="logoen"> LOGO</a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="interesse.php">Intereser</a></li>
+            <li><a href="Interesse.php">Intereser</a></li>
                 <form method="post">
                     <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
                         <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
@@ -92,34 +97,32 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
 
 
-    <?php
-        if(isset($_POST['registrer']))
-        {   
-   
-            $tittel = trim($_POST['tittel']);
-            $artikkel = trim($_POST['artikkeltekst']);
-            $user->largeArtikkel($tittel, $artikkel, $brukerid);
-            echo $tittel;
-            echo $artikkel;
-        }
-    ?>
+ 
 
     <div  class="brukerside">
         <h1>Brukerside for '<?php echo $username;?>'</h1>
 
         <div class="brukerbilde">
-            <img src="img/bruker.png" alt="Default brukerbilde">
+        
+        
+        
+            <img src="uploads/<?php echo ($brukerid);?>.jpg">
         </div>
 
-            <p>Full navn: <?php echo $fnavn; echo(' '); echo $enavn;?></p>
 
+            <p>Full navn: <?php echo $fnavn; echo(' '); echo $enavn;?></p>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+            </form>
             
 
 
             <h2> Dine Intresser </h2>
 
             <?php
-                $mysqli = new mysqli("localhost", "root", "", "klima");
+                $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
 
                 $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
                 $result = $mysqli->query($stmt);
@@ -172,7 +175,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                         <td>
                         <select name="interesse2">
                             <?php 
-                                $mysqli = new mysqli("localhost", "root", "", "klima");
+                                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                                 $sql = "SELECT * FROM interesse";
                                 $result = $mysqli->query($sql);
@@ -223,6 +226,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 </div>
             </form>
         </div>
+        <?php
+        if(isset($_POST['registrer']))
+        {   
+   
+            $tittel = trim($_POST['tittel']);
+            $artikkel = trim($_POST['artikkeltekst']);
+            $user->largeArtikkel($tittel, $artikkel, $brukerid);
+            echo $tittel;
+            echo $artikkel;
+        }
+    ?>
 
     </aside>
                 
@@ -237,9 +251,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 $error = 'test1';
                 if($user->InteresseFinnes($input))
                 {
-                $interesseid = $_SESSION['interesseid'];
-                $error = 'test2';
-                $user->SubmitButton1($brukerid,$input);
+                    $interesseid = $_SESSION['interesseid'];
+                    $error = 'test2';
+                    $user->SubmitButton1($brukerid,$input);
                 }
                 else
                 {  
@@ -251,7 +265,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 
                     $interesseid = $_SESSION['interesseid'];
                     $error = $_SESSION['interesseid'];
-                    $user->SubmitButton1($interesseid,$brukerid);
+                    if($user->SubmitButton1($interesseid,$brukerid))
+                    {
+
+                        header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+                        header("Pragma: no-cache"); // HTTP 1.0.
+                        header("Expires: 0");
+                        header('refresh:0');
+                    }
+                    else
+                    {
+                        $error='error etter eller annet';
+                    }
                 }
                 else
                 {

@@ -50,7 +50,7 @@ if(isset($_POST['registrer']))
          {
             if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)) 
             {
-                $user->redirect('logginn.php');
+                $user->redirect('Logginn.php');
             }
          }
      }
@@ -62,6 +62,8 @@ if(isset($_POST['registrer']))
 }
 
 ?>
+
+<!DOCTYPE HTML>
 <html>
   <head>
   <meta charset="utf-8">
@@ -72,13 +74,13 @@ if(isset($_POST['registrer']))
   </head>
   	    <header class="hovedheader">
 
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
 
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
             <li><a href="Default.php">Hovedside</a></li>
-            <li><a href="logginn.php">Logg inn</a></li>
+            <li><a href="Logginn.php">Logg inn</a></li>
         </ul>   
     </header>
   <body>
@@ -133,7 +135,7 @@ if(isset($_POST['registrer']))
                 </button>
             </div>
             <br />
-            <label>Har du konto? <a href="logginn.php">Log inn</a></label>
+            <label>Har du konto? <a href="Logginn.php">Log inn</a></label>
         </form>
        </div>
 </div>
