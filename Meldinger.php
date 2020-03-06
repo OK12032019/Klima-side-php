@@ -75,6 +75,7 @@ if(isset($_POST['btn-logout']))
     </header>
     <div class="container1">
         <h1>Meldinger</h1>
+        <?php echo $brukerid; ?>
       </div>
 		
 	<section id="tekst">
@@ -91,6 +92,7 @@ if(isset($_POST['btn-logout']))
                     $ulestmeldingsliste = $mysqli->query($ulestmeld);
                     ?>
                     <h3>Uleste Meldinger (<?php echo(mysqli_num_rows($ulestmeldingsliste));?>)</h3>
+                    
                     <table>
                         <tr class="meldrow">
                             <th>Sender</th>

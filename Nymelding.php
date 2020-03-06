@@ -32,7 +32,7 @@ if(isset($_POST['btn-logout']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
-    <title>Meldinger</title>
+    <title>Ny melding</title>
 </head>
 <body>
     <header class="hovedheader">
@@ -94,27 +94,26 @@ if(isset($_POST['btn-logout']))
                             $result = $mysqli->query($sql);
                             if ($result) {
                               while($row = mysqli_fetch_array($result)) {
-                                echo "<option name='mottakermeny' value='",$row['brukernavn'],"'>",$row['brukernavn'],"</option>";
+                                echo "<option value='",$row['brukernavn'],"'>",$row['brukernavn'],"</option>";
                               }
                             }
                             else {
                               echo mysql_error();
                             }
+                             
+                            //Variabler og sql for å sende melding til databasen
+                            $meldingtittel = "meldingtittel";
+                            $meldingtekst = "meldingtekst";
+                            $datetime = date("Y-m-d H:i:s");
+                            $input = '5';
+                            $user->nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input);
+                        
                         ?>
                         </select>
                     </div>
                     <div class="sendmeld">
                     <input type="submit" name="sendmelding">
-                        <?php 
-                            //Variabler og sql for å sende melding til databasen
-                            $meldingtittel = "meldingtittel";
-                            $meldingtekst = "meldingtekst";
-                            $datetime = date("Y-m-d H:i:s");
-                            $input = $_POST['mottakermeny'];
-                            $sql = "INSERT INTO melding('tittel','tekst','tid','lest','papirkurv','sender','mottaker') 
-                            VALUES('{$meldingtittel}','{$meldingtekst}','{$datetime}','0','0','{$brukerid}','{$input}')";
-
-                        ?>
+                        
                     </input>
                     </div>
                 </form>
