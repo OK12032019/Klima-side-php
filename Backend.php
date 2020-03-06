@@ -1,3 +1,4 @@
+
 <?php
 
 include_once "PDO.php";
@@ -209,3 +210,4 @@ include "./minmeny.php";
     </footer>
 </body>
 </html>
+

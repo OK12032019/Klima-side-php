@@ -82,7 +82,7 @@ include "./minmeny.php";
 <div class="container">
      <div class="form-container">
         <form method="post">
-            <h2>Registrering</h2><hr />
+            <h2 style="text-align:center;">Registrering</h2><hr />
             <?php
             if(isset($error))
             {
@@ -105,25 +105,25 @@ include "./minmeny.php";
             }
             ?>
             <div class="form-group">
-            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" value="<?php if(isset($error)){echo $bnavn;}?>" />
+            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" style="margin-left:510px;" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" />
+             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" />
+             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" />
+             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" />
+             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" style="margin-left:510px;" />
             </div>
 			<div class="form-group">
-             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" />
+             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" style="margin-left:510px;" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -132,7 +132,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label>Har du konto? <a href="Logginn.php">Log inn</a></label>
+            <label style="margin-left:496px;">Har du konto? <a href="Logginn.php">Log inn</a></label>
         </form>
        </div>
 </div>
