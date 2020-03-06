@@ -187,6 +187,41 @@ class USER
        }   
 
     }
+    public function registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylker)
+    {
+      try{
+         
+         $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
+         VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
+
+         $stmt->bindparam(":eventnavn", $ArrNavn);
+         $stmt->bindparam(":eventtekst", $ArrTekst);
+         $stmt->bindparam(":tidspunkt", $ArrTid);
+         $stmt->bindparam(":veibeskrivelse", $beskrivelse);
+         $stmt->bindparam(":idbruker", $brukerid);
+         $stmt->bindparam(":fylke", $fylker);
+         $stmt->execute(); 
+
+            return true; 
+      }
+      catch(PDOException $e)
+      {
+            echo $e->getMessage();
+      } 
+    }
+    public function meldingLest($meldingid)
+    {
+    try
+    {
+      $stmt = $this->db->prepare('UPDATE melding SET lest = 1 WHERE idmelding =:meldingid');
+      $stmt->execute(array(':meldingid'=>$meldingid));
+      return true;
+    }
+    catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+      }
     public function PassordReset($bnavn,$pw,$npw)
     {
        try
