@@ -70,6 +70,7 @@ else if($btype == 2){
             <a href="Backend.php" class="logoen1">Artikler</a>
             <a href="Brukerside.php" class="logoen2">Profil</a>
             <a href="Backend.php" class="logoen3">Arrangementer</a>
+		<a href="sok.php" class="logoen3">Søk</a>
 		<a href="Meldinger.php" class="mellomrom1">Meldinger</a>
               <a href="Passord.php" class="nullpass">Nullstill Passord</a>
         <div class="a123">
