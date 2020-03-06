@@ -8,8 +8,10 @@ if($user->is_loggedin()=="")
 }
 else {
 	$fnavn = $_SESSION['fnavn'];
-	$enavn = $_SESSION['enavn'];
+    $enavn = $_SESSION['enavn'];
+    $bruker = $_SESSION['brukerid'];
 }
+
 // elias push
 if(isset($_POST['btn-logout']))
 {
@@ -22,6 +24,7 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+
 $Month = $_GET['month'];
 $Year = $_GET['year'];
 $date = $Year;
@@ -30,6 +33,7 @@ $date .= $Month;
 echo ($date);
 
 ?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -87,6 +91,7 @@ echo ($date);
             
             <div class="main-content">
             <div class="calendar">
+
             <script>
             function getDate(clicked_id) 
             {
@@ -112,7 +117,7 @@ echo ($date);
             echo ($result['eventtekst']);
             ?>
             <br>
-            </div>   
+            </div> 
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
                 <div class="articlefeed1">
@@ -142,22 +147,81 @@ echo ($date);
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
                                         </div>
-                                        <div class="kommentar">
-                                        <?php 
-                                            if(isset($_POST['kommenter']))
-                                                {   
-                                                    $ingress = (' test ');
-                                                    $tittel = trim($_POST['tittel']);
-                                                    $artikkel = trim($_POST['artikkeltekst']);
-                                                    $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid);
+
+                                        <!-- <div class="kommentarer">
+                                        </div>-->
+
+                                        <div class="form-group">
+                                            <form method="post" action="" input id="<?php echo $artikkelid['idartikkel']; ?>">
+                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar"></textarea>
+
+                                                <input type="submit" class="btn btn-block btn-primary" name="kommentar<?php echo $artikkelid; ?>" value="kommenter"/>
+
+                                                <?php
                                                     
-                                                }
-                                        ?>
-                                            <div class="a1">
-                                            <button type="submit" class="btn btn-block btn-primary" name="kommenter">
-                                                <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
-                                            </div>
+                                                    if(isset($_POST['kommentar']))
+                                                        {
+                                                            $ingress = ('test');
+                                                            $tekst = $_POST['komtekst'];
+                                                            $tid = date("Y-m-d H:i:s");
+                                                            $artikkelid = $result['idartikkel'];
+                                                            // echo $artikkelid;
+                                                            // echo "<br>";
+                                                            // echo $ingress;
+                                                            // echo "<br>";
+                                                            // echo $tekst;
+                                                            // echo "<br>";
+                                                            // echo $tid;
+                                                            // echo "<br>";
+                                                            $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker);
+                                                        }
+                                                
+                                                    
+                                                    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                                                    $stmt = "SELECT * FROM kommentar";
+                                                    $resultkom = $mysqli->query($stmt);
+                                                    while ($row = mysqli_fetch_array($resultkom))
+                                                        {
+                                                            echo $row['bruker']."<br>";
+                                                            echo $row['tid']."<br>";
+                                                            echo nl2br($row['komtekst'])."<br><br><br>";
+                                                        }
+                                                    
+                                                ?>
+                                            </form>
                                         </div>
+                                        
+
+                                    <!--<form method="post">
+                                        <div class="form-group">
+                                            <textarea name="kommentar" input id="<?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
+                                            <?php 
+                                                //if(isset($_POST['kommentar']))
+                                                    {   
+                                                        //$ingress = (' test ');
+                                                        //$tekst = $_POST['kommentar'];
+                                                        //$tid = date("Y-m-d H:i:s");
+                                                        //$artikkelid = $result['idartikkel'];
+                                                        //$artikkelid = ('test');
+                                                        //$test = $artikkelid['idartikkel'];
+                                                        //echo $test;
+                                                        //echo $ingress; 
+                                                        //echo $tekst;
+                                                        //echo $tid;
+                                                        //echo $artikkelid;  
+                                                        //$user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid);
+                                                    }    
+                                            ?>
+                                        <!-- </div>
+                                            <button type="submit" name="kommentar">Kommenter</button>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-block btn-primary" name="kommentar">
+                                                    <i class="glyphicon glyphicon-open-file"></i>&nbsp;Legg inn kommentar
+                                                </button>
+                                            </div>
+                                        </form> -->
+
+
                                     </div>
 
                                 </div>
