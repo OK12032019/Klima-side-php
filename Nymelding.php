@@ -74,6 +74,7 @@ if(isset($_POST['btn-logout']))
 
     </header>
     <div class="container1">
+   
         <h1 class="meldinger-tittel">Ny melding</h1>
       </div>
 		
@@ -86,28 +87,24 @@ if(isset($_POST['btn-logout']))
                     <h2 class="nymeldtit">Tekst</h2>
                     <textarea name="tekst" id="meldingtekst" cols="50" rows="8"></textarea>
                     <h2 class="nymeldtit">Mottaker</h2>
+                    
                         <select name="mottakermeny">
-                        <?php 
+                        <?php
                             $mysqli = new mysqli("localhost", "root", "", "klima");
                             //Henter ut en liste av alle brukere utenom den som er logget inn
                             $sql = "SELECT idbruker, brukernavn FROM bruker EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
                             $result = $mysqli->query($sql);
                             if ($result) {
-                              while($row = mysqli_fetch_array($result)) {
-                                echo "<option value='",$row['brukernavn'],"'>",$row['brukernavn'],"</option>";
-                              }
-                            }
-                            else {
-                              echo mysql_error();
-                            }
+                               while($row = mysqli_fetch_array($result)) {
+                                 echo "<option name='brukernavn' value='",$row['idbruker'],"'>",$row['brukernavn'],"</option>";
+                               }
+                             }
+                             else {
+                               echo mysql_error();
+                             }
                              
                             //Variabler og sql for å sende melding til databasen
-                            $meldingtittel = "meldingtittel";
-                            $meldingtekst = "meldingtekst";
-                            $datetime = date("Y-m-d H:i:s");
-                            $input = '5';
-                            $user->nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input);
-                        
+                            
                         ?>
                         </select>
                     </div>
@@ -117,6 +114,24 @@ if(isset($_POST['btn-logout']))
                     </input>
                     </div>
                 </form>
+                <?php
+    if(isset($_POST['sendmelding']))
+    {
+    $meldingtittel = $_POST["tittel"];
+    $meldingtekst = $_POST["tekst"];
+    $datetime = date("Y-m-d H:i:s");
+    $input = $_POST['mottakermeny'];
+    echo $input;
+    if($user->nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input))
+    {
+        echo "Message sent";
+    }
+    else
+    {
+        echo "it did not work";
+    }
+}
+    ?>
                 <a href="Meldinger.php">Tilbake til alle meldinger</a>
             </div>
         </div>
