@@ -360,7 +360,7 @@ overflow:hidden;
   height: auto;
   text-align:center;
   color:green;
-  margin-top: 58px;
+  margin-top: -19px;
 
 }
 
@@ -503,13 +503,19 @@ text-align:center;
   width: 100%;
   background: none;
   border: 2px solid  #8FBE00;
-  color: #8FBE00;
+  color: Black;
   padding: 5px;
-  font-size: 18px;
+  font-size: 17px;
+   margin-right:1px;
+  margin-bottom:3px;
   cursor: pointer;
-  margin: 12px 0;
+  margin: 8px 0;
 }
 
+.btn:hover{
+	background-color: #AEE239;
+	padding:15px;
+}
 	
 /* CSS ARTICLE-FEED PAGE */
 
@@ -523,7 +529,8 @@ a.post-lenke:hover {
 }
 
 p.preview-text{
-  font-size: 90%;
+  font-size: 73%;
+  width:25%
 }
 
 
@@ -621,7 +628,7 @@ p.preview-text{
 .content-artikkel-side .main-content-artikkel-side .artikkel-overskrift {
   text-align: center;
   font-size: 40px;
-  width: 95%;
+  width: 90%;
   margin-left: 11px;
 }
 

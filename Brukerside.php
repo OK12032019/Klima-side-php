@@ -82,13 +82,13 @@ include "./minmeny.php";
  
 
     <div  class="brukerside">
-        <h1>Brukerside for '<?php echo $username;?>'</h1>
+        <h1 style="margin-top: 150px;">Brukerside for '<?php echo $username;?>'</h1>
 
         <div class="brukerbilde">
         
         
         
-            <img src="uploads/<?php echo ($brukerid);?>.jpg">
+            <img src="uploads/<?php echo ($brukerid);?>.jpg" style="width: 150px; margin-top: 35px;">
         </div>
 
 

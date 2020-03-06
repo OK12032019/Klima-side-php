@@ -73,7 +73,7 @@ include "./minmeny.php";
                     ?>
                 </div>   
                 <div class= "events">
-                    <h2>Ting som skjer denne måneden</h2>
+                    <h2 style="text-align: center;">Ting som skjer denne måneden</h2>
                     <?php
                     // $result = $user->getEvents($Month, $Year);
                     // echo ($result['eventtekst']);
@@ -104,6 +104,7 @@ include "./minmeny.php";
                                             <p class="preview-text">
                                             <?php echo $result['arttekst']; ?>
                                             </p>
+											<hr>
                                         </div>
                                         <div class="artikkel-info">
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>

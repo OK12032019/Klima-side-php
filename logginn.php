@@ -40,6 +40,7 @@ if(isset($_POST['btn-login']))
         }     
     }
 }
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE html>
@@ -53,25 +54,15 @@ if(isset($_POST['btn-login']))
   <link rel="stylesheet" href="FellesCSS.css">  
         <title>Logg inn</title>
     </head>
-	  	    <header class="hovedheader">
 
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Default.php">Hovedside</a></li>
-            <li><a href="registrer.php">Registrer</a></li>
-        </ul>   
-    </header>
     <body>
 	
 
 <div class="femtien">
-<div class="containers">
+<div class="container">
      <div class="form-container">
         <form method="post">
-            <h2>Logg Inn</h2><hr />
+            <h2 style="text-align:center;">Logg Inn</h2><hr />
             <?php
             if(isset($error))
             {
@@ -83,10 +74,10 @@ if(isset($_POST['btn-login']))
             }
             ?>
             <div class="form-group">
-             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required />
+             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required style="margin-left: 530px;" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="pass" placeholder="Passord" required />
+             <input type="password" class="form-control" name="pass" placeholder="Passord" required style="margin-left: 530px;" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -95,7 +86,7 @@ if(isset($_POST['btn-login']))
                 </button>
             </div>
             <br />
-            <label>Har du ikke konto?<?php $timeNow = date("Y-m-d H:i:s"); echo($timeNow); ?> <a href="registrer.php">Registrer her</a></label>
+            <label style="margin-left:496px;">Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 
