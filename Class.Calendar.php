@@ -28,10 +28,6 @@ class Calendar {
     /**
     * print out the calendar
     */
-    //Ikke hentet fra internett
-   
-
-    // Hentet fra internett
     public function show() {
         $year  = null;
          
@@ -73,13 +69,11 @@ class Calendar {
                                 $content.='<ul class="dates">';    
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
-                                
                                 // Create weeks in a month
                                 for( $i=0; $i<$weeksInMonth; $i++ ){
                                      
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
-                                       
                                         $content.=$this->_showDay($i*7+$j);
                                     }
                                 }
@@ -116,7 +110,6 @@ class Calendar {
             $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
              
             $cellContent = $this->currentDay;
-            
              
             $this->currentDay++;   
              
@@ -126,8 +119,9 @@ class Calendar {
  
             $cellContent=null;
         }
-        
-        return '<li onclick="getDate(this.id)" id="'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
+             
+         
+        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
                 ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
     }
      

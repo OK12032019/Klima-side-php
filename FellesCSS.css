@@ -770,17 +770,6 @@ margin-top:35px;
 	margin-left:550px;
 }
 
-/*CSS meldinger.php*/
-.meldinger-tittel {
-  margin-top:125px;
-}
-
-.meldinger {
-  border: 1px solid black;
-  margin: 2px;
-  padding: 3px;
-}
-
 /* MEDIA QUERY */
 @media (min-width: 760px) {
 
@@ -1076,4 +1065,3 @@ margin-top:35px;
 }
 
 }
-
