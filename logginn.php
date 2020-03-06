@@ -86,7 +86,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;"l>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
+            <label style="margin-left:600px;"l>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 
