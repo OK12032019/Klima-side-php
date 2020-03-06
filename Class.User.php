@@ -140,27 +140,7 @@ class USER
            echo $e->getMessage();
        }    
     }
-    public function nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input);
-    {
-       try{
-         $lest = '0';
-         $papirkurv = '0';
-         $stmt = $this->db->prepare("INSERT INTO melding('tittel','tekst','tid','lest','papirkurv','sender','mottaker') 
-                            VALUES(:tittel, :tekst :tid, :lest, :papirkurv, :sender, :mottaker)");
-
-         $stmt->bindparam(":tittle", $meldingtittel);
-         $stmt->bindparam(":tekst", $meldingtekst);
-         $stmt->bindparam(":tid", $datetime);
-         $stmt->bindparam(":lest", $lest);
-         $stmt->bindparam(":papirkurv", $papirkurv);
-         $stmt->bindparam(":sender", $brukerid);
-         $stmt->bindparam(":mottaker", $input);
-               }
-       catch(PDOException $e)
-       {
-           echo $e->getMessage();
-       }  
-    }
+    
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {

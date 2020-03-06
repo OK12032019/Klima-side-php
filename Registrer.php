@@ -1,7 +1,6 @@
 <?php
 require_once 'PDO.php';
 
-$btype = '3';
 
 if($user->is_loggedin()!="")
 {
@@ -16,6 +15,7 @@ if(isset($_POST['registrer']))
    $fnavn = trim($_POST['Fnavn']);
    $enavn = trim($_POST['Enavn']);
    $telefon = trim($_POST['Telefon']);
+   $btype= trim($_POST['Brukertype']);
  
    if($bnavn=="") {
       $error[] = "Oppgi brukernavn!"; 
@@ -28,6 +28,10 @@ if(isset($_POST['registrer']))
    }
    else if($pw=="") {
       $error[] = "Oppgi passord!";
+   }
+   else if($btype=="") {
+      $error[] = "Oppgi brukertype!";
+	  
    }
    else if(strlen($pw) < 6){
       $error[] = "Passord må være i hvert fall 6 tegn"; 
@@ -48,7 +52,7 @@ if(isset($_POST['registrer']))
          }
          else
          {
-            if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)) 
+            if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon,$btype)) 
             {
                 $user->redirect('Logginn.php');
             }
@@ -60,7 +64,7 @@ if(isset($_POST['registrer']))
      }
   } 
 }
-
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -72,17 +76,7 @@ if(isset($_POST['registrer']))
   <link rel="stylesheet" href="FellesCSS.css">  
   <title>Registrering</title>
   </head>
-  	    <header class="hovedheader">
-
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Default.php">Hovedside</a></li>
-            <li><a href="Logginn.php">Logg inn</a></li>
-        </ul>   
-    </header>
+ 
   <body>
   <div class="femti">
 <div class="container">
@@ -127,6 +121,9 @@ if(isset($_POST['registrer']))
             </div>
             <div class="form-group">
              <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" />
+            </div>
+			<div class="form-group">
+             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
