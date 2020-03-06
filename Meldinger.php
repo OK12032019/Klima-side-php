@@ -74,13 +74,15 @@ if(isset($_POST['btn-logout']))
 
     </header>
     <div class="container1">
-        <h1 class="meldinger-tittel">Meldinger</h1>
+        <h1>Meldinger</h1>
+        <?php echo $brukerid; ?>
       </div>
 		
 	<section id="tekst">
 	    <div class="content clearfix">
             <div class="main-content">
                 <div class="meldinger">
+                    <p><a href="NyMelding.php">Skriv ny melding</a></p>
                     <h2>Alle meldinger:</h2>
                     <?php
                     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
@@ -89,10 +91,10 @@ if(isset($_POST['btn-logout']))
                     $lestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1";
                     $ulestmeldingsliste = $mysqli->query($ulestmeld);
                     ?>
-                    <a href="NyMelding.php">Skriv ny melding</a><br/>
                     <h3>Uleste Meldinger (<?php echo(mysqli_num_rows($ulestmeldingsliste));?>)</h3>
+                    
                     <table>
-                        <tr>
+                        <tr class="meldrow">
                             <th>Sender</th>
                             <th>Tittel</th>
                             <th>Tekst</th>
@@ -105,15 +107,13 @@ if(isset($_POST['btn-logout']))
                         $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
                         $tittel = $row['tittel'];
-                        $tekst = $row['tekst'];
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
                         $result = $user -> getBrukernavn($senderid);
-                        //Sender, tittel, tekst, tid sendt
-                        echo '<tr> 
+                        //Sender, tittel, tid sendt
+                        echo '<tr class="meldrow"> 
                         <td>',$result['brukernavn'],'</td>
                         <td>',$tittel,'</td>
-                        <td>',$tekst,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
                         <form method="POST" action="Lesmelding.php">
@@ -130,7 +130,7 @@ if(isset($_POST['btn-logout']))
                     if(intval(mysqli_num_rows($result))==0)
                     {
                     ?>
-                        <tr>
+                        <tr class="meldrow">
                             <td colspan="4">Du har ingen uleste meldinger</td>
                         </tr>
                     <?php
@@ -143,31 +143,29 @@ if(isset($_POST['btn-logout']))
                     <?php $lestmeldingsliste = $mysqli->query($lestmeld); ?>
                     <h3>Leste Meldinger (<?php echo(mysqli_num_rows($lestmeldingsliste)); ?>):</h3>
                     <table>
-                        <tr>
+                        <tr class="meldrow">
                             <th>Sender</th>
                             <th>Tittel</th>
-                            <th>Tekst</th>
                             <th>Tid Sendt</th>
                         </tr>
                     <?php
-                    //Vis liste av alle uleste meldinger
+                    //Vis liste av alle leste meldinger
                     while($row = mysqli_fetch_array($lestmeldingsliste))
                     {
+                        $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
                         $tittel = $row['tittel'];
-                        $tekst = $row['tekst'];
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
                         $result = $user -> getBrukernavn($senderid);
-                        //Sender, tittel, tekst, tid sendt
-                        echo '<tr> 
+                        //Sender, tittel, tid sendt
+                        echo '<tr class="meldrow"> 
                         <td>',$result['brukernavn'],'</td>
                         <td>',$tittel,'</td>
-                        <td>',$tekst,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
-                        <form method="POST">
-                            <button type="submit" name="btn-lesmelding">Les melding</button>
+                        <form method="POST" action="Lesmelding.php">
+                            <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>
                         </tr>';
@@ -180,7 +178,7 @@ if(isset($_POST['btn-logout']))
                     if(intval(mysqli_num_rows($result))==0)
                     {
                     ?>
-                        <tr>
+                        <tr class="meldrow">
                             <td colspan="4">Du har ingen leste meldinger</td>
                         </tr>
                     <?php
