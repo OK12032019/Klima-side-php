@@ -8,7 +8,8 @@ if($user->is_loggedin()=="")
 }
 else {
 	$fnavn = $_SESSION['fnavn'];
-	$enavn = $_SESSION['enavn'];
+    $enavn = $_SESSION['enavn'];
+    $bruker = $_SESSION['brukerid'];
 }
 // elias push
 if(isset($_POST['btn-logout']))
@@ -49,7 +50,7 @@ echo ($date);
 		
 		            <a href="#" class="w3-bar-item" title="Konto">
 
-                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
+                <a href="Brukerside.php" <img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
 
             </a>
 			
@@ -108,10 +109,26 @@ echo ($date);
 
             <h2>Ting som skjer denne måneden</h2>
             <?php
-            $result = $user->getEvents($Month, $Year);
-            
-            echo ($result['eventtekst']);
-            
+            $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+
+            $sql = "SELECT * FROM event WHERE month(tidspunkt)={$Month} AND year(tidspunkt)={$Year}";
+            $result = $mysqli->query($sql);
+            if ($result) {
+                while($row = mysqli_fetch_array($result)) {
+                echo "<h1>Tittle: ",$row['eventnavn'],"<br>";
+                echo "<option value='",$row['eventnavn'],"'>",$row['eventtekst'],"</option>";
+                echo "<p>Dato: ",$row['tidspunkt'],"<br>";
+                echo "<p>Veibeskrivelse: ",$row['veibeskrivelse'],"<br><br><br><br><br>";
+                }
+
+            }
+            else {
+                echo "error";//mysql_error();
+            }
+            // $result = $user->getEvents($Month, $Year);
+            // for 
+            // echo ($result['eventtekst']);
+            // }
             ?>
             <br>
             </div>   
@@ -125,7 +142,7 @@ echo ($date);
                     $forrigeArtikkelID = $count;
                     while($forrigeArtikkelID != '1'){
                         $result = $user->artikkel($forrigeArtikkelID);
-                        
+                        $artikkelid = $result['idartikkel'];
                         ?>                            
                         <section id="tekst">
                             <div class="content-artikkel-side clearfix">
@@ -144,21 +161,46 @@ echo ($date);
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
                                         </div>
-                                        <div class="kommentar">
-                                        <?php 
-                                            if(isset($_POST['kommenter']))
-                                                {   
-                                                    $ingress = (' test ');
-                                                    $tittel = trim($_POST['tittel']);
-                                                    $artikkel = trim($_POST['artikkeltekst']);
-                                                    $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid);
+                                        <div class="form-group">
+                                            <form method="post" action="" input id="<?php echo $artikkelid; ?>">
+                                                <p> <?php echo $artikkelid; ?></p>
+                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar"></textarea>
+
+                                                <input type="submit" class="btn btn-block btn-primary" name="input" value="Kommenter"/>
+
+                                                <?php
                                                     
-                                                }
-                                        ?>
-                                            <div class="a1">
-                                            <button type="submit" class="btn btn-block btn-primary" name="kommenter">
-                                                <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
-                                            </div>
+                                                    if(isset($_POST['input']))
+                                                        {
+                                                            $ingress = ('test');
+                                                            $tekst = $_POST['komtekst'];
+                                                            $tid = date("Y-m-d H:i:s");
+                                                            
+                                                            // echo $artikkelid;
+                                                            // echo "<br>";
+                                                            // echo $ingress;
+                                                            // echo "<br>";
+                                                            // echo $tekst;
+                                                            // echo "<br>";
+                                                            // echo $tid;
+                                                            // echo "<br>";
+                                                            $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker);
+                                                        }
+                                                
+                                                    
+                                                    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                                                    $stmt = "SELECT * FROM kommentar WHERE artikkel = {$artikkelid};";
+                                                    $resultkom = $mysqli->query($stmt);
+                                                    while ($row = mysqli_fetch_array($resultkom))
+                                                        {
+                                                            echo $row['bruker']."<br>";
+                                                            echo $row['tid']."<br>";
+                                                            echo nl2br($row['komtekst'])."<br><br><br>";
+                                                        }
+                                                    
+                                                ?>
+                                            </form>
+                                            
                                         </div>
                                     </div>
 

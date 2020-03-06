@@ -1,13 +1,13 @@
 <?php
 class USER
 {
-   private $db;
-
-   function __construct($DB_con)
-   {
+    private $db;
+ 
+    function __construct($DB_con)
+    {
       $this->db = $DB_con;
-   }
-   public function getBrukernavn($brukerid)
+    }
+    public function getBrukernavn($brukerid)
    {
       try
    {
@@ -72,7 +72,19 @@ class USER
            echo $e->getMessage();
        }    
     }
-
+    public function ArrSOk()
+    {
+      try{
+         $stmt = $this->db->prepare('SELECT * FROM event WHERE ');
+         $stmt->execute();
+         $count = $stmt->rowCount();
+         return $count;
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }    
+    }
     public function largeArtikkel($tittel, $artikkel, $brukerid)
     {
       try{
@@ -93,18 +105,19 @@ class USER
             echo $e->getMessage();
       } 
     }
-    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid)
+    public function artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker)
     { 
       try
       {
         
-         $stmt = $this->db->prepare("INSERT INTO kommentar (ingress, tekst, tid, artikkelid)
-         VALUES(:ingress, :tekst, :tid, :artikkelid)");
+         $stmt = $this->db->prepare("INSERT INTO kommentar (komingress, komtekst, tid, artikkel, bruker)
+         VALUES(:komingress, :komtekst, :tid, :artikkel, :bruker)");
 
-         $stmt->bindparam(":ingress", $ingress);
-         $stmt->bindparam(":tekst", $tekst);
+         $stmt->bindparam(":komingress", $ingress);
+         $stmt->bindparam(":komtekst", $tekst);
          $stmt->bindparam(":tid", $tid);
-         $stmt->bindparam(":artikkelid", $artikkelid);
+         $stmt->bindparam(":artikkel", $artikkelid);
+         $stmt->bindparam(":bruker", $bruker);
          $stmt->execute(); 
 
             return true; 
@@ -127,7 +140,27 @@ class USER
            echo $e->getMessage();
        }    
     }
+    public function nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input);
+    {
+       try{
+         $lest = '0';
+         $papirkurv = '0';
+         $stmt = $this->db->prepare("INSERT INTO melding('tittel','tekst','tid','lest','papirkurv','sender','mottaker') 
+                            VALUES(:tittel, :tekst :tid, :lest, :papirkurv, :sender, :mottaker)");
 
+         $stmt->bindparam(":tittle", $meldingtittel);
+         $stmt->bindparam(":tekst", $meldingtekst);
+         $stmt->bindparam(":tid", $datetime);
+         $stmt->bindparam(":lest", $lest);
+         $stmt->bindparam(":papirkurv", $papirkurv);
+         $stmt->bindparam(":sender", $brukerid);
+         $stmt->bindparam(":mottaker", $input);
+               }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }  
+    }
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
@@ -157,7 +190,7 @@ class USER
            echo $e->getMessage();
        }    
     }
-
+    
     public function antallBrukere()
     {
       try
@@ -185,43 +218,42 @@ class USER
        {
            echo $e->getMessage();
        }   
-
-    }
-    public function registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylker)
-    {
-      try{
-         
-         $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
-         VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
-
-         $stmt->bindparam(":eventnavn", $ArrNavn);
-         $stmt->bindparam(":eventtekst", $ArrTekst);
-         $stmt->bindparam(":tidspunkt", $ArrTid);
-         $stmt->bindparam(":veibeskrivelse", $beskrivelse);
-         $stmt->bindparam(":idbruker", $brukerid);
-         $stmt->bindparam(":fylke", $fylker);
-         $stmt->execute(); 
-
-            return true; 
+      }
+      public function registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylker)
+      {
+        try{
+           
+           $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
+           VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
+  
+           $stmt->bindparam(":eventnavn", $ArrNavn);
+           $stmt->bindparam(":eventtekst", $ArrTekst);
+           $stmt->bindparam(":tidspunkt", $ArrTid);
+           $stmt->bindparam(":veibeskrivelse", $beskrivelse);
+           $stmt->bindparam(":idbruker", $brukerid);
+           $stmt->bindparam(":fylke", $fylker);
+           $stmt->execute(); 
+  
+              return true; 
+        }
+        catch(PDOException $e)
+        {
+              echo $e->getMessage();
+        } 
+      }
+      public function meldingLest($meldingid)
+      {
+      try
+      {
+        $stmt = $this->db->prepare('UPDATE melding SET lest = 1 WHERE idmelding =:meldingid');
+        $stmt->execute(array(':meldingid'=>$meldingid));
+        return true;
       }
       catch(PDOException $e)
-      {
-            echo $e->getMessage();
-      } 
+         {
+             echo $e->getMessage();
+         }
     }
-    public function meldingLest($meldingid)
-    {
-    try
-    {
-      $stmt = $this->db->prepare('UPDATE melding SET lest = 1 WHERE idmelding =:meldingid');
-      $stmt->execute(array(':meldingid'=>$meldingid));
-      return true;
-    }
-    catch(PDOException $e)
-       {
-           echo $e->getMessage();
-       }
-      }
     public function PassordReset($bnavn,$pw,$npw)
     {
        try
