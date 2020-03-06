@@ -705,18 +705,25 @@ text-decoration: none;
 		margin-right:100px;
    }
    
-   
+
    /*Brukerside */
             
 .btn1{
   width: 100%;
   background: none;
-  border: 2px solid  #8FBE00;
+  border: 2px solid  #8FBE00;/* #AEE239;*/
   color: Black;
   padding: 5px;
-  font-size: 18px;
+  font-size: 17px;
+  margin-right:1px;
+  margin-bottom:3px;
   cursor: pointer;
   margin: 12px 0;
+}
+
+.btn1:hover{
+	background-color: #AEE239;
+	padding:15px;
 }
 .e123{
 	float:left;
@@ -768,17 +775,6 @@ margin-top:35px;
 }
 #Mellomrom5{
 	margin-left:550px;
-}
-
-/*CSS meldinger.php*/
-.meldinger-tittel {
-  margin-top:125px;
-}
-
-.meldinger {
-  border: 1px solid black;
-  margin: 2px;
-  padding: 3px;
 }
 
 /* MEDIA QUERY */
@@ -1076,4 +1072,3 @@ margin-top:35px;
 }
 
 }
-

@@ -106,7 +106,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
         
         
         
-            <img src="uploads/<?php echo ($brukerid);?>.jpg">
+            <img src="uploads/<?php echo ($brukerid);?>.jpg" id="brukerbildeprofil" style="width:150px; margin-top:50px;">
         </div>
 
 
