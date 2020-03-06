@@ -74,10 +74,10 @@ include "./minmeny.php";
             }
             ?>
             <div class="form-group">
-             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required  style="margin-left:496px;" />
+             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required  style="margin-left:640px;" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="pass" placeholder="Passord" required  style="margin-left:496px;" />
+             <input type="password" class="form-control" name="pass" placeholder="Passord" required  style="margin-left:640px;" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -86,7 +86,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;"l>Har du ikke konto?<?php $timeNow = date("Y-m-d H:i:s"); echo($timeNow); ?> <a href="registrer.php">Registrer her</a></label>
+            <label style="margin-left:496px;"l>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 
