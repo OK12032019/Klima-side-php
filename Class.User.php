@@ -1,17 +1,47 @@
 <?php
 class USER
 {
-    private $db;
- 
-    function __construct($DB_con)
-    {
+   private $db;
+
+   function __construct($DB_con)
+   {
       $this->db = $DB_con;
-    }
+   }
+   public function getBrukernavn($brukerid)
+   {
+      try
+   {
+      
+      $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE brukerid = :brukerid"); 
+      $stmt->execute(array(':brukerid'=>$brukerid));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+   }
+   catch(PDOException $e)
+   {
+      echo $e->getMessage();
+   }
+   }
+   public function getEvents($Month, $Year)
+   {
+   try
+   {
+      $monthDate = $Month;
+      $yearDate = $Year;
+      $stmt = $this->db->prepare("SELECT * FROM event WHERE month(tidspunkt)=:monthDate AND year(tidspunkt)=:yearDate "); 
+      $stmt->execute(array(':monthDate'=>$monthDate, 'yearDate'=>$yearDate));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+   }
+   catch(PDOException $e)
+   {
+      echo $e->getMessage();
+   }
+   }
     public function sletteInteresse($userid, $interesseid)
     {
        try
        {
-      echo ('test69');
       $stmt = $this->db->prepare("DELETE FROM brukerinteresse WHERE bruker = :userid AND interesse = :interesseid"); 
       $stmt->execute(array(':userid'=>$userid, ':interesseid'=>$interesseid));
       
@@ -42,6 +72,7 @@ class USER
            echo $e->getMessage();
        }    
     }
+
     public function largeArtikkel($tittel, $artikkel, $brukerid)
     {
       try{
@@ -60,6 +91,27 @@ class USER
       catch(PDOException $e)
       {
             echo $e->getMessage();
+      } 
+    }
+    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid)
+    { 
+      try
+      {
+        
+         $stmt = $this->db->prepare("INSERT INTO kommentar (ingress, tekst, tid, artikkelid)
+         VALUES(:ingress, :tekst, :tid, :artikkelid)");
+
+         $stmt->bindparam(":ingress", $ingress);
+         $stmt->bindparam(":tekst", $tekst);
+         $stmt->bindparam(":tid", $tid);
+         $stmt->bindparam(":artikkelid", $artikkelid);
+         $stmt->execute(); 
+
+            return true; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
       } 
     }
     public function sOk($brukersOk)

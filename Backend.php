@@ -25,24 +25,13 @@ if(isset($_POST['btn-logout']))
     } 
 }
 
-// kommentar
-// if(isset($_POST['kommentar']))
-// {
-//     $tekst = ($_POST['kommentar']);
-//     {
-//         try
-//         {
-//             if($user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid))
-//             {
-//                 $user->redirect('Backend.php');   
-//             }
-//         }
-//         catch(PDOException $e)
-//         {
-//             echo $e->getMessage();
-//         }
-//     }    
-// }
+$Month = $_GET['month'];
+$Year = $_GET['year'];
+$date = $Year;
+$date .= '-';
+$date .= $Month;
+echo ($date);
+
 ?>
 
 
@@ -102,10 +91,33 @@ if(isset($_POST['btn-logout']))
             
             <div class="main-content">
             <div class="calendar">
+
+            <script>
+            function getDate(clicked_id) 
+            {
+                
+                var year=clicked_id.slice(0,7);
+                //alert (year);
+
+                // var newURL = window.location.href;
+                // alert (newURL);
+                // var newURL = newURL + '&' + year;
+                // location.href = newURL;
+            }
+            </script>
             <?php
             $calendar = new Calendar();
             echo $calendar->show();
+            ?>       
+            <div class= "events">
+
+            <h2>Ting som skjer denne måneden</h2>
+            <?php
+            $result = $user->getEvents($Month, $Year);
+            echo ($result['eventtekst']);
             ?>
+            <br>
+            </div> 
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
                 <div class="articlefeed1">
@@ -135,6 +147,7 @@ if(isset($_POST['btn-logout']))
                                             <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
                                             &nbsp;
                                         </div>
+
                                         <!-- <div class="kommentarer">
                                         </div>-->
 
@@ -207,11 +220,6 @@ if(isset($_POST['btn-logout']))
                                                 </button>
                                             </div>
                                         </form> -->
-
-
-
-
-
 
 
                                     </div>
