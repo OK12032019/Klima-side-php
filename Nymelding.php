@@ -80,13 +80,42 @@ if(isset($_POST['btn-logout']))
 	<section id="tekst">
 	    <div class="content clearfix">
             <div class="main-content">
-                <form method="POST">
+                <form action="" method="POST">
                     <h2 class="nymeldtit">Tittel</h2>
                     <textarea name="tittel" id="meldingtittel" cols="50" rows="2"></textarea>
                     <h2 class="nymeldtit">Tekst</h2>
                     <textarea name="tekst" id="meldingtekst" cols="50" rows="8"></textarea>
-                    <div class="nymeldknapp">
-                    <button type="submit" name="btn_sendmelding">Send Melding</button>
+                    <h2 class="nymeldtit">Mottaker</h2>
+                        <select name="mottakermeny">
+                        <?php 
+                            $mysqli = new mysqli("localhost", "root", "", "klima");
+                            //Henter ut en liste av alle brukere utenom den som er logget inn
+                            $sql = "SELECT idbruker, brukernavn FROM bruker EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
+                            $result = $mysqli->query($sql);
+                            if ($result) {
+                              while($row = mysqli_fetch_array($result)) {
+                                echo "<option name='mottakermeny' value='",$row['brukernavn'],"'>",$row['brukernavn'],"</option>";
+                              }
+                            }
+                            else {
+                              echo mysql_error();
+                            }
+                        ?>
+                        </select>
+                    </div>
+                    <div class="sendmeld">
+                    <input type="submit" name="sendmelding">
+                        <?php 
+                            //Variabler og sql for å sende melding til databasen
+                            $meldingtittel = "meldingtittel";
+                            $meldingtekst = "meldingtekst";
+                            $datetime = date("Y-m-d H:i:s");
+                            $input = $_POST['mottakermeny'];
+                            $sql = "INSERT INTO melding('tittel','tekst','tid','lest','papirkurv','sender','mottaker') 
+                            VALUES('{$meldingtittel}','{$meldingtekst}','{$datetime}','0','0','{$brukerid}','{$input}')";
+
+                        ?>
+                    </input>
                     </div>
                 </form>
                 <a href="Meldinger.php">Tilbake til alle meldinger</a>
