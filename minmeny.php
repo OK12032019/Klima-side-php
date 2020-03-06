@@ -14,8 +14,8 @@ if($btype == 1){
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="Interesse.php" class="mellomrom1">Artikler</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Profil</a></li>
+            <li><a href="Backend.php" class="mellomrom1">Artikler</a></li>
+			 <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
 			 <li><a href="Sok.php" class="mellomrom2">Administrere brukere</a></li>
 			 
 			 <div class="e123">
@@ -40,7 +40,7 @@ else if($btype == 2){
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <li><a href="Interesse.php" class="mellomrom1">Skrive artikler</a></li>
+            <li><a href="Brukerside.php" class="mellomrom1">Skrive artikler</a></li>
 			 <li><a href="Backend.php" class="mellomrom1">Meny</a></li>
 			 <div class="e123">
             <form method="post">
@@ -66,9 +66,9 @@ else if($btype == 2){
                 <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
             </a>
         <ul class="menu">
-            <a href="#" class="logoen1">Artikler</a>
+            <a href="Backend.php" class="logoen1">Artikler</a>
             <a href="Brukerside.php" class="logoen2">Profil</a>
-            <a href="#" class="logoen3">Arrangementer</a>
+            <a href="Backend.php" class="logoen3">Arrangementer</a>
               <a href="Passord.php" class="nullpass">Nullstill Passord</a>
         <div class="a123">
         <form method="post">
