@@ -62,18 +62,19 @@ class USER
             echo $e->getMessage();
       } 
     }
-    public function artikkelKommentar($ingress, $tekst, $tid, $artikkleid)
+    public function artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker)
     { 
       try
       {
         
-         $stmt = $this->db->prepare("INSERT INTO kommentar (ingress, tekst, tid, artikkelid)
-         VALUES(:ingress, :tekst, :tid, :artikkelid)");
+         $stmt = $this->db->prepare("INSERT INTO kommentar (komingress, komtekst, tid, artikkel, bruker)
+         VALUES(:komingress, :komtekst, :tid, :artikkel, :bruker)");
 
-         $stmt->bindparam(":ingress", $ingress);
-         $stmt->bindparam(":tekst", $tekst);
+         $stmt->bindparam(":komingress", $ingress);
+         $stmt->bindparam(":komtekst", $tekst);
          $stmt->bindparam(":tid", $tid);
-         $stmt->bindparam(":artikkelid", $artikkelid);
+         $stmt->bindparam(":artikkel", $artikkelid);
+         $stmt->bindparam(":bruker", $bruker);
          $stmt->execute(); 
 
             return true; 
