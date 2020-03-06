@@ -81,8 +81,9 @@ if(isset($_POST['registrer']))
                  <i class="glyphicon glyphicon-open-file"></i>&nbsp;Søk
                 </button>
             </div>
-            </form>
-    
+        </form>
+    </div>
+</div>
 </main>
 </body>
 

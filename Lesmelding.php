@@ -85,11 +85,11 @@ if(isset($_POST['btn-logout']))
                     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
                     $meldingid = $_POST['btn_lesmelding'];
                     //sql spørring for å hente fram melding
-                    $ulestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND idmelding = '{$meldingid}'";
+                    $sql = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND idmelding = '{$meldingid}'";
                     //Merkerer meldingen som lest
                     $user->meldingLest($meldingid);
                     //Henter ut data om meldingen
-                    $result = $mysqli->query($ulestmeld);
+                    $result = $mysqli->query($sql);
                     $row = mysqli_fetch_array($result);
                     $senderid = $row['sender'];
                     $tittel = $row['tittel'];
