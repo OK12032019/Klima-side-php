@@ -78,11 +78,12 @@ include "./minmeny.php";
   </head>
  
   <body>
+	  <h2 style="text-align:center;>Registrering</h2><hr />
   <div class="femti">
 <div class="container">
      <div class="form-container">
         <form method="post">
-            <h2 style="text-align:center;>Registrering</h2><hr />
+            
             <?php
             if(isset($error))
             {
