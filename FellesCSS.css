@@ -705,25 +705,18 @@ text-decoration: none;
 		margin-right:100px;
    }
    
-
+   
    /*Brukerside */
             
 .btn1{
   width: 100%;
   background: none;
-  border: 2px solid  #8FBE00;/* #AEE239;*/
+  border: 2px solid  #8FBE00;
   color: Black;
   padding: 5px;
-  font-size: 17px;
-  margin-right:1px;
-  margin-bottom:3px;
+  font-size: 18px;
   cursor: pointer;
   margin: 12px 0;
-}
-
-.btn1:hover{
-	background-color: #AEE239;
-	padding:15px;
 }
 .e123{
 	float:left;

@@ -5,7 +5,6 @@ require_once 'PDO.php';
 $Brukertype = $_SESSION['btype'];
 $brukerid = $_SESSION['brukerid'];
 
-
 if($user->is_loggedin()=="")
 {
   $user->redirect('Default.php');
@@ -28,7 +27,6 @@ if(isset($_POST['btn-logout']))
     } 
 
 }
-$mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
@@ -44,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
   echo $interesseid;
   $user->sletteInteresse($userid, $interesseid);
 }
-
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -57,25 +55,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 </head>
 
 
-    <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
-			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
-			 <div class="e123">
-            <form method="post">
-        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-        </button>
-        </form>
-        </div>
-    </ul>   
-        </ul> 
-    </header>
 
 
 <body>
@@ -103,19 +82,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
         <h1>Brukerside for '<?php echo $username;?>'</h1>
 
         <div class="brukerbilde">
-        
-        
-        
-            <img src="uploads/<?php echo ($brukerid);?>.jpg" id="brukerbildeprofil" style="width:150px; margin-top:50px;">
+            <img src="img/bruker.png" alt="Default brukerbilde">
         </div>
 
-
             <p>Full navn: <?php echo $fnavn; echo(' '); echo $enavn;?></p>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" name="submit">
-            </form>
+
             
 
 
