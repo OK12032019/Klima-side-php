@@ -10,7 +10,7 @@ if($btype == 1){
    ?>
   
          <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
@@ -36,7 +36,7 @@ else if($btype == 2){
     ?>
 	
        <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
@@ -59,7 +59,7 @@ else if($btype == 2){
 
      ?>
        <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:48px;"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		            <a href="#" class="w3-bar-item" title="Konto">
@@ -87,7 +87,7 @@ else{
    echo "Du er ikke logget inn";
    ?>
        <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
+        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:73px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
