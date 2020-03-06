@@ -197,7 +197,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 
                 <input type="submit" name="SubmitButton2"/>
                 </form>
-				
+                <?php
+        if ($Brukertype == 2) { ?>
 				<h1> Skriv artikkel </h1> 
     <aside class="brukertekst">
         <div class="artikkeltekstarea">
@@ -236,6 +237,79 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
             echo $tittel;
             echo $artikkel;
         }
+    }
+
+    //-------------------------------------------------------------------
+    //arrangement
+    ?>
+    <h1> Lag arrangement </h1> 
+    <aside class="brukertekst">
+        <div class="arrangementtekstarea">
+        <form method="post">
+		<h2> tittel </h2>
+        <textarea name="ArrNavn" id="ArrNavn" cols="50" rows="2"></textarea>
+        <h2>arrangement tekst</h2>
+        <textarea name="ArrTekst" id="ArrTekst" cols="50" rows="8"></textarea>
+        <h2>Tidspunkt</h2>
+        <input type="date" id="ArrTid" name="ArrTid">
+        <textarea name="Veibeskrivelse" id="Veibeskrivelse" cols="50" rows="2"></textarea>
+        <input list="fylke" name="fylke">
+        <datalist id="fylke">
+            <option value="Oslo">
+            <option value="Rogaland">
+            <option value="Møre og Romsdal">
+            <option value="Nordland">
+            <option value="Viken">
+            <option value="Innlandet">
+            <option value="Vestfold og Telemark">
+            <option value="Agder">
+            <option value="Vestland">
+            <option value="Trøndelag">
+            <option value="Troms og Finnmark">
+        </datalist>
+       
+        </div>
+
+        <div class="form-container">
+           
+                <div class="form-group">
+                </div>
+                    <div class="clearfix"></div><hr />
+                    <div class="form-group">
+					<div class="a1">
+                        <button type="submit" class="btn btn-block btn-primary" name="registrerArr">
+                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
+							</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <?php
+        if(isset($_POST['registrerArr']))
+        {   
+            
+           
+        
+            $ArrNavn = trim($_POST['ArrNavn']);
+            $ArrTekst = trim($_POST['ArrTekst']);
+            $ArrTid = trim($_POST['ArrTid']);
+            $beskrivelse = trim($_POST['Veibeskrivelse']);
+            $fylke = trim($_POST['fylke']);
+            if ($fylke=="Oslo") 
+            {$fylke=2;}
+                elseif ($fylke=="Rogaland") {$fylke=3;}
+                elseif ($fylke=="Møre og Romsdal") {$fylke=4;}
+                elseif ($fylke=="Nordland") {$fylke=5;}
+                elseif ($fylke=="Viken") {$fylke=6;}
+                elseif ($fylke=="Innland") {$fylke=7;}
+                elseif ($fylke=="Vestfold og Telemark") {$fylke=8;}
+                elseif ($fylke=="Agder") {$fylke=9;}
+                elseif ($fylke=="Vestland") {$fylke=10;}
+                elseif ($fylke=="Trøndelag") {$fylke=11;}
+                else {$fylke=12;}
+            $user->registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylke);    
+        }
+    
     ?>
 
     </aside>

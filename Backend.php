@@ -109,7 +109,9 @@ echo ($date);
             <h2>Ting som skjer denne måneden</h2>
             <?php
             $result = $user->getEvents($Month, $Year);
+            while($result){
             echo ($result['eventtekst']);
+            }
             ?>
             <br>
             </div>   
