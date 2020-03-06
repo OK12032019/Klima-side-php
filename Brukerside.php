@@ -5,6 +5,7 @@ require_once 'PDO.php';
 $Brukertype = $_SESSION['btype'];
 $brukerid = $_SESSION['brukerid'];
 
+
 if($user->is_loggedin()=="")
 {
   $user->redirect('Default.php');
@@ -27,6 +28,7 @@ if(isset($_POST['btn-logout']))
     } 
 
 }
+$mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
@@ -101,11 +103,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
         <h1>Brukerside for '<?php echo $username;?>'</h1>
 
         <div class="brukerbilde">
-            <img src="img/bruker.png" alt="Default brukerbilde">
+        
+        
+        
+            <img src="uploads/<?php echo ($brukerid);?>.jpg">
         </div>
 
-            <p>Full navn: <?php echo $fnavn; echo(' '); echo $enavn;?></p>
 
+            <p>Full navn: <?php echo $fnavn; echo(' '); echo $enavn;?></p>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+            </form>
             
 
 
