@@ -40,6 +40,7 @@ if(isset($_POST['btn-login']))
         }     
     }
 }
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE html>
@@ -53,17 +54,7 @@ if(isset($_POST['btn-login']))
   <link rel="stylesheet" href="FellesCSS.css">  
         <title>Logg inn</title>
     </head>
-	  	    <header class="hovedheader">
 
-        <a href="default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Default.php">Hovedside</a></li>
-            <li><a href="registrer.php">Registrer</a></li>
-        </ul>   
-    </header>
     <body>
 	
 
