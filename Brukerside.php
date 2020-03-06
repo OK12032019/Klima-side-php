@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
   echo $interesseid;
   $user->sletteInteresse($userid, $interesseid);
 }
-
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -57,25 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 </head>
 
 
-    <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
-			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
-			 <div class="e123">
-            <form method="post">
-        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-        </button>
-        </form>
-        </div>
-    </ul>   
-        </ul> 
-    </header>
+
 
 
 <body>
@@ -197,8 +179,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
                 
                 <input type="submit" name="SubmitButton2"/>
                 </form>
-                <?php
-        if ($Brukertype == 2) { ?>
+				
 				<h1> Skriv artikkel </h1> 
     <aside class="brukertekst">
         <div class="artikkeltekstarea">
@@ -237,79 +218,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
             echo $tittel;
             echo $artikkel;
         }
-    }
-
-    //-------------------------------------------------------------------
-    //arrangement
-    ?>
-    <h1> Lag arrangement </h1> 
-    <aside class="brukertekst">
-        <div class="arrangementtekstarea">
-        <form method="post">
-		<h2> tittel </h2>
-        <textarea name="ArrNavn" id="ArrNavn" cols="50" rows="2"></textarea>
-        <h2>arrangement tekst</h2>
-        <textarea name="ArrTekst" id="ArrTekst" cols="50" rows="8"></textarea>
-        <h2>Tidspunkt</h2>
-        <input type="date" id="ArrTid" name="ArrTid">
-        <textarea name="Veibeskrivelse" id="Veibeskrivelse" cols="50" rows="2"></textarea>
-        <input list="fylke" name="fylke">
-        <datalist id="fylke">
-            <option value="Oslo">
-            <option value="Rogaland">
-            <option value="Møre og Romsdal">
-            <option value="Nordland">
-            <option value="Viken">
-            <option value="Innlandet">
-            <option value="Vestfold og Telemark">
-            <option value="Agder">
-            <option value="Vestland">
-            <option value="Trøndelag">
-            <option value="Troms og Finnmark">
-        </datalist>
-       
-        </div>
-
-        <div class="form-container">
-           
-                <div class="form-group">
-                </div>
-                    <div class="clearfix"></div><hr />
-                    <div class="form-group">
-					<div class="a1">
-                        <button type="submit" class="btn btn-block btn-primary" name="registrerArr">
-                            <i class="glyphicon glyphicon-open-file"></i>&nbsp;lagre                            </button>
-							</div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <?php
-        if(isset($_POST['registrerArr']))
-        {   
-            
-           
-        
-            $ArrNavn = trim($_POST['ArrNavn']);
-            $ArrTekst = trim($_POST['ArrTekst']);
-            $ArrTid = trim($_POST['ArrTid']);
-            $beskrivelse = trim($_POST['Veibeskrivelse']);
-            $fylke = trim($_POST['fylke']);
-            if ($fylke=="Oslo") 
-            {$fylke=2;}
-                elseif ($fylke=="Rogaland") {$fylke=3;}
-                elseif ($fylke=="Møre og Romsdal") {$fylke=4;}
-                elseif ($fylke=="Nordland") {$fylke=5;}
-                elseif ($fylke=="Viken") {$fylke=6;}
-                elseif ($fylke=="Innland") {$fylke=7;}
-                elseif ($fylke=="Vestfold og Telemark") {$fylke=8;}
-                elseif ($fylke=="Agder") {$fylke=9;}
-                elseif ($fylke=="Vestland") {$fylke=10;}
-                elseif ($fylke=="Trøndelag") {$fylke=11;}
-                else {$fylke=12;}
-            $user->registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylke);    
-        }
-    
     ?>
 
     </aside>
@@ -386,4 +294,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
     </footer>
 </body>
 </html>
-
