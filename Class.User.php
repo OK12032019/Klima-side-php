@@ -7,11 +7,41 @@ class USER
     {
       $this->db = $DB_con;
     }
+    public function getBrukernavn($brukerid)
+   {
+      try
+   {
+      
+      $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE brukerid = :brukerid"); 
+      $stmt->execute(array(':brukerid'=>$brukerid));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+   }
+   catch(PDOException $e)
+   {
+      echo $e->getMessage();
+   }
+   }
+   public function getEvents($Month, $Year)
+   {
+   try
+   {
+      $monthDate = $Month;
+      $yearDate = $Year;
+      $stmt = $this->db->prepare("SELECT * FROM event WHERE month(tidspunkt)=:monthDate AND year(tidspunkt)=:yearDate "); 
+      $stmt->execute(array(':monthDate'=>$monthDate, 'yearDate'=>$yearDate));
+      $result=($stmt->fetch(PDO::FETCH_ASSOC));
+      return $result;
+   }
+   catch(PDOException $e)
+   {
+      echo $e->getMessage();
+   }
+   }
     public function sletteInteresse($userid, $interesseid)
     {
        try
        {
-      echo ('test69');
       $stmt = $this->db->prepare("DELETE FROM brukerinteresse WHERE bruker = :userid AND interesse = :interesseid"); 
       $stmt->execute(array(':userid'=>$userid, ':interesseid'=>$interesseid));
       
@@ -33,6 +63,19 @@ class USER
     {
       try{
          $stmt = $this->db->prepare('SELECT * FROM artikkel');
+         $stmt->execute();
+         $count = $stmt->rowCount();
+         return $count;
+      }
+      catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }    
+    }
+    public function ArrSOk()
+    {
+      try{
+         $stmt = $this->db->prepare('SELECT * FROM event WHERE ');
          $stmt->execute();
          $count = $stmt->rowCount();
          return $count;
@@ -97,7 +140,7 @@ class USER
            echo $e->getMessage();
        }    
     }
-
+    
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
@@ -127,7 +170,7 @@ class USER
            echo $e->getMessage();
        }    
     }
-
+    
     public function antallBrukere()
     {
       try
@@ -155,7 +198,41 @@ class USER
        {
            echo $e->getMessage();
        }   
-
+      }
+      public function registrerArrang($ArrNavn, $ArrTekst, $ArrTid, $beskrivelse, $brukerid, $fylker)
+      {
+        try{
+           
+           $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
+           VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
+  
+           $stmt->bindparam(":eventnavn", $ArrNavn);
+           $stmt->bindparam(":eventtekst", $ArrTekst);
+           $stmt->bindparam(":tidspunkt", $ArrTid);
+           $stmt->bindparam(":veibeskrivelse", $beskrivelse);
+           $stmt->bindparam(":idbruker", $brukerid);
+           $stmt->bindparam(":fylke", $fylker);
+           $stmt->execute(); 
+  
+              return true; 
+        }
+        catch(PDOException $e)
+        {
+              echo $e->getMessage();
+        } 
+      }
+      public function meldingLest($meldingid)
+      {
+      try
+      {
+        $stmt = $this->db->prepare('UPDATE melding SET lest = 1 WHERE idmelding =:meldingid');
+        $stmt->execute(array(':meldingid'=>$meldingid));
+        return true;
+      }
+      catch(PDOException $e)
+         {
+             echo $e->getMessage();
+         }
     }
     public function PassordReset($bnavn,$pw,$npw)
     {
@@ -234,7 +311,29 @@ class USER
           echo $e->getMessage();
       }
     }
-
+    public function nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input)
+    {
+       try{
+         $lest = '0';
+         $papirkurv = '0';
+         $stmt = $this->db->prepare("INSERT INTO melding(tittel,tekst,tid,lest,papirkurv,sender,mottaker) 
+                            VALUES(:tittel, :tekst, :tid, :lest, :papirkurv, :sender, :mottaker)");
+                            
+         $stmt->bindparam(":tittel", $meldingtittel);
+         $stmt->bindparam(":tekst", $meldingtekst);
+         $stmt->bindparam(":tid", $datetime);
+         $stmt->bindparam(":lest", $lest);
+         $stmt->bindparam(":papirkurv", $papirkurv);
+         $stmt->bindparam(":sender", $brukerid);
+         $stmt->bindparam(":mottaker", $input);
+         $stmt->execute(); 
+         return True;
+               }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }  
+    }
     public function feilLoginTeller($bnavn)
     {
        try
