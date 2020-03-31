@@ -12,8 +12,8 @@ class USER
       try
    {
       
-      $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE brukerid = :brukerid"); 
-      $stmt->execute(array(':brukerid'=>$brukerid));
+      $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE idbruker = :idbruker"); 
+      $stmt->execute(array(':idbruker'=>$brukerid));
       $result=($stmt->fetch(PDO::FETCH_ASSOC));
       return $result;
    }
