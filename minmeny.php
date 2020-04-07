@@ -44,7 +44,7 @@ else if($btype == 2){
 			 <li><a href="Backend.php" class="mellomrom1">Meny</a></li>
 			 <li><a href="Meldinger.php" class="mellomrom1">Meldinger</a></li>
 			 <div class="e123">
-            <form method="post">
+            <form method="post">    
         <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
             <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
         </button>
