@@ -25,13 +25,13 @@ if(isset($_POST['btn-logout']))
     } 
 }
 
-$Month = $_GET['month'];
-$Year = $_GET['year'];
-$date = $Year;
-$date .= '-';
-$date .= $Month;
-echo ($date);
-
+// $Month = $_GET['month'];
+// $Year = $_GET['year'];
+// $date = $Year;
+// $date .= '-';
+// $date .= $Month;
+// echo ($date);
+include "./minmeny.php";
 ?>
 
 
@@ -44,44 +44,7 @@ echo ($date);
     <title>Klima Logget Inn</title>
 </head>
 <body>
-    <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:80px;"></a>
 
-
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-		
-		            <a href="#" class="w3-bar-item" title="Konto">
-
-                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
-
-            </a>
-			
-        <ul class="menu">
-		
-            <a href="#" class="logoen1">Artikler</a>
-			
-            <a href="Brukerside.php" class="logoen2">Profil</a>
-			
-			
-            <a href="#" class="logoen3">Arrangementer</a>
-			
-			
-
-			
-              <a href="Passord.php" class="nullpass">Nullstill Passord</a>
-			
-			
-        <div class="a123">
-        <form method="post">
-            <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
-                <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-            </button>
-            </form>
-        </div>
-        </ul>   
-
-    </header>
     <div class="container1">
         <h1>Klima</h1>
       </div>
@@ -90,34 +53,24 @@ echo ($date);
 	    <div class="content clearfix">
             
             <div class="main-content">
-            <div class="calendar">
+                <div class="calendar">
+                    <script>
+                    function getDate(clicked_id) 
+                    {
+                        
+                        var year=clicked_id.slice(0,7);
 
-            <script>
-            function getDate(clicked_id) 
-            {
-                
-                var year=clicked_id.slice(0,7);
-                //alert (year);
-
-                // var newURL = window.location.href;
-                // alert (newURL);
-                // var newURL = newURL + '&' + year;
-                // location.href = newURL;
-            }
-            </script>
-            <?php
-            $calendar = new Calendar();
-            echo $calendar->show();
-            ?>       
-            <div class= "events">
-
-            <h2>Ting som skjer denne måneden</h2>
-            <?php
-            $result = $user->getEvents($Month, $Year);
-            echo ($result['eventtekst']);
-            ?>
-            <br>
-            </div> 
+                    }
+                    </script>
+                    <?php
+                    $calendar = new Calendar();
+                    echo $calendar->show();
+                    ?>
+                </div>   
+                <div class= "events">
+                    <h2>Ting som skjer denne måneden</h2>
+                    <br>
+                </div> 
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
                 <div class="articlefeed1">
@@ -137,7 +90,6 @@ echo ($date);
                                     <h2 class="artikkel-overskrift"><?php echo $result['artnavn']; ?></h2>
                                 
                                     <div class="artikkel-side-innhold">
-                                        <!-- <img src="img/africa_forest_fire.jpg" width="290" height="150" alt="" class="artikkel-bilde"> --->
                                         <div class="artikkel-tekst-innhold">
                                             <p class="preview-text">
                                             <?php echo $result['arttekst']; ?>
@@ -148,14 +100,11 @@ echo ($date);
                                             &nbsp;
                                         </div>
 
-                                        <!-- <div class="kommentarer">
-                                        </div>-->
-
                                         <div class="form-group">
                                             <form method="post" action="" input id="<?php echo $artikkelid['idartikkel']; ?>">
                                                 <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar"></textarea>
 
-                                                <input type="submit" class="btn btn-block btn-primary" name="kommentar<?php echo $artikkelid; ?>" value="kommenter"/>
+                                                <input type="submit" class="btn btn-block btn-primary" name="kommentar" value="kommenter"/>
 
                                                 <?php
                                                     
@@ -165,26 +114,18 @@ echo ($date);
                                                             $tekst = $_POST['komtekst'];
                                                             $tid = date("Y-m-d H:i:s");
                                                             $artikkelid = $result['idartikkel'];
-                                                            // echo $artikkelid;
-                                                            // echo "<br>";
-                                                            // echo $ingress;
-                                                            // echo "<br>";
-                                                            // echo $tekst;
-                                                            // echo "<br>";
-                                                            // echo $tid;
-                                                            // echo "<br>";
                                                             $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker);
                                                         }
                                                 
                                                     
-                                                    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                                                    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
                                                     $stmt = "SELECT * FROM kommentar";
                                                     $resultkom = $mysqli->query($stmt);
                                                     while ($row = mysqli_fetch_array($resultkom))
                                                         {
                                                             echo $row['bruker']."<br>";
                                                             echo $row['tid']."<br>";
-                                                            echo nl2br($row['komtekst'])."<br><br><br>";
+                                                            echo nl2br($row['tekst'])."<br><br><br>";
                                                         }
                                                     
                                                 ?>
@@ -192,35 +133,7 @@ echo ($date);
                                         </div>
                                         
 
-                                    <!--<form method="post">
-                                        <div class="form-group">
-                                            <textarea name="kommentar" input id="<?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
-                                            <?php 
-                                                //if(isset($_POST['kommentar']))
-                                                    {   
-                                                        //$ingress = (' test ');
-                                                        //$tekst = $_POST['kommentar'];
-                                                        //$tid = date("Y-m-d H:i:s");
-                                                        //$artikkelid = $result['idartikkel'];
-                                                        //$artikkelid = ('test');
-                                                        //$test = $artikkelid['idartikkel'];
-                                                        //echo $test;
-                                                        //echo $ingress; 
-                                                        //echo $tekst;
-                                                        //echo $tid;
-                                                        //echo $artikkelid;  
-                                                        //$user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid);
-                                                    }    
-                                            ?>
-                                        <!-- </div>
-                                            <button type="submit" name="kommentar">Kommenter</button>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-block btn-primary" name="kommentar">
-                                                    <i class="glyphicon glyphicon-open-file"></i>&nbsp;Legg inn kommentar
-                                                </button>
-                                            </div>
-                                        </form> -->
-
+                                            <?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
 
                                     </div>
 
@@ -247,3 +160,4 @@ echo ($date);
     </footer>
 </body>
 </html>
+
