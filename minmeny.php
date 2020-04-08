@@ -18,6 +18,7 @@ if($btype == 1){
 			 <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
 			 <li><a href="Sok.php" class="mellomrom2">Administrere brukere</a></li>
 			 <li><a href="Meldinger.php" class="mellomrom1">Meldinger</a></li>
+             <li><a href="Regelside.php" class="mellomrom1">Regler</a></li>
 			 <div class="e123">
             <form method="post">
         <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
