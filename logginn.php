@@ -54,15 +54,15 @@ include "./minmeny.php";
   <link rel="stylesheet" href="FellesCSS.css">  
         <title>Logg inn</title>
     </head>
-
+	
     <body>
 	
 
 <div class="femtien">
-<div class="container">
+<div class="containers">
      <div class="form-container">
         <form method="post">
-            <h2 style="text-align:center;">Logg Inn</h2><hr />
+            <h2>Logg Inn</h2><hr />
             <?php
             if(isset($error))
             {
@@ -74,10 +74,10 @@ include "./minmeny.php";
             }
             ?>
             <div class="form-group">
-             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required style="margin-left: 530px;" />
+             <input type="text" class="form-control" name="brukernavn" placeholder="Brukernavn eller epost" required />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="pass" placeholder="Passord" required style="margin-left: 530px;" />
+             <input type="password" class="form-control" name="pass" placeholder="Passord" required />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -86,7 +86,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;">Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
+            <label>Har du ikke konto?<?php $timeNow = date("Y-m-d H:i:s"); echo($timeNow); ?> <a href="registrer.php">Registrer her</a></label>
         </form>
        </div>
 
