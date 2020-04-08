@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
   echo $interesseid;
   $user->sletteInteresse($userid, $interesseid);
 }
-
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -57,25 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
 </head>
 
 
-    <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Interesse.php" class="mellomrom1">Intereser</a></li>
-			 <li><a href="Backend.php" class="mellomrom1">Hovedside</a></li>
-			 <li><a href="Sok.php" class="mellomrom2">Søk</a></li>
-			 <li><a href="Passord.php" class="mellomrom3">Nullstill Passord</a></li>
-			 <div class="e123">
-            <form method="post">
-        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-        </button>
-        </form>
-        </div>
-    </ul>   
-        </ul> 
-    </header>
+
 
 
 <body>
@@ -100,13 +82,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om
  
 
     <div  class="brukerside">
-        <h1>Brukerside for '<?php echo $username;?>'</h1>
+        <h1 style="margin-top: 150px;">Brukerside for '<?php echo $username;?>'</h1>
 
         <div class="brukerbilde">
         
         
         
-            <img src="uploads/<?php echo ($brukerid);?>.jpg">
+            <img src="uploads/<?php echo ($brukerid);?>.jpg" style="width: 150px; margin-top: 35px;">
         </div>
 
 

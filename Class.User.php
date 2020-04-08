@@ -7,6 +7,37 @@ class USER
     {
       $this->db = $DB_con;
     }
+    public function getRegler()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM regel;"); 
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+    }
+    public function setRegler($regeltekst, $brukerid)
+    {
+    try{
+         $stmt = $this->db->prepare("INSERT INTO regel (regeltekst, idbruker)
+         VALUES(:regeltekst, :idbruker)");
+
+         $stmt->bindparam(":regeltekst", $regeltekst);
+         $stmt->bindparam(":idbruker", $brukerid);
+         $stmt->execute(); 
+
+            return true; 
+      }      
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+    }
     public function sletteInteresse($userid, $interesseid)
     {
        try

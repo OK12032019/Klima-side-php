@@ -1,7 +1,6 @@
 <?php
 require_once 'PDO.php';
 
-$btype = '3';
 
 if($user->is_loggedin()!="")
 {
@@ -16,6 +15,7 @@ if(isset($_POST['registrer']))
    $fnavn = trim($_POST['Fnavn']);
    $enavn = trim($_POST['Enavn']);
    $telefon = trim($_POST['Telefon']);
+   $btype= trim($_POST['Brukertype']);
  
    if($bnavn=="") {
       $error[] = "Oppgi brukernavn!"; 
@@ -28,6 +28,10 @@ if(isset($_POST['registrer']))
    }
    else if($pw=="") {
       $error[] = "Oppgi passord!";
+   }
+   else if($btype=="") {
+      $error[] = "Oppgi brukertype!";
+	  
    }
    else if(strlen($pw) < 6){
       $error[] = "Passord må være i hvert fall 6 tegn"; 
@@ -48,7 +52,7 @@ if(isset($_POST['registrer']))
          }
          else
          {
-            if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)) 
+            if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon,$btype)) 
             {
                 $user->redirect('Logginn.php');
             }
@@ -60,7 +64,7 @@ if(isset($_POST['registrer']))
      }
   } 
 }
-
+include "./minmeny.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -72,23 +76,13 @@ if(isset($_POST['registrer']))
   <link rel="stylesheet" href="FellesCSS.css">  
   <title>Registrering</title>
   </head>
-  	    <header class="hovedheader">
-
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:80px;"></img></a>
-
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Default.php">Hovedside</a></li>
-            <li><a href="Logginn.php">Logg inn</a></li>
-        </ul>   
-    </header>
+ 
   <body>
   <div class="femti">
 <div class="container">
      <div class="form-container">
         <form method="post">
-            <h2>Registrering</h2><hr />
+            <h2 style="text-align:center;">Registrering</h2><hr />
             <?php
             if(isset($error))
             {
@@ -111,22 +105,25 @@ if(isset($_POST['registrer']))
             }
             ?>
             <div class="form-group">
-            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" value="<?php if(isset($error)){echo $bnavn;}?>" />
+            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" style="margin-left:510px;" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" />
+             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" />
+             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" />
+             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" style="margin-left:510px;" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" />
+             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" style="margin-left:510px;" />
+            </div>
+			<div class="form-group">
+             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" style="margin-left:510px;" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -135,7 +132,7 @@ if(isset($_POST['registrer']))
                 </button>
             </div>
             <br />
-            <label>Har du konto? <a href="Logginn.php">Log inn</a></label>
+            <label style="margin-left:496px;">Har du konto? <a href="Logginn.php">Log inn</a></label>
         </form>
        </div>
 </div>
