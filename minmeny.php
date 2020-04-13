@@ -65,7 +65,7 @@ else if($btype == 2){
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		            <a href="#" class="w3-bar-item" title="Konto">
-                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
+                <a href="Brukerside.php" <img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
             </a>
         <ul class="menu">
             <a href="Backend.php" class="logoen1">Artikler</a>
@@ -96,7 +96,7 @@ else{
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
             <li><a href="Logginn.php">Login</a></li>
-            <li><a href="registrer.php">Registrer</a></li>
+            <li><a href="Registrer.php">Registrer</a></li>
         </ul>   
     </header>
 	 <?php
