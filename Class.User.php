@@ -128,7 +128,6 @@ class USER
            echo $e->getMessage();
        }    
     }
-
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
@@ -416,6 +415,31 @@ class USER
           return false;
       }
    }
+
+   public function nyMelding($meldingtittel, $meldingtekst, $tid, $sender, $mottaker) {
+      try
+      {
+         $stmt = $this->db->prepare("INSERT INTO melding (tittel, tekst, tid, lest, papirkurv, sender, mottaker)
+         VALUES(:tittel, :tekst, :tid, 0, 0, :sender, :mottaker)");
+
+         $stmt->bindparam(":tittel", $meldingtittel);
+         $stmt->bindparam(":tekst", $meldingtekst);
+         $stmt->bindparam(":tid", $tid);
+         $stmt->bindparam(":sender", $sender);
+         $stmt->bindparam(":mottaker", $mottaker);
+         $stmt->execute();
+         
+      }
+      catch(PDOException $e) 
+      {
+         echo $e->getMessage();
+      }
+   }
+
+   public function nyRapport($test) {
+      echo("lol");
+   }
+
    public function SubmitButton1($interesseid,$brukerid)
    {
       
