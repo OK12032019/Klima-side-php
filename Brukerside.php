@@ -181,9 +181,9 @@ include "./minmeny.php";
         <div class="artikkeltekstarea">
         <form method="post">
 		<h2> tittel </h2>
-            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2"></textarea>
+            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2" maxlength="45"></textarea>
 			<h2> Artikkelinnhold</h2>
-            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8"></textarea>
+            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
            
         
             <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">
