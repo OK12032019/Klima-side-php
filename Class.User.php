@@ -38,6 +38,38 @@ class USER
           echo $e->getMessage();
       }
     }
+    public function getAdvarsel()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM advarsel;"); 
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+    }
+    public function setAdvarsel($advarseltekst, $brukerid)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("INSERT INTO advarsel (advarseltekst, bruker)
+         VALUES(:advarseltekst, :bruker)");
+   
+         $stmt->bindparam(":advarseltekst", $advarseltekst);
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->execute(); 
+   
+            return true; 
+       }      
+       catch(PDOException $e)
+       {
+            echo $e->getMessage();
+       }
+    }
     public function sletteInteresse($userid, $interesseid)
     {
        try
@@ -128,7 +160,6 @@ class USER
            echo $e->getMessage();
        }    
     }
-
     
     public function register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon)
     {
@@ -416,6 +447,31 @@ class USER
           return false;
       }
    }
+
+   public function nyMelding($meldingtittel, $meldingtekst, $tid, $sender, $mottaker) {
+      try
+      {
+         $stmt = $this->db->prepare("INSERT INTO melding (tittel, tekst, tid, lest, papirkurv, sender, mottaker)
+         VALUES(:tittel, :tekst, :tid, 0, 0, :sender, :mottaker)");
+
+         $stmt->bindparam(":tittel", $meldingtittel);
+         $stmt->bindparam(":tekst", $meldingtekst);
+         $stmt->bindparam(":tid", $tid);
+         $stmt->bindparam(":sender", $sender);
+         $stmt->bindparam(":mottaker", $mottaker);
+         $stmt->execute();
+         
+      }
+      catch(PDOException $e) 
+      {
+         echo $e->getMessage();
+      }
+   }
+
+   public function nyRapport($test) {
+      echo("lol");
+   }
+
    public function SubmitButton1($interesseid,$brukerid)
    {
       
