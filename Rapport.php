@@ -31,7 +31,7 @@ include "./minmeny.php";
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <meta charset ="UTF-8">
+	  <meta charset ="utf-8">
     <link rel="stylesheet" href="FellesCSS.css">
     <title>Brukerrapport</title>
 </head>
@@ -51,6 +51,7 @@ include "./minmeny.php";
                     <?php
                       //php for å hente ut en liste av regler, skrevet ut som <li>-tagger
                       $mysqli = new mysqli("localhost", "root", "", "klima");
+                      mysqli_set_charset($mysqli,'utf8');
                       $sql = "SELECT regeltekst FROM regel";
                       $result = $mysqli->query($sql);
                       if ($result) {
@@ -87,7 +88,7 @@ include "./minmeny.php";
                     </p>
                     <p>Vennligst skriv i rapporten hvilken regel(eller regler) brukeren brudde i følge deg, så vil en av våre administratorer håndtere saken.<p>
                     <h2 class="nymeldtit">Rapporten</h2>
-                    <textarea name="rapport" id="rapporttekst" cols="50" rows="8"></textarea>
+                    <textarea name="rapport" id="rapporttekst" cols="50" rows="8" maxlength="1024"></textarea>
                     <div class="sendmeld">
                     <?php
                     
@@ -95,9 +96,6 @@ include "./minmeny.php";
                     <input type="submit" name="sendrapport">
                     </input>
                     </div>
-                    <!--På toppen ha liste av regler, med scrollbar slik at det er ikke for langt liste.
-                    Under det, inntastingsboks for å beskrive regelbruddet.
-                    Under det ha et knapp for å sende rapport. Teksten må være mindre enn 1024 tegn-->
                 </div>
             </div> 
             </form>   

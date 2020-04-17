@@ -86,7 +86,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label>Har du ikke konto?<?php $timeNow = date("Y-m-d H:i:s"); echo($timeNow); ?> <a href="Registrer.php">Registrer her</a></label>
+            <label>Har du ikke konto?<a href="Registrer.php">Registrer her</a></label>
         </form>
        </div>
 

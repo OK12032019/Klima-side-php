@@ -105,27 +105,31 @@ include "./minmeny.php";
 
             <?php
                 $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
-                echo ($brukerid);
-                echo ($username);
+
+                $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
+                $result = $mysqli->query($stmt);
+                $row = mysqli_fetch_array($result);
+                $brukerid = $row['idbruker'];
+
                 $sql = "SELECT * FROM brukerinteresse WHERE bruker = '{$brukerid}';";
                 $result = $mysqli->query($sql);
                 if ($result) {
-                    var_dump($result);
-                    echo ('FUUUUUUUUUUCK!!!!!!!!!');
-                    $old_result = $result;
-                    while($row = mysqli_fetch_array($old_result)) {
-                        echo('FUUUUCK IGJEN');
-                        $stmt = "SELECT * FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
-                        
-                        $result = $mysqli->query($stmt);
-                        $row = mysqli_fetch_array($result);
-                        $label = $row['interessenavn'];
-                        $interesseid = $row['idinteresse'];
-                        echo ' - ',$label,'<form action="" method="post">
-                        <button type="submit" name="delete" value="', $interesseid, '" class="btn-link">Delete</button>
-                        </form>';
-                        echo '<br />';    
-                        }
+                $old_result = $result;
+                while($row = mysqli_fetch_array($old_result)) {
+                    $stmt = "SELECT * FROM interesse WHERE idinteresse = '{$row["interesse"]}';";
+                    
+                    $result = $mysqli->query($stmt);
+                    $row = mysqli_fetch_array($result);
+                    $label = $row['interessenavn'];
+                    $interesseid = $row['idinteresse'];
+                    echo ' - ',$label,'<form action="" method="post">
+				    <button type="submit" name="delete" value="', $interesseid, '" class="btn-link">Delete</button>
+				    </form>';
+                    echo '<br />';
+                    
+                }
+
+
                 }
                 else {
                 echo ('Du har foreløpig ingen interesser');
@@ -153,7 +157,7 @@ include "./minmeny.php";
                         <td>
                         <select name="interesse2">
                             <?php 
-                                $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                                 $sql = "SELECT * FROM interesse";
                                 $result = $mysqli->query($sql);
@@ -181,9 +185,9 @@ include "./minmeny.php";
         <div class="artikkeltekstarea">
         <form method="post">
 		<h2> tittel </h2>
-            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2"></textarea>
+            <textarea name="tittel" id="artikkeltittel" cols="50" rows="2" maxlength="45"></textarea>
 			<h2> Artikkelinnhold</h2>
-            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8"></textarea>
+            <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
            
         
             <!-- <input type="text" name="tittel" placeholder="Skriv inn tittelen" class="brukertittel">

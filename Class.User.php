@@ -38,38 +38,6 @@ class USER
           echo $e->getMessage();
       }
     }
-    public function getAdvarsel()
-    {
-       try
-       {
-         $stmt = $this->db->prepare("SELECT * FROM advarsel;"); 
-         $stmt->execute();
-         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
-         return $result;
-       }
-       catch(PDOException $e)
-       {
-           echo $e->getMessage();
-       }
-    }
-    public function setAdvarsel($advarseltekst, $brukerid)
-    {
-       try
-       {
-         $stmt = $this->db->prepare("INSERT INTO advarsel (advarseltekst, bruker)
-         VALUES(:advarseltekst, :bruker)");
-   
-         $stmt->bindparam(":advarseltekst", $advarseltekst);
-         $stmt->bindparam(":bruker", $brukerid);
-         $stmt->execute(); 
-   
-            return true; 
-       }      
-       catch(PDOException $e)
-       {
-            echo $e->getMessage();
-       }
-    }
     public function sletteInteresse($userid, $interesseid)
     {
        try

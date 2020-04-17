@@ -54,7 +54,7 @@ include "./minmeny.php";
 if($Brukertype == 1){ ?>
     <form method="post">
     <h2> Ny Regel</h2>
-            <textarea name="regeltekst" id="regeltekst" cols="50" rows="8"></textarea>
+            <textarea name="regeltekst" id="regeltekst" cols="50" rows="8" maxlength="255"></textarea>
             <div class="form-container">
            
            <div class="form-group">

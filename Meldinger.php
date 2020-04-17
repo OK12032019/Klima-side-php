@@ -129,7 +129,7 @@ include "./minmeny.php";
                         <td>',$tidsendt,'</td>
                         <td>
                         <form method="POST" action="Lesmelding.php">
-                            <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
+                        <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>
                         </tr>';
