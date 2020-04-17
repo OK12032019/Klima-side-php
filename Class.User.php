@@ -468,8 +468,22 @@ class USER
       }
    }
 
-   public function nyRapport($test) {
-      echo("lol");
+   public function nyRapport($rapporttekst, $dato, $rapportertbruker, $rapportertav) {
+      try
+      {
+         $stmt = $this->db->prepare("INSERT INTO brukerrapport (tekst, dato, rapportertbruker, rapportertav)
+         VALUES(:tekst, :dato, :rapportert, :av)");
+
+         $stmt->bindparam(":tekst", $rapporttekst);
+         $stmt->bindparam(":dato", $dato);
+         $stmt->bindparam(":rapportert", $rapportertbruker);
+         $stmt->bindparam(":av", $rapportertav);
+         $stmt->execute();
+      }
+      catch(PDOException $e) 
+      {
+         echo $e->getMessage();
+      }
    }
 
    public function SubmitButton1($interesseid,$brukerid)
