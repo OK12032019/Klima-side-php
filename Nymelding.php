@@ -53,6 +53,7 @@ include "./minmeny.php";
                         <select name="mottakermeny">
                         <?php 
                             $mysqli = new mysqli("localhost", "root", "", "klima");
+                            mysqli_set_charset($mysqli,'utf8');
                             //Henter ut en liste av alle brukere utenom den som er logget inn
                             $sql = "SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
                             $result = $mysqli->query($sql);
