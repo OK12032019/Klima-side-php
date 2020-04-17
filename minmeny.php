@@ -18,6 +18,7 @@ if($btype == 1){
 			 <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
 			 <li><a href="Sok.php" class="mellomrom2">Administrere brukere</a></li>
 			 <li><a href="Meldinger.php" class="mellomrom1">Meldinger</a></li>
+             <li><a href="Advarsel.php" class="mellomrom1">Advarsel</a></li>
              <li><a href="Regelside.php" class="mellomrom1">Regler</a></li>
 			 <div class="e123">
             <form method="post">
@@ -65,15 +66,16 @@ else if($btype == 2){
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
 		            <a href="#" class="w3-bar-item" title="Konto">
-                <a href="Brukerside.php"<img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
+                <a href="Brukerside.php" <img src="Bruker.png" class="w3-circle" style="height:28px;width:38px" alt="Avatar"> </a>
             </a>
         <ul class="menu">
             <a href="Backend.php" class="logoen1">Artikler</a>
             <a href="Brukerside.php" class="logoen2">Profil</a>
             <a href="Backend.php" class="logoen3">Arrangementer</a>
-		<a href="sok.php" class="logoen1">Søk</a>
-		<a href="Meldinger.php" class="logoen1">Meldinger</a>
-              <a href="Passord.php" class="nullpass">Nullstill Passord</a>
+		    <a href="sok.php" class="logoen1">Søk</a>
+		    <a href="Meldinger.php" class="logoen1">Meldinger</a>
+            <a href="Advarsel.php" class="logoen1">Advarsel</a>
+            <a href="Passord.php" class="nullpass">Nullstill Passord</a>
         <div class="a123">
         <form method="post">
             <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
@@ -85,7 +87,6 @@ else if($btype == 2){
     </header>
 	 <?php
    }
-
    
 else{
    echo "Du er ikke logget inn";
@@ -96,7 +97,7 @@ else{
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
             <li><a href="Logginn.php">Login</a></li>
-            <li><a href="registrer.php">Registrer</a></li>
+            <li><a href="Registrer.php">Registrer</a></li>
         </ul>   
     </header>
 	 <?php
