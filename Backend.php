@@ -102,7 +102,7 @@ include "./minmeny.php";
 
                                         <div class="form-group">
                                             <form method="post" action="" input id="<?php echo $artikkelid['idartikkel']; ?>">
-                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar"></textarea>
+                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar" maxlength="500"></textarea>
 
                                                 <input type="submit" class="btn btn-block btn-primary" name="kommentar" value="kommenter"/>
 

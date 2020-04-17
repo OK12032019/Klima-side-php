@@ -87,7 +87,7 @@ include "./minmeny.php";
                     </p>
                     <p>Vennligst skriv i rapporten hvilken regel(eller regler) brukeren brudde i følge deg, så vil en av våre administratorer håndtere saken.<p>
                     <h2 class="nymeldtit">Rapporten</h2>
-                    <textarea name="rapport" id="rapporttekst" cols="50" rows="8"></textarea>
+                    <textarea name="rapport" id="rapporttekst" cols="50" rows="8" maxlength="1024"></textarea>
                     <div class="sendmeld">
                     <?php
                     

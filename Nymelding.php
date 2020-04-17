@@ -46,9 +46,9 @@ include "./minmeny.php";
             <div class="main-content">
                 <form method="POST">
                     <h2 class="nymeldtit">Tittel</h2>
-                    <textarea name="tittel" id="meldingtittel" cols="50" rows="2"></textarea>
+                    <textarea name="tittel" id="meldingtittel" cols="50" rows="2" maxlength="45"></textarea>
                     <h2 class="nymeldtit">Tekst</h2>
-                    <textarea name="tekst" id="meldingtekst" cols="50" rows="8"></textarea>
+                    <textarea name="tekst" id="meldingtekst" cols="50" rows="8" maxlength="1024"></textarea>
                     <h2 class="nymeldtit">Mottaker</h2>
                         <select name="mottakermeny">
                         <?php 
