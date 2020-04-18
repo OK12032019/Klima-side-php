@@ -47,6 +47,7 @@ include "./minmeny.php";
                 <div class="meldinger">
                     <?php 
                     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                    mysqli_set_charset($mysqli,'utf8');
                     $meldingid = $_POST['btn_lesmelding'];
                     //sql spørring for å hente fram melding
                     $sql = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND idmelding = '{$meldingid}'";

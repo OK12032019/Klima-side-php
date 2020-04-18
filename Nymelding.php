@@ -31,7 +31,7 @@ include "./minmeny.php";
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset ="UTF-8">
+	  <meta charset ="UTF-8">
     <link rel="stylesheet" href="FellesCSS.css">
     <title>Ny melding</title>
 </head>
@@ -44,40 +44,40 @@ include "./minmeny.php";
 	<section id="tekst">
 	    <div class="content clearfix">
             <div class="main-content">
-                <form action="" method="POST">
+                <form method="POST">
                     <h2 class="nymeldtit">Tittel</h2>
-                    <textarea name="tittel" id="meldingtittel" cols="50" rows="2"></textarea>
+                    <textarea name="tittel" id="meldingtittel" cols="50" rows="2" maxlength="45"></textarea>
                     <h2 class="nymeldtit">Tekst</h2>
-                    <textarea name="tekst" id="meldingtekst" cols="50" rows="8"></textarea>
+                    <textarea name="tekst" id="meldingtekst" cols="50" rows="8" maxlength="1024"></textarea>
                     <h2 class="nymeldtit">Mottaker</h2>
                         <select name="mottakermeny">
                         <?php 
                             $mysqli = new mysqli("localhost", "root", "", "klima");
+                            mysqli_set_charset($mysqli,'utf8');
                             //Henter ut en liste av alle brukere utenom den som er logget inn
-                            $sql = "SELECT idbruker, brukernavn FROM bruker EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
+                            $sql = "SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
                             $result = $mysqli->query($sql);
                             if ($result) {
                               while($row = mysqli_fetch_array($result)) {
-                                echo "<option value='",$row['brukernavn'],"'>",$row['brukernavn'],"</option>";
+                                echo "<option value='",$row['idbruker'],"'>",$row['brukernavn'],"</option>";
                               }
                             }
                             else {
                               echo mysql_error();
                             }
-                             
-                            //Variabler og sql for å sende melding til databasen
-                            $meldingtittel = "meldingtittel";
-                            $meldingtekst = "meldingtekst";
-                            $datetime = date("Y-m-d H:i:s");
-                            $input = '5';
-                            $user->nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $input);
-                        
                         ?>
                         </select>
                     </div>
                     <div class="sendmeld">
+                    <?php
+                    //Variabler og sql for å sende melding til databasen
+                    $meldingtittel = $_POST["tittel"];
+                    $meldingtekst = $_POST["tekst"];
+                    $datetime = date("Y-m-d H:i:s");
+                    $mottaker = $_POST["mottakermeny"];
+                    $user->nyMelding($meldingtittel, $meldingtekst, $datetime, $brukerid, $mottaker);
+                    ?>
                     <input type="submit" name="sendmelding">
-                        
                     </input>
                     </div>
                 </form>

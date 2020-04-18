@@ -39,7 +39,6 @@ include "./minmeny.php";
 
     <div class="container1">
         <h1>Meldinger</h1>
-        <?php echo $brukerid; ?>
       </div>
 		
 	<section id="tekst">
@@ -50,6 +49,7 @@ include "./minmeny.php";
                     <h2>Alle meldinger:</h2>
                     <?php
                     $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                    mysqli_set_charset($mysqli,'utf8');
                     //To sql spørringer er utførte, en for uleste medlinger og en for leste meldinger
                     $ulestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0";
                     $lestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1";

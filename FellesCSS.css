@@ -4,119 +4,6 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #F9F2E7;
 }
-/*******************************Calendar Top Navigation*********************************/
-div#calendar{
-  margin:0px auto;
-  padding:0px;
-  width: 602px;
-  font-family:Helvetica, "Times New Roman", Times, serif;
-}
- 
-div#calendar div.box{
-    position:relative;
-    top:0px;
-    left:0px;
-    width:100%;
-    height:40px;
-    background-color:   #787878 ;      
-}
- 
-div#calendar div.header{
-    line-height:40px;  
-    vertical-align:middle;
-    position:absolute;
-    left:11px;
-    top:0px;
-    width:582px;
-    height:40px;   
-    text-align:center;
-}
- 
-div#calendar div.header a.prev,div#calendar div.header a.next{ 
-    position:absolute;
-    top:0px;   
-    height: 17px;
-    display:block;
-    cursor:pointer;
-    text-decoration:none;
-    color:#FFF;
-}
- 
-div#calendar div.header span.title{
-    color:#FFF;
-    font-size:18px;
-}
- 
- 
-div#calendar div.header a.prev{
-    left:0px;
-}
- 
-div#calendar div.header a.next{
-    right:0px;
-}
- 
- 
- 
- 
-/*******************************Calendar Content Cells*********************************/
-div#calendar div.box-content{
-    border:1px solid #787878 ;
-    border-top:none;
-}
- 
- 
- 
-div#calendar ul.label{
-    float:left;
-    margin: 0px;
-    padding: 0px;
-    margin-top:5px;
-    margin-left: 5px;
-}
- 
-div#calendar ul.label li{
-    margin:0px;
-    padding:0px;
-    margin-right:5px;  
-    float:left;
-    list-style-type:none;
-    width:80px;
-    height:40px;
-    line-height:40px;
-    vertical-align:middle;
-    text-align:center;
-    color:#000;
-    font-size: 15px;
-    background-color: transparent;
-}
- 
- 
-div#calendar ul.dates{
-    float:left;
-    margin: 0px;
-    padding: 0px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-}
- 
-/** overall width = width+padding-right**/
-div#calendar ul.dates li{
-    margin:0px;
-    padding:0px;
-    margin-right:5px;
-    margin-top: 5px;
-    line-height:80px;
-    vertical-align:middle;
-    float:left;
-    list-style-type:none;
-    width:80px;
-    height:80px;
-    font-size:25px;
-    background-color: #DDD;
-    color:#000;
-    text-align:center; 
-}
  
 :focus{
     outline:none;
@@ -282,6 +169,7 @@ a{
   transform: rotate(45deg);
   top:0;
 }
+
 
 
 /* piotr sinn css*/
@@ -780,6 +668,7 @@ margin-top:35px;
 /*CSS meldinger.php*/
 .meldinger-tittel {
   margin-top:125px;
+  text-align: center;
 }
 
 .meldinger {
@@ -788,36 +677,51 @@ margin-top:35px;
   padding: 3px;
 }
 
+
+
+/*Advarsel.php*/
+.main-content .advarsel {
+  border: 3px solid black;
+}
+
+
+
 /* MEDIA QUERY */
 @media (min-width: 760px) {
 
-  .hovedheader li{
-      float: left;
-  }
-  .hovedheader li a{
-      padding: 20px 30px;
-  }
-  .hovedheader .menu{
-      clear: none;
-      float: right;
-      max-height: none;
-  }
-  .hovedheader .menu-icon{
-      display: none;
-  }
+.hovedheader li{
+  float: left;
+}
 
-  .hovedheader .logoen{
-    float: left;
-    display: block;
-    font-size: 2em;
-    padding: 10px 20px;
-    text-decoration: none;
-    }
-    /*******************************Calendar Top Navigation*********************************/
+.hovedheader li a{
+  padding: 20px 30px;
+}
+  
+.hovedheader .menu{
+  clear: none;
+  float: right;
+  max-height: none;
+}
+
+.hovedheader .menu-icon{
+  display: none;
+}
+
+.hovedheader .logoen{
+  float: left;
+  display: block;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+
+/*******************************Calendar Top Navigation*********************************/
 div#calendar{
   margin:0px auto;
   padding:0px;
   width: 602px;
+  border: solid black 2px;
   font-family:Helvetica, "Times New Roman", Times, serif;
 }
  
@@ -939,28 +843,34 @@ div.clear{
 }
 
 @media screen and (max-width: 600px) { 
-  .registrering {
-    margin-top: 400px;
-    width: 100%;
-  }
-  .registrering td {
-    font-size: 125%;
-  }
-  .registrering input {
-    font-size: 125%;
-  }
-  .regbtn {
-    font-size: 150%;    
-  }
-  .registrering select{
-    font-size: 125%;
-  }  
-  .textbox {
+  
+.registrering {
+  margin-top: 400px;
+  width: 100%;
+}
+  
+.registrering td {
+  font-size: 125%;
+}
+
+.registrering input {
+  font-size: 125%;
+}
+
+.regbtn {
+  font-size: 150%;    
+}
+
+.registrering select{
+  font-size: 125%;
+}  
+
+.textbox {
 	width: 100%;
 	margin-bottom: 50px;
-  }
+}
   
-  .btn{
+.btn{
   width: 100%;
   background: none;
   border: 2px solid  #8FBE00;
@@ -971,53 +881,49 @@ div.clear{
   margin: 12px 0;
 }
 
-  .hovedheader .logoen{
-  margin-left:170px;
-  
+.hovedheader .logoen{
+margin-left:170px;  
 }
   
   
-  .logoen1{
-    margin-left:175px;
-    padding-left:203px;
-    left:203px;
-    padding:1px;
-
-    }
+.logoen1{
+  margin-left:175px;
+  padding-left:203px;
+  left:203px;
+  padding:1px;
+}
     
-  .logoen2{
-    margin-left:175px;
-    margin-right:203px;
-    padding-left:203px;
-    left:203px;
-
-    }
+.logoen2{
+  margin-left:175px;
+  margin-right:203px;
+  padding-left:203px;
+  left:203px;
+}
     
-  .logoen3{
-    margin-left:146px;
-    margin-right:180px;
-    padding-left:180px;
-    left:180px;
-
-    }
+.logoen3{
+  margin-left:146px;
+  margin-right:180px;
+  padding-left:180px;
+  left:180px;
+}
             
         
-  .nullpass{
-    margin-left:170px;
-    margin-right:170px;
-    left:170px;
-
-    }
+.nullpass{
+  margin-left:170px;
+  margin-right:170px;
+  left:170px;
+}
 	
     
-  .hovedheader .menu{
-    padding:11px;
-    }
+.hovedheader .menu{
+  padding:11px;
+}
 	
 	
-	.w3-bar-item{
+.w3-bar-item{
 display:none;
 }
+
 .w3-circle
 {
 	display:none;
@@ -1029,21 +935,21 @@ display:none;
 	color:black;
 }
     
-  .a123{
-    margin-left:69px;
-    margin-right:150px;
-    padding-left:105px;
-    left:105px;
-    margin-bottom:1px;
+.a123{
+  margin-left:69px;
+  margin-right:150px;
+  padding-left:105px;
+  left:105px;
+  margin-bottom:1px;
 	background-color:#8FBE00;
-    }
+}
     
-  .textbox1{
-    padding:1px;
-    top:25px;
-    padding-top:25px;
-    margin-top:25px;
-    }
+.textbox1{
+  padding:1px;
+  top:25px;
+  padding-top:25px;
+  margin-top:25px;
+}
 	
 
 #Mellomrom4{
@@ -1079,8 +985,115 @@ margin-top:35px;
 #tekst{
 	margin-right:260px;
 }
-	
+
+
+/* CSS ARTICLE-FEED PAGE */
+
+
+a.post-lenke {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 115%;
+}
+a.post-lenke:hover {
+  color: lightskyblue; 
 }
 
+p.preview-text{
+  font-size: 73%;
+  width:25%
 }
+
+
+.content {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+}
+
+
+.content .main-content {
+  width: 100%;
+}
+
+
+.content .main-content .articlefeed1{
+    width: 100%;
+    margin-left: auto;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+
+.content .main-content .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content .main-content .post-lenke {
+  font-size: 25px;
+}
+
+.content .main-content .nylig-artikkel-overskrift{
+    text-align: center;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/* CSS FOR ARTICLE-POST PAGE */
+
+.content-artikkel-side {
+  width: 50%;
+  margin: 30px auto 30px;
+  position: relative;
+  background: lightblue;
+  border: 2px solid gray;
+  border-radius: 7px;
+}
+
+.content-artikkel-side .main-content-artikkel-side {
+  width: 100%;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-overskrift {
+  text-align: center;
+  font-size: 40px;
+  width: 90%;
+  margin-left: 11px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-bilde {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: auto;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-tekst-innhold {
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.content-artikkel-side .main-content-artikkel-side .artikkel-side-innhold .artikkel-info {
+  float: right;
+  padding-right: 10px;
+}
+
+
+}
+
+
 
