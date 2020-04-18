@@ -10,10 +10,12 @@ if($btype == 1){
    ?>
   
          <header class="hovedheader">
+	 <div class="hovedheaderadmin">
         <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"></img></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
+	<div class="redlists">
             <li><a href="Backend.php" class="mellomrom1">Artikler</a></li>
 			 <li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
 			 <li><a href="Sok.php" class="mellomrom2">Administrere brukere</a></li>
@@ -26,8 +28,10 @@ if($btype == 1){
         </button>
         </form>
         </div>
+	</div>
     </ul>   
         </ul> 
+	</div>
     </header>
 	<?php
    }
