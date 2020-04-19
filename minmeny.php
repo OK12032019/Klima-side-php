@@ -103,7 +103,7 @@ else{
         <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
             <li><a href="Logginn.php">Login</a></li>
-            <li><a href="registrer.php">Registrer</a></li>
+            <li><a href="Registrer.php">Registrer</a></li>
         </ul>   
     </header>
 	 <?php
