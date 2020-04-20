@@ -3,8 +3,6 @@ require_once 'PDO.php';
 
 $btype = $_SESSION['btype'];
 
-
-
 if($btype == 1){
 
    ?>
@@ -59,7 +57,21 @@ else if($btype == 2){
 		<?php 
    }
  else if($btype== 3){
+    #$user->getEkskludering($brukerid)
+    #$tildato = 
+    $brukerid = $_SESSION['brukerid'];
 
+$result=$user->getEkskludering($brukerid);
+foreach($result as $row) {
+    $tildato = $row['datotil'];
+    if($tildato > date()){
+        $user->logout();
+        $user->redirect('Default.php');
+    }
+    elseif ($tildato < date()){
+        $user->deleteEkskludering($brukerid);
+    }
+}
      ?>
        <header class="hovedheader">
         <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:48px;"></a>

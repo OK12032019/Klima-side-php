@@ -15,6 +15,10 @@ else
   $username=$_SESSION['bnavn'];
   $fnavn=$_SESSION['fnavn'];
   $enavn=$_SESSION['enavn'];
+  if($brukertype = 1)
+  {
+    $user->redirect('backendadmin.php')   
+  }
 }
 if(isset($_POST['btn-logout']))
 {
