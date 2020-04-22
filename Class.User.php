@@ -38,7 +38,21 @@ class USER
           echo $e->getMessage();
       }
     }
-    public function getAdvarsel()
+    public function getAdvarsel($brukerid)
+    {
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM advarsel WHERE bruker= :idbruker;");
+         $stmt->bindparam(":idbruker", $brukerid); 
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+    }
+    public function getAdvarselAdmin()
     {
        try
        {
@@ -52,15 +66,16 @@ class USER
            echo $e->getMessage();
        }
     }
-    public function setAdvarsel($advarseltekst, $brukerid)
+    public function setAdvarsel($advarseltekst, $brukerid, $mottaker)
     {
        try
        {
-         $stmt = $this->db->prepare("INSERT INTO advarsel (advarseltekst, bruker)
-         VALUES(:advarseltekst, :bruker)");
+         $stmt = $this->db->prepare("INSERT INTO advarsel (advarseltekst, bruker, administrer)
+         VALUES(:advarseltekst, :bruker, :administrer)");
    
          $stmt->bindparam(":advarseltekst", $advarseltekst);
-         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->bindparam(":bruker", $mottaker);
+         $stmt->bindparam(":administrer", $Brukerid);
          $stmt->execute(); 
    
             return true; 
@@ -69,6 +84,56 @@ class USER
        {
             echo $e->getMessage();
        }
+    }
+    public function deleteEkskludering($brukerid)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("DELETE FROM eksklusjon WHERE bruker = :bruker");
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->execute();
+         return true;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       } 
+    }
+    public function getEkskludering($brukerid)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM eksklusjon WHERE bruker = :bruker;");
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       } 
+    }
+    public function setEkskludering($grunnlag, $datofra, $datotil, $mottaker, $brukerid)
+    {
+       try
+       {
+         $stmt = $this->db->prepare("INSERT INTO eksklusjon (grunnlag, datofra, datotil, bruker, administrator)
+         VALUES(:grunnlag, :datofra, :datotil, :bruker, :administrator)");
+
+         $stmt->bindparam(":grunnlag", $grunnlag);
+         $stmt->bindparam(":datofra", $datofra);
+         $stmt->bindparam(":datotil", $datotil);
+         $stmt->bindparam(":bruker", $mottaker);
+         $stmt->bindparam(":administrator", $brukerid);
+         $stmt->execute();
+
+         return true;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       } 
     }
     public function sletteInteresse($userid, $interesseid)
     {
