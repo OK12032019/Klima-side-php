@@ -54,10 +54,10 @@ include "./minmeny.php";
 	<h2 id="adminmelding" style="margin-left:580px;"> Du er logget inn som administrator</h2>
 	<div class="administrer" style="margin-left:700px;">
 	
-	<p><a href="Brukerside.php"><p> Administrer brukere</p> </a>
-	<a href="Brukerside.php"><p> Sett bruker i karantene</p> </a>
-	<a href="Brukerside.php"><p> Utvise bruker</p></a>
-	<a href="Brukerside.php"><p> Gi advarsel</p></a>
+	<p><a href="Advarsel.php"><p> Administrer brukere</p> </a>
+	<a href="Advarsel.php"><p> Sett bruker i karantene</p> </a>
+	<a href="Advarsel.php"><p> Utvise bruker</p></a>
+	<a href="Advarsel.php"><p> Gi advarsel</p></a>
  
 	</div>
 	
