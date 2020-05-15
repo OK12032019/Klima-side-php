@@ -1,7 +1,13 @@
 <?php
 require_once 'PDO.php';
 
+if($user->is_loggedin()=="True")
+{
 $btype = $_SESSION['btype'];
+}
+else{
+    $btype = 0;
+}
 
 if($btype == 1){
 

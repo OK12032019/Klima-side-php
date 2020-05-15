@@ -32,10 +32,10 @@ if(isset($_POST['btn-logout']))
     } 
 
 }
-$mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+$mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) // sjekk om "slett interesse" -handlinger ble utført
 {
-    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
   // mottar  brukerid og interest id
   $stmt = "SELECT idbruker FROM bruker WHERE brukernavn = '{$username}';";
   $result = $mysqli->query($stmt);
@@ -108,7 +108,7 @@ include "./minmeny.php";
             <h2> Dine Intresser </h2>
 
             <?php
-                $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
                 echo ($brukerid);
                 echo ($username);
                 $sql = "SELECT * FROM brukerinteresse WHERE bruker = '{$brukerid}';";
@@ -157,7 +157,7 @@ include "./minmeny.php";
                         <td>
                         <select name="interesse2">
                             <?php 
-                                $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                                $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
 
                                 $sql = "SELECT * FROM interesse";
                                 $result = $mysqli->query($sql);

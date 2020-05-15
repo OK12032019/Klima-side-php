@@ -46,7 +46,7 @@ include "./minmeny.php";
             <div class="main-content">
                 <div class="meldinger">
                     <?php 
-                    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
+                    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
                     mysqli_set_charset($mysqli,'utf8');
                     $meldingid = $_POST['btn_lesmelding'];
                     //sql spørring for å hente fram melding

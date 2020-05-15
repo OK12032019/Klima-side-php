@@ -50,7 +50,7 @@ include "./minmeny.php";
                     <ul>
                     <?php
                       //php for å hente ut en liste av regler, skrevet ut som <li>-tagger
-                      $mysqli = new mysqli("localhost", "root", "", "klima");
+                      $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
                       mysqli_set_charset($mysqli,'utf8');
                       $sql = "SELECT regeltekst FROM regel";
                       $result = $mysqli->query($sql);
