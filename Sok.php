@@ -23,6 +23,15 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+if(isset($_POST['interesse']))
+{
+    $interesseId= trim($_POST['interesser']);
+    $BrukerArray=$user->sOk($interesseId);
+    $lagTabel= True;
+}
+else{
+    $lagTabel= False;
+}
 include "./minmeny.php";
 
 ?>
@@ -30,60 +39,61 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
 	<meta charset ="UTF-8">
-    <link rel="stylesheet" href="FellesCSS.css">
     <title>Søk på Bruker</title>
 </head>
 <body>
 
  
 <main>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<table border="1" cellspacing="5" cellpadding="5" width="100%">
-	<thead>
-		<tr>
-			<th>brukernavn</th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-if(isset($_POST['registrer']))
-{
-    $brukersOk= trim($_POST['brukernavn']);
-    if($result=$user->sOk($brukersOk))
-    {
-            ?>
-                <tr>
-                    <td><label><?php echo ($brukersOk); ?></label></td>
-                </tr>
-                <?php
-    } ?>
-</tbody>
-
-    <?php } ?>
 <div class="container">
-<div class="form-container">
-        <form method="post">
-        <h2 id="Mellomrom4">Søk.</h2><hr />
-        <div class="form-group">
-            <input type="text" class="form-control" name="brukernavn" placeholder="Enter Username" id="Mellomrom5"/>
-            </div>
-            <div class="clearfix"></div><hr />
-            <div class="form-group">
-             <button type="submit" class="btn btn-block btn-primary" name="registrer">
-                 <i class="glyphicon glyphicon-open-file"></i>&nbsp;Søk
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+<table>
+    <?php
+    if($lagTabel == True){
+        #echo ('<tr><td>');
+        #print_r($BrukerArray);
+        #echo ('</td></tr><br> <br>');
+        foreach($BrukerArray as $brukernavnSok)
+        {
+            $bn = $brukernavnSok[0]['brukernavn'];
+            {
+                echo <<<EOT
+                    <tr><td>$bn</td></tr>
+                    EOT;
+            }
+        }
+    }
+    ?>
+
+</table>
+    <form method="post">
+            <h2> Søk etter andre brukere etter interrese </h2>
+            <select name ="interesser">
+                <?php
+                $result = $user-> getInterreser();
+                foreach($result as $row)
+                {
+                    $interesse = $row['interessenavn'];
+                    $interesseid = $row['idinteresse'];
+                    echo <<<EOT
+                        <option value="$interesseid">$interesse</option> 
+                    EOT;
+
+                }
+                ?>
+            </select>
+        <button class="btn-large waves-effect waves-light" type="submit" name="interesse">Søk
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
 </main>
 </body>
 

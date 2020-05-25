@@ -38,9 +38,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset ="UTF-8">
-    <link rel="stylesheet" href="FellesCSS.css">
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </script>
     <title>Klima Logget Inn</title>
 </head>
 <body>
@@ -81,9 +87,30 @@ include "./minmeny.php";
                     $forrigeArtikkelID = $count;
                     while($forrigeArtikkelID != '1'){
                         $result = $user->artikkel($forrigeArtikkelID);
-                        
-                        ?>                            
-                        <section id="tekst">
+                        var_dump($result);
+                        foreach($result as $row) {
+                            $idBilder = $row['idartikkel'];
+                            }
+                        $bilder = $user->getBilde($idBilder);
+                        foreach($bilder as $row){
+                            $Path=$row['hvor'];
+                        }
+                        echo $Path;
+                        ?>
+                          <div class="row">
+                            <div class="col s12 m7">
+                                <div class="card">
+                                <div class="card-image">
+                                    <img src="images/sample-1.jpg">
+                                    <span class="card-title"><?php echo $result['artnavn']; ?></span>
+                                </div>
+                                <div class="card-content">
+                                    <p><?php echo $result['arttekst']; ?><br><p>ArtikkelID:</p><?php echo $result['idartikkel']; ?></p>
+                                </div>
+                                </div>
+                            </div>
+                            </div>                     
+                        <!-- <section id="tekst">
                             <div class="content-artikkel-side clearfix">
                                 
                                 <div class="main-content-artikkel-side">
@@ -118,7 +145,7 @@ include "./minmeny.php";
                                                         }
                                                 
                                                     
-                                                    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
+                                                    $mysqli = new mysqli("localhost", "root", "", "klima");
                                                     mysqli_set_charset($mysqli,'utf8');
                                                     $stmt = "SELECT * FROM kommentar";
                                                     $resultkom = $mysqli->query($stmt);
@@ -132,7 +159,7 @@ include "./minmeny.php";
                                                 ?>
                                             </form>
                                         </div>
-                                        
+                                                    -->
 
                                             <?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
 
