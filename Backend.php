@@ -1,15 +1,25 @@
 <?php
 
-include_once "PDO.php";
+$error = '';
+require_once 'PDO.php';
+
+$brukertype = $_SESSION['btype'];
+$brukerid = $_SESSION['brukerid'];
+
 
 if($user->is_loggedin()=="")
 {
-    $user->redirect('Default.php');
-}
-else {
-	$fnavn = $_SESSION['fnavn'];
-    $enavn = $_SESSION['enavn'];
-    $bruker = $_SESSION['brukerid'];
+  $user->redirect('Default.php');
+} 
+else 
+{ 
+  $username=$_SESSION['bnavn'];
+  $fnavn=$_SESSION['fnavn'];
+  $enavn=$_SESSION['enavn'];
+  if($brukertype == 1)
+  {
+    $user->redirect('backendadmin.php');   
+  }
 }
 
 // elias push
@@ -50,141 +60,41 @@ include "./minmeny.php";
     <title>Klima Logget Inn</title>
 </head>
 <body>
-
-    <div class="container1">
+    <div class="container">
         <h1>Klima</h1>
-      </div>
-		
-	<section id="tekst">
-	    <div class="content clearfix">
+            <div class="calendar">
+                <script>
+                function getDate(clicked_id) 
+                {
+                    
+                    var year=clicked_id.slice(0,7);
+
+                }
+                </script>
+                <?php
+                $calendar = new Calendar();
+                echo $calendar->show();
+                ?>
+            </div>   
+        <div>
+            <h2>Ting som skjer denne måneden</h2>
+            <br>
+        </div> 
+        <h2>Regler<h2>
+        <a href="regler\regler.php">finner du her</a>
             
-            <div class="main-content">
-                <div class="calendar">
-                    <script>
-                    function getDate(clicked_id) 
-                    {
-                        
-                        var year=clicked_id.slice(0,7);
-
-                    }
-                    </script>
-                    <?php
-                    $calendar = new Calendar();
-                    echo $calendar->show();
-                    ?>
-                </div>   
-                <div class= "events">
-                    <h2>Ting som skjer denne måneden</h2>
-                    <br>
-                </div> 
-                <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
-            
-                <div class="articlefeed1">
-
-                    <?php 
-                    $count=$user->artikkelsOk();
-                    $count=$count+1;
-                    $forrigeArtikkelID = $count;
-                    while($forrigeArtikkelID != '1'){
-                        $result = $user->artikkel($forrigeArtikkelID);
-                        var_dump($result);
-                        foreach($result as $row) {
-                            $idBilder = $row['idartikkel'];
-                            }
-                        $bilder = $user->getBilde($idBilder);
-                        foreach($bilder as $row){
-                            $Path=$row['hvor'];
-                        }
-                        echo $Path;
-                        ?>
-                          <div class="row">
-                            <div class="col s12 m7">
-                                <div class="card">
-                                <div class="card-image">
-                                    <img src="images/sample-1.jpg">
-                                    <span class="card-title"><?php echo $result['artnavn']; ?></span>
-                                </div>
-                                <div class="card-content">
-                                    <p><?php echo $result['arttekst']; ?><br><p>ArtikkelID:</p><?php echo $result['idartikkel']; ?></p>
-                                </div>
-                                </div>
-                            </div>
-                            </div>                     
-                        <!-- <section id="tekst">
-                            <div class="content-artikkel-side clearfix">
-                                
-                                <div class="main-content-artikkel-side">
-                                    <h2 class="artikkel-overskrift"><?php echo $result['artnavn']; ?></h2>
-                                
-                                    <div class="artikkel-side-innhold">
-                                        <div class="artikkel-tekst-innhold">
-                                            <p class="preview-text">
-                                            <?php echo $result['arttekst']; ?>
-                                            </p>
-                                        </div>
-                                        <div class="artikkel-info">
-                                            <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
-                                            &nbsp;
-                                        </div>
-
-                                        <div class="form-group">
-                                            <form method="post" action="" input id="<?php echo $artikkelid['idartikkel']; ?>">
-                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar" maxlength="500"></textarea>
-
-                                                <input type="submit" class="btn btn-block btn-primary" name="kommentar" value="kommenter"/>
-
-                                                <?php
-                                                    
-                                                    if(isset($_POST['kommentar']))
-                                                        {
-                                                            $ingress = ('test');
-                                                            $tekst = $_POST['komtekst'];
-                                                            $tid = date("Y-m-d H:i:s");
-                                                            $artikkelid = $result['idartikkel'];
-                                                            $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker);
-                                                        }
-                                                
-                                                    
-                                                    $mysqli = new mysqli("localhost", "root", "", "klima");
-                                                    mysqli_set_charset($mysqli,'utf8');
-                                                    $stmt = "SELECT * FROM kommentar";
-                                                    $resultkom = $mysqli->query($stmt);
-                                                    while ($row = mysqli_fetch_array($resultkom))
-                                                        {
-                                                            echo $row['bruker']."<br>";
-                                                            echo $row['tid']."<br>";
-                                                            echo nl2br($row['tekst'])."<br><br><br>";
-                                                        }
-                                                    
-                                                ?>
-                                            </form>
-                                        </div>
-                                                    -->
-
-                                            <?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </section>
-                        <?php 
-                        $forrigeArtikkelID = $result['idartikkel'];
-                        echo $forrigeArtikkelID;
-                    }?>
-                </div>
-            </div>
-        </div>
+    </div>         
     </section>
-    <footer class="hovedfooter">
-            <section class="lenker_footer">
-            <a href="">Om oss</a>
-            <a href="">Sidekart</a>
-            <a href="">Kariarre</a>
-            <a href="">Støtt oss</a>
-            <a href="">In English</a>
-            </section>
-            <section class="copyright">Gruppe 30 | copyright 2019</section>
-    </footer>
+    <footer class="background-color ">
+<div class ="row">
+<section class="col m6 s12 center-align">
+<a href="">Om oss</a>
+<a href="">Sidekart</a>
+<a href="">Kariarre</a>
+<a href="">Støtt oss</a>
+<a href="">In English</a>
+</section>
+<section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
+</footer>
 </body>
 </html>
