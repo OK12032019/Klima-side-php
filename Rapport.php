@@ -30,9 +30,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <meta charset ="UTF-8">
-    <link rel="stylesheet" href="FellesCSS.css">
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+	<meta charset ="UTF-8">
     <title>Brukerrapport</title>
 </head>
 <body>
@@ -50,7 +56,7 @@ include "./minmeny.php";
                     <ul>
                     <?php
                       //php for å hente ut en liste av regler, skrevet ut som <li>-tagger
-                      $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
+                      $mysqli = new mysqli("localhost", "root", "", "klima");
                       mysqli_set_charset($mysqli,'utf8');
                       $sql = "SELECT regeltekst FROM regel";
                       $result = $mysqli->query($sql);

@@ -2,9 +2,9 @@
 
 session_start();
 
-$DB_host = "128.39.19.159";
-$DB_user = "usr_klima";
-$DB_pass = "pw_klima";
+$DB_host = "localhost";
+$DB_user = "root";
+$DB_pass = "";
 $DB_name = "klima";
 
 try
@@ -20,4 +20,6 @@ catch(PDOException $e)
 
 include_once 'Class.User.php';
 $user = new USER($DB_con);
+
 include 'Class.Calendar.php';
+include 'Class.Artikkel.php';

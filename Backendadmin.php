@@ -38,9 +38,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
 	<meta charset ="UTF-8">
-    <link rel="stylesheet" href="FellesCSS.css">
     <title>Klima ADMIN Logget Inn</title>
 </head>
 <body>
@@ -131,7 +137,7 @@ include "./minmeny.php";
                                                         }
                                                 
                                                     
-                                                    $mysqli = new mysqli("128.39.19.159", "usr_klima", "pw_klima", "klima");
+                                                    $mysqli = new mysqli("localhost", "root", "", "klima");
                                                     $stmt = "SELECT * FROM kommentar";
                                                     $resultkom = $mysqli->query($stmt);
                                                     while ($row = mysqli_fetch_array($resultkom))

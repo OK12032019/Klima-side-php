@@ -12,37 +12,35 @@ else{
 if($btype == 1){
 
    ?>
-  
-         <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-		<li><a href="Backend.php" class="mellomrom1">Artikler</a></li>
-		<li><a href="Brukerside.php" class="mellomrom1">Profil</a></li>
-		<li><a href="Sok.php" class="mellomrom2">Administrere brukere</a></li>
-		<li><a href="Meldinger.php" class="mellomrom1">Meldinger</a></li>
-		<li><a href="Regelside.php" class="mellomrom1">Regler</a></li>
-		<li><a href="Lesmelding.php" class="mellomrom1">Lesmelding</a></li>
-		<li><a href="Nymelding.php" class="mellomrom1">Nymelding</a></li>
-		<div class="e123">
-            <form method="post">
-        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-        </button>
-        </form>
-        </div>
+   <script type="text/javascript" src="js/materialize.js">
+    </script>
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="Default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="Backend.php">Artikler</a></li>
+        <li><a href="Brukerside.php">Profil</a></li>
+        <li><a href="Sok.php">Administrere brukere</a></li>
+        <li><a href="Meldinger.php">Meldinger</a></li>
+        <li><a href="Regelside.php">Regler</a></li>
+        <li><a href="Lesmelding.php">Lesmelding</a></li>
+        <li><a href="Nymelding.php">Nymelding</a></li>
+        <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
         </ul>
-        <!-- ####### FOR ADMINISTRATOR MENY ######### -->
-        <ul class="menu">
-		<li><a href="Backend.php" class="mellomrom1">Advare Brukeren</a></li>
-		<li><a href="Brukerside.php" class="mellomrom1">Karantene Ekskluderer Bruker</a></li>
-		<li><a href="Sok.php" class="mellomrom2">Avregistrering Bruker</a></li>
-		<li><a href="Meldinger.php" class="mellomrom1">Rapport om Brukermisbruk</a></li>
-		<li><a href="Regelside.php" class="mellomrom1">Rediger Regler</a></li>
-		<li><a href="Lesmelding.php" class="mellomrom1">Kvalifiser Bruker</a></li>
-        </ul>     
-    </header>
+    </div>
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+            <li class="tab disabled">ADMIN VERKTØY:</a></li>
+            <li class="tab"><a href="Backend.php">Advare Brukeren</a></li>
+            <li class="tab"><a href="Brukerside.php">Karantene Ekskluderer Bruker</a></li>
+            <li class="tab"><a href="Sok.php">Avregistrering Bruker</a></li>
+            <li class="tab"><a href="Meldinger.php">Rapport om Brukermisbruk</a></li>
+            <li class="tab"><a href="Regelside.php">Rediger Regler</a></li>
+            <li class="tab"><a href="Lesmelding.php">Kvalifiser Bruker</a></li>
+        </ul>
+    </div>
+</nav>   
+
 	<?php
    }
 else if($btype == 2){
@@ -50,25 +48,21 @@ else if($btype == 2){
    
     ?>
 	
-       <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-		<li><a href="Brukerside.php" class="mellomrom1">Skrive artikler</a></li>
-		<li><a href="Backend.php" class="mellomrom1">Meny</a></li>
-		<li><a href="Meldinger.php" class="mellomrom1">Meldinger</a></li>
-		<li><a href="Rapport.php" class="mellomrom1">Rapporter bruker</a></li>
-			 <div class="e123">
-            <form method="post">    
-        <button type="submit" name="btn-logout" class="btn1 btn-block btn-primary">
-            <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-        </button>
-        </form>
-        </div>
-    </ul>   
-        </ul> 
-    </header>
+    <nav>
+    <div class="nav-wrapper">
+        <a href="Default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="Backend.php">Artikler</a></li>
+        <li><a href="Brukerside.php">Profil</a></li>
+        <li><a href="Sok.php">Administrere brukere</a></li>
+        <li><a href="Meldinger.php">Meldinger</a></li>
+        <li><a href="Regelside.php">Regler</a></li>
+        <li><a href="Lesmelding.php">Lesmelding</a></li>
+        <li><a href="Nymelding.php">Nymelding</a></li>
+        <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
+        </ul>
+    </div>
+</nav>
 	
 		<?php 
    }
@@ -89,43 +83,37 @@ foreach($result as $row) {
     }
 }
      ?>
-       <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png"style="width:48px;"></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-		<li><a href="Backend.php" class="logoen1">Artikler</a></li>
-		<li><a href="Brukerside.php" class="logoen2">Profil</a></li>
-		<li><a href="Backend.php" class="logoen3">Arrangementer</a></li>
-		<li><a href="sok.php" class="logoen1">Søk</a></li>
-		<li><a href="Meldinger.php" class="logoen1">Meldinger</a></li>
-		<li><a href="Rapport.php" class="mellomrom1">Rapporter bruker</a></li>
-		<li><a href="Passord.php" class="nullpass">Nullstill Passord</a></li>
-        <div class="a123">
-        <form method="post">
-            <button type="submit" name="btn-logout" class="btn btn-block btn-primary">
-                <i class="glyphicon glyphicon-log-in"></i>&nbsp;Logg ut
-            </button>
-            </form>
-        </div>
-        </ul>   
-    </header>
+     <nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="Default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="Backend.php">Artikler</a></li>
+		<li><a href="Brukerside.php">Profil</a></li>
+		<li><a href="Backend.php">Arrangementer</a></li>
+		<li><a href="sok.php">Søk</a></li>
+		<li><a href="Meldinger.php">Meldinger</a></li>
+		<li><a href="Rapport.php">Rapporter bruker</a></li>
+		<li><a href="Passord.php">Nullstill Passord</a></li>
+        <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
+        </ul>
+    </div>
+</nav>
+    
 	 <?php
    }
 
    
 else{
-   echo "Du er ikke logget inn";
    ?>
-       <header class="hovedheader">
-        <a href="Default.php" class="logoen"><img src="img/Klimalogo.png" alt="Logoen" style="width:73px;"></img></a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-        <ul class="menu">
-            <li><a href="Logginn.php">Login</a></li>
-            <li><a href="Registrer.php">Registrer</a></li>
-        </ul>   
-    </header>
+<nav>
+<div class="nav-wrapper">
+    <a href="Default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:60px;"><img></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a href="Logginn.php">Logg inn</a></li>
+    <li><a href="Registrer.php">Registrer</a></li>
+    </ul>
+</div>
+</nav>   
 	 <?php
    }
     ?>
