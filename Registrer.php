@@ -140,11 +140,10 @@ include "./minmeny.php";
             <label style="margin-left:496px;">Har du konto? <a href="Logginn.php">Log inn</a></label>
         </form>
        </div>
-</div>
+   </div>
 </div>
 
-</body>
-   <footer class="hovedfooter">
+<footer class="hovedfooter">
       <section class="lenker_footer">
       <a href="">Om oss</a>
       <a href="">Sidekart</a>
@@ -154,5 +153,6 @@ include "./minmeny.php";
       </section>
       <section class="copyright">Gruppe 30 | copyright 2019</section>
    </footer>
+</body>
 
 </html>
