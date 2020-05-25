@@ -35,6 +35,7 @@ if(isset($_POST['btn-logout']))
 include "./minmeny.php";
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
     <!--Import Google Icon Font-->
