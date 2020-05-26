@@ -1,18 +1,22 @@
 <?php
+$error = '';
+require_once 'PDO.php';
 
-include_once "PDO.php";
+$brukertype = $_SESSION['btype'];
+$brukerid = $_SESSION['brukerid'];
+$debug = $_SESSION['debug'];
+
 
 if($user->is_loggedin()=="")
 {
-    $user->redirect('Default.php');
+  $user->redirect('Default.php');
+} 
+else 
+{ 
+  $username=$_SESSION['bnavn'];
+  $fnavn=$_SESSION['fnavn'];
+  $enavn=$_SESSION['enavn'];
 }
-else {
-	$fnavn = $_SESSION['fnavn'];
-    $enavn = $_SESSION['enavn'];
-    $bruker = $_SESSION['brukerid'];
-}
-
-// elias push
 if(isset($_POST['btn-logout']))
 {
     if($user->logout())
@@ -24,13 +28,59 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+if(isset($_POST['setArtikkel']))
+{   
+   
+    $tittel = trim($_POST['tittel']);
+    $artikkel = trim($_POST['artikkeltekst']);
+    $user->largeArtikkel($tittel, $artikkel, $brukerid);
+    echo $tittel;
+    echo $artikkel;
+    $file = $_FILES['file'];
+    $fileName = $file['name'];
+    $fileType = $file['type'];
+    $fileTempName = $file['tmp_name'];
+    $fileError = $file['error'];
+    $fileSize = $file['size'];
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array("jpg", "jpeg", "png");
 
-// $Month = $_GET['month'];
-// $Year = $_GET['year'];
-// $date = $Year;
-// $date .= '-';
-// $date .= $Month;
-// echo ($date);
+    if (in_array($fileActualExt, $allowed)) {
+      if ($fileError === 0) {
+        if ($fileSize < 500000) {
+          $result = $user->getidArtikkel($tittel);
+          var_dump($result);
+          foreach($result as $row) {
+            echo $row['idartikkel'], '<br>';
+            $ArtikkelIDtilBilde = $row['idartikkel'];
+            }
+          print_r($ArtikkelIDtilBilde);
+          $fileNameNew = $ArtikkelIDtilBilde.".".$fileActualExt;
+          
+          $fileDestination = 'uploads/'.$fileNameNew;
+          move_uploaded_file($fileTempName, $fileDestination);
+          $user->uploadBilde($ArtikkelIDtilBilde, $fileDestination);
+
+        }
+        else {
+          echo "Your file is too big!";
+        }
+      }
+      else {
+        echo "There was an error uploading your file, try again!";
+      }
+    }
+    else {
+      echo "You cannot upload files of this type!";
+    }
+  }
+  if(isset($_POST['regelKnapp']))
+{
+    $regel = trim($_POST['regel']);
+    $user->setRegel($regel,$brukerid);
+}
+
 include "./minmeny.php";
 ?>
 
@@ -52,7 +102,7 @@ include "./minmeny.php";
 <body>
 
 
-    <div class="container1">
+    <div class="container">
         <h1>Klima</h1>
         </div>
 		
@@ -92,90 +142,45 @@ include "./minmeny.php";
                 </div> 
                 <h2 class="nylig-artikkel-overskrift">Nylige artikler</h2>
             
-                <div class="articlefeed1">
-
-                    <?php 
-                    $count=$user->artikkelsOk();
-                    $count=$count+1;
-                    $forrigeArtikkelID = $count;
-                    while($forrigeArtikkelID != '1'){
-                        $result = $user->artikkel($forrigeArtikkelID);
-                        
-                        ?>                            
-                        <section id="tekst">
-                            <div class="content-artikkel-side clearfix">
-                                
-                                <div class="main-content-artikkel-side">
-                                    <h2 class="artikkel-overskrift"><?php echo $result['artnavn']; ?></h2>
-                                
-                                    <div class="artikkel-side-innhold">
-                                        <div class="artikkel-tekst-innhold">
-                                            <p class="preview-text">
-                                            <?php echo $result['arttekst']; ?>
-                                            </p>
-                                        </div>
-                                        <div class="artikkel-info">
-                                            <i class="far fa-user"><?php // echo $result['bruker'] ?></i>
-                                            &nbsp;
-                                        </div>
-
-                                        <div class="form-group">
-                                            <form method="post" action="" input id="<?php echo $artikkelid['idartikkel']; ?>">
-                                                <textarea cols="30" rows="2" name="komtekst" placeholder="skriv inn din kommentar"></textarea>
-
-                                                <input type="submit" class="btn btn-block btn-primary" name="kommentar" value="kommenter"/>
-
-                                                <?php
-                                                    
-                                                    if(isset($_POST['kommentar']))
-                                                        {
-                                                            $ingress = ('test');
-                                                            $tekst = $_POST['komtekst'];
-                                                            $tid = date("Y-m-d H:i:s");
-                                                            $artikkelid = $result['idartikkel'];
-                                                            $user->artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker);
-                                                        }
-                                                
-                                                    
-                                                    $mysqli = new mysqli("localhost", "root", "", "klima");
-                                                    $stmt = "SELECT * FROM kommentar";
-                                                    $resultkom = $mysqli->query($stmt);
-                                                    while ($row = mysqli_fetch_array($resultkom))
-                                                        {
-                                                            echo $row['bruker']."<br>";
-                                                            echo $row['tid']."<br>";
-                                                            echo nl2br($row['tekst'])."<br><br><br>";
-                                                        }
-                                                    
-                                                ?>
-                                            </form>
-                                        </div>
-                                        
-
-                                            <?php echo $artikkelid['idartikkel']; ?>" type="text" class="form-control" placeholder="Skriv inn din kommentar"/></textarea>-->
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </section>
-                        <?php 
-                        $forrigeArtikkelID = $result['idartikkel'];
-                        echo $forrigeArtikkelID;
-                    }?>
-                </div>
+        <div class="row">
+            <div class="col m6 s12">
+            <h1> Skriv artikkel </h1>
+                <form method="post" enctype="multipart/form-data">
+                <h2> tittel </h2>
+                    <textarea name="tittel" id="artikkeltittel" cols="50" rows="2" maxlength="45"></textarea>
+                    <h2> Artikkelinnhold</h2>
+                    <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
+                    <input type="file" name="file">
+                    <button class="btn-large waves-effect waves-light" type="submit" name="setArtikkel">Publiser Artikkel
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+            <!-- NY REGEL KUNN ADMIN -->
+            <div class="col m12 s12">
+            <h1> Ny regel </h1>
+                <form method="post">
+                <h2> tittel </h2>
+                    <textarea name="regel" id="Regel" cols="50" rows="2" maxlength="45"></textarea>
+                    <h2>Regel</h2>
+                    <button class="btn-large waves-effect waves-light" type="submit" name="regelKnapp">Publiser regel
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
             </div>
         </div>
+    </div>
     </section>
-    <footer class="hovedfooter">
-            <section class="lenker_footer">
-            <a href="">Om oss</a>
-            <a href="">Sidekart</a>
-            <a href="">Kariarre</a>
-            <a href="">Støtt oss</a>
-            <a href="">In English</a>
-            </section>
-            <section class="copyright">Gruppe 30 | copyright 2019</section>
-    </footer>
+    <footer class="background-color ">
+<div class ="row">
+<section class="col m6 s12 center-align">
+<a href="">Om oss</a>
+<a href="">Sidekart</a>
+<a href="">Kariarre</a>
+<a href="">Støtt oss</a>
+<a href="">In English</a>
+</section>
+<section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
+</footer>
 </body>
 </html>

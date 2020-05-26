@@ -16,10 +16,6 @@ else
   $username=$_SESSION['bnavn'];
   $fnavn=$_SESSION['fnavn'];
   $enavn=$_SESSION['enavn'];
-  if($brukertype == 1)
-  {
-    $user->redirect('backendadmin.php');   
-  }
 }
 if(isset($_POST['btn-logout']))
 {
@@ -146,7 +142,7 @@ if(isset($_POST['setBio']))
 if(isset($_POST['regelKnapp']))
 {
     $regel = trim($_POST['regel']);
-    $user->setRegel($regel);
+    $user->setRegel($regel,$brukerid);
 }
 $profilBilde = $user->getProfilBilde($brukerid);
 

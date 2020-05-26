@@ -54,7 +54,7 @@ include "./minmeny.php";
     $result=$user->getArtikkler();
     $counter = 1;
     foreach($result as $row) {
-        if($counter % 2 == 0){ 
+        if($counter % 3 == 0){ 
             $newRow = '';
             $endRow = '</div>';
         } 
@@ -75,7 +75,7 @@ include "./minmeny.php";
         echo <<<EOT
         
         $newRow
-            <div class="col s12 m6">
+            <div class="col s12 m6 l4">
                 <div class="card">
                 <div class="card-image">
                     <img src="$hvor">
@@ -92,5 +92,18 @@ include "./minmeny.php";
     $counter = $counter + 1;
     }
     ?>
+    </div>
+</div>
+<div class ="row">
+<footer class="background-color ">
+<section class="col m6 s12 center-align">
+<a href="">Om oss</a>
+<a href="">Sidekart</a>
+<a href="">Kariarre</a>
+<a href="">Støtt oss</a>
+<a href="">In English</a>
+</section>
+<section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
+</footer>
 </body>
 </html>

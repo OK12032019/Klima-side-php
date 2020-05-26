@@ -7,19 +7,96 @@ class USER
    {
      $this->db = $DB_con;
    }
-   public function setRegel($regel)
+   public function setRegel($regel,$brukerid)
    {
+      $goAhead = False;
       try{
-         $path = ('regler/test.html');
-         $filename = ('/test.html');
+         if(is_dir('./regler') === false)
+         {
+            mkdir('C:\xampp\htdocs\loggintest\regler');
+         }
+
+         $path = ('regler/regler.php');
+         $filename = ('/regler.php');
          if(file_exists($path))
          {
-         $_SESSION['debug'] = ('Funka');
+            $_SESSION['debug'] = ('Funka');
+            $file = fopen($path,"r+");
+            $goAhead = True;
          }
          else{
-            mkdir('/regler');
-            fopen($path,"x+");
-            $_SESSION['debug'] = ('Funka ikkje');
+            try{
+               $head = ('<!DOCTYPE html>
+               <html>
+                  <head>
+                     <meta charset ="UTF-8">
+                     <?php include "../minmeny.php"; ?>
+                     <!--Import Google Icon Font-->
+                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                     <link type="text/css" rel="stylesheet" href="../css/Flat.css"  media="screen,projection"/>
+                     <!--Let browser know website is optimized for mobile-->
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/></head>');
+               $file = fopen($path,"x+");
+               
+               fwrite($file,$head);
+               fwrite($file,"\t<body><div class='container'><h1>Regler:</h1>\n");
+               try
+            {
+               $result = $this->getRegler();
+               fwrite($file, "\n<ol>");
+               foreach($result as $row)
+               {
+                  $_SESSION['debug'] = $row;
+                  fwrite($file,"<li><p>");
+                  fwrite($file, $row['regeltekst']);
+                  fwrite($file,"</p></li>\n");
+               }
+               fwrite($file,"</ol>\n");
+            }
+            catch(PDOException $e)
+            {
+               echo $e->getMessage();
+            }
+               fwrite($file,'</div><footer class="background-color ">
+               <div class ="row">
+               <section class="col m6 s12 center-align">
+               <a href="">Om oss</a>
+               <a href="">Sidekart</a>
+               <a href="">Kariarre</a>
+               <a href="">Støtt oss</a>
+               <a href="">In English</a>
+               </section>
+               <section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
+               </footer>
+               </div>
+               </body>
+               </html>');
+               $goAhead = True;
+            }
+            catch(PDOException $e)
+            {
+                  echo $e->getMessage();
+            }
+         }
+         if($goAhead == True)
+         {
+            
+            try
+            {
+               fseek($file, -557, SEEK_END);
+               $endcopy = fread($file, 9999);
+               fseek($file, -557, SEEK_END);
+               fwrite($file,"<li><p>");
+               fwrite($file, $regel);
+               fwrite($file,"</li></p>\n");
+               fwrite($file, $endcopy);
+               $regeltekst=$regel;
+               $this->setRegler($regeltekst, $brukerid);
+            }
+            catch(PDOException $e)
+            {
+               echo $e->getMessage();
+            }
          }
       }
       catch(PDOException $e)
