@@ -5,7 +5,7 @@ $url='backend.php';
 
 if($user->is_loggedin()!="")
 {
- $user->redirect('Backend.php');
+ $user->redirect('backend.php');
 }
 
 if(isset($_POST['btn-login']))
@@ -86,7 +86,7 @@ include "./minmeny.php";
                         </button>
                     </div>
                     <br />
-                    <label>Har du ikke konto? <a href="Registrer.php">Registrer her</a></label>
+                    <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
                 </form>
             </div>
         </div>

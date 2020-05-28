@@ -7,7 +7,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -17,7 +17,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -73,7 +73,7 @@ include "./minmeny.php";
                     <div>Sendt av <b><?php echo $result['brukernavn'] ?></b> på <?php echo $tidsendt ?></div>
                     <p><?php echo $tekst ?><br></p>
                 </div>
-                <a href="Meldinger.php">Gå tilbake til alle meldinger</a>
+                <a href="meldinger.php">Gå tilbake til alle meldinger</a>
             </div>    
         </div>
     </section>

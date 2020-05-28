@@ -7,7 +7,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -17,7 +17,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -51,7 +51,7 @@ include "./minmeny.php";
 	    <div class="content clearfix">
             <div class="main-content">
                 <div class="meldinger">
-                    <p><a href="NyMelding.php">Skriv ny melding</a></p>
+                    <p><a href="nyMelding.php">Skriv ny melding</a></p>
                     <h2>Alle meldinger:</h2>
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "klima");
@@ -86,7 +86,7 @@ include "./minmeny.php";
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
-                        <form method="POST" action="Lesmelding.php">
+                        <form method="POST" action="lesmelding.php">
                             <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>
@@ -134,7 +134,7 @@ include "./minmeny.php";
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
-                        <form method="POST" action="Lesmelding.php">
+                        <form method="POST" action="lesmelding.php">
                             <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>

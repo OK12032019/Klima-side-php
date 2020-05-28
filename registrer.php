@@ -4,7 +4,7 @@ require_once 'PDO.php';
 
 if($user->is_loggedin()!="")
 {
-    $user->redirect('Backend.php');
+    $user->redirect('backend.php');
 }
 
 if(isset($_POST['registrer']))
@@ -54,7 +54,7 @@ if(isset($_POST['registrer']))
          {
             if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon,$btype)) 
             {
-                $user->redirect('Logginn.php');
+                $user->redirect('logginn.php');
             }
          }
      }
@@ -137,7 +137,7 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;">Har du konto? <a href="Logginn.php">Log inn</a></label>
+            <label style="margin-left:496px;">Har du konto? <a href="logginn.php">Log inn</a></label>
         </form>
        </div>
    </div>

@@ -3,7 +3,7 @@ require_once "PDO.php";
 
 if($user->is_loggedin()==True)
 {
-    $user->redirect('Backend.php');
+    $user->redirect('backend.php');
 } 
 else
 {

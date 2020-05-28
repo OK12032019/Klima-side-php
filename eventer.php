@@ -8,7 +8,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -21,7 +21,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {

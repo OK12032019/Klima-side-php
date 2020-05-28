@@ -9,7 +9,7 @@ $debug = $_SESSION['debug'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -21,7 +21,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -469,7 +469,7 @@ include "./minmeny.php";
 
             <br />
 
-            <form action="Brukerside.php" method="POST">
+            <form action="brukerside.php" method="POST">
 
                 <h2>Legg til din ny interesse</h2>
                 <table>
