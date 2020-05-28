@@ -24,7 +24,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {

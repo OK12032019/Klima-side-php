@@ -6,7 +6,7 @@ SESSION_START();
 $USER = $_SESSION['user_session'];
 if (EMPTY($_SESSION['user_session'] )) {
     
-	header('Location: Default.php');
+	header('Location: default.php');
 
 } 
 
@@ -27,7 +27,7 @@ if(isset($_POST['PassordReset']))
     {  
       if($user->PassordReset($bnavn,$pw,$npw))
         {
-        $user->redirect('Backend.php');
+        $user->redirect('backend.php');
         }
       else
         {

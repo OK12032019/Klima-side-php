@@ -7,7 +7,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -17,7 +17,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -87,7 +87,7 @@ include "./minmeny.php";
                     </input>
                     </div>
                 </form>
-                <a href="Meldinger.php">Tilbake til alle meldinger</a>
+                <a href="meldinger.php">Tilbake til alle meldinger</a>
             </div>
         </div>
     </section>

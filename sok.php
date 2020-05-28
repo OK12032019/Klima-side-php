@@ -5,7 +5,7 @@ include_once "PDO.php";
 
 if($user->is_loggedin()=="")
 {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
 }
 else {
 	$fnavn = $_SESSION['fnavn'];
@@ -16,7 +16,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
