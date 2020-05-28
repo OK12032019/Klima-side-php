@@ -76,10 +76,70 @@ include "./minmeny.php";
                 echo $calendar->show();
                 ?>
             </div>   
-        <div>
             <h2>Ting som skjer denne måneden</h2>
-            <br>
-        </div> 
+                    <br>
+                    <?php
+                    if(isset($_GET['month'])){
+                    $month=$_GET['month'];
+                    $year=$_GET['year'];
+                    $day = "01";
+                    
+                    $date = ($year."-".$month."-".$day);
+                    }
+                    #$nextMonth = strtotime($date);
+                    $nextMonth = date('Y-m-d', strtotime($date. ' + 1 months'));
+
+                    #echo $date;
+                    #echo $nextMonth;
+
+                    $result=$user->getEvents($date, $nextMonth);
+                    #var_dump($result);
+                    if(!empty($result)){
+                    $counter = 1;
+                    foreach($result as $row) {
+                        if($counter % 2 == 0){ 
+                            $newRow = '';
+                            $endRow = '</div>';
+                        } 
+                        else{ 
+                            $newRow = '<div class="row">';
+                            $endRow = '';
+                        }
+                        $eventID = $row['idevent'];
+                        $eventnavn = $row['eventnavn'];
+                        $eventtekst = $row['eventtekst'];
+                        $veibeskrivelse = $row['veibeskrivelse'];
+                        $tidspunkt = $row['tidspunkt'];
+                        $fylke = $row['fylke'];
+                        $Bilde = $user->getEventBilde($eventID);
+                        if(empty($Bilde)){
+                            $hvor='images/iceberg.jpg';
+                        }
+                        else{
+                            $hvor=$Bilde[0]['hvor'];           
+                        }
+                        echo <<<EOT
+                        
+                        $newRow
+                            <div class="col s12 m6">
+                                <div class="card">
+                                <div class="card-image">
+                                    <img src="$hvor">
+                                    <span class="card-title"> $eventnavn </span>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="eventer.php?eventid=$eventID"><i class="material-icons">add</i></a>
+                                </div>
+                                <div class="card-content">
+                                    <p> $fylke </p>
+                                </div>
+                                </div>
+                            </div>
+                        $endRow
+                        EOT;
+                    $counter = $counter + 1;
+                    }
+                }?>
+                    </div>
+                </div> 
         <h2>Regler<h2>
         <a href="regler\regler.php">finner du her</a>
             
