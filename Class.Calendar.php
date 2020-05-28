@@ -28,10 +28,7 @@ class Calendar {
     /**
     * print out the calendar
     */
-    //Ikke hentet fra internett
-   
-
-    // Hentet fra internett
+    
     public function show() {
         $year  = null;
          

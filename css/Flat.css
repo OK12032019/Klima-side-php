@@ -2579,5 +2579,10 @@ body.keyboard-focused .dropdown-content li:focus {
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
 }
+.divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #e0e0e0;
+  }
 /* SLUTT INPUT */  
   

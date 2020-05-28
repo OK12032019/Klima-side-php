@@ -7,6 +7,108 @@ class USER
    {
      $this->db = $DB_con;
    }
+   public function getEventBilde($eventID)
+   {
+      $stmt = $this->db->prepare("SELECT * FROM eventbilde WHERE event = :event LIMIT 1");
+         $stmt->execute(array(':event'=>$eventID));
+         $Bilde=($stmt->fetchAll());
+         if(!empty($Bilde)){
+         foreach($Bilde as $row){
+         $bildeID = $row["bilde"];}
+         
+         
+
+         $stmt = $this->db->prepare("SELECT hvor FROM bilder WHERE idbilder = :idbilde LIMIT 1");
+         $stmt->execute(array(':idbilde'=>$bildeID));
+         $Bilde=($stmt->fetchAll());
+         return $Bilde; 
+         }
+   }
+   public function getEvent($eventID)
+    {
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM event WHERE idevent = :idevent LIMIT 1");
+         $stmt->execute(array(':idevent'=>$eventID));
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+   public function getEvents($date, $nextMonth)
+    {
+    try
+        {
+            $stmt = $this->db->prepare('SELECT * FROM Event WHERE tidspunkt BETWEEN :tidspunkt AND :nextMonth');
+            $stmt->bindparam(":tidspunkt", $date);
+            $stmt->bindparam(":nextMonth", $nextMonth);
+            $stmt->execute();
+            $result=$stmt->fetchAll();
+            return $result;
+        }
+    catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+   public function uploadEventBilde($fileDestination, $InsertID)
+   {
+      try{
+         $stmt = $this->db->prepare("INSERT INTO bilder (hvor) VALUES (:bilde)");
+         $stmt->bindparam(":bilde", $fileDestination);
+         $stmt->execute();
+         
+         $bildeInsertID = $this->db->lastInsertId();
+         $stmt = $this->db->prepare("INSERT INTO eventbilde (event, bilde) VALUES (:event, :bilde);");
+         $stmt->bindparam(":event", $InsertID);
+         $stmt->bindparam(":bilde", $bildeInsertID);
+         $stmt->execute();
+         return true;
+   }
+   catch(PDOException $e)
+   {
+       echo $e->getMessage();
+       return false;
+   }
+}
+   public function setEvent($eventnavn, $eventtekst, $tidspunkt, $veibeskrivelse, $brukerid, $fylke)
+   {
+      $stmt = $this->db->prepare("SELECT * FROM fylke");
+      $stmt->execute();
+      $fylkerReturn=($stmt->fetchAll());
+      if(empty($fylkerReturn)){
+         $stmt = $this->db->prepare("INSERT INTO fylke (fylkenavn) VALUES ('testdal'),
+         ('Oslo'),
+         ('Rogaland'),
+         ('Møre og Romsdal'),
+         ('Norland'),
+         ('Viken'),
+         ('Innland'),
+         ('Vestfold og Telemark'), 
+         ('Agder'), 
+         ('Vestland'), 
+         ('Trøndelag'),
+         ('Troms og Finnmark');");
+         $stmt->execute();
+      }
+      $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
+         VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
+
+         $stmt->bindparam(":eventnavn", $eventnavn);
+         $stmt->bindparam(":eventtekst", $eventtekst);
+         $stmt->bindparam(":tidspunkt", $tidspunkt);
+         $stmt->bindparam(":veibeskrivelse", $veibeskrivelse);
+         $stmt->bindparam(":idbruker", $brukerid);
+         $stmt->bindparam(":fylke", $fylke);
+         $stmt->execute();
+         $InsertID = $this->db->lastInsertId();
+         return $InsertID;
+
+   }
    public function setRegel($regel,$brukerid)
    {
       $goAhead = False;
@@ -772,6 +874,7 @@ class USER
                 $_SESSION['user_session'] = $userRow['idbruker'];
                 $_SESSION['fnavn'] = $userRow['fnavn'];
                 $_SESSION['enavn'] = $userRow['enavn'];
+                $_SESSION['date'] = date("Y-m-d");
                 $_SESSION['debug'] = '';
                 return true;
              }
@@ -949,5 +1052,17 @@ class USER
       }
       }
    }   
-
+/* INSERT INTO fylke (fylkenavn) VALUES ('testdal'),
+('Oslo'),
+('Rogaland'),
+('Møre og Romsdal'),
+('Norland'),
+('Viken'),
+('Innland'),
+('Vestfold og Telemark'), 
+('Agder'), 
+('Vestland'), 
+('Trøndelag'),
+('Troms og Finnmark');
+*/
 ?>
