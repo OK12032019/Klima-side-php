@@ -15,8 +15,8 @@ if(isset($_POST['registrer']))
    $fnavn = trim($_POST['Fnavn']);
    $enavn = trim($_POST['Enavn']);
    $telefon = trim($_POST['Telefon']);
-   $btype= trim($_POST['Brukertype']);
- 
+   $btype= "3";
+
    if($bnavn=="") {
       $error[] = "Oppgi brukernavn!"; 
    }
@@ -28,10 +28,6 @@ if(isset($_POST['registrer']))
    }
    else if($pw=="") {
       $error[] = "Oppgi passord!";
-   }
-   else if($btype=="") {
-      $error[] = "Oppgi brukertype!";
-	  
    }
    else if(strlen($pw) < 6){
       $error[] = "Passord må være i hvert fall 6 tegn"; 
@@ -126,9 +122,6 @@ include "./minmeny.php";
             </div>
             <div class="form-group">
              <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" style="margin-left:510px;" />
-            </div>
-			<div class="form-group">
-             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" style="margin-left:510px;" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
