@@ -23,3 +23,5 @@ $user = new USER($DB_con);
 
 include 'Class.Calendar.php';
 include 'Class.Artikkel.php';
+
+?>

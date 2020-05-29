@@ -601,6 +601,21 @@ class USER
            echo $e->getMessage();
        } 
     }
+   public function getBrukerliste() 
+   {
+      try
+      {
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, 
+         brukernavn FROM bruker WHERE idbruker = '{$brukerid}'");
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+   } 
     public function sletteInteresse($userid, $interesseid)
     {
        try
@@ -690,6 +705,33 @@ class USER
          echo $e->getMessage();
       } 
     }
+
+    public function getUlesteMeldinger()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0");
+         $stmt->execute();
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+         echo $e->getMessage();
+       }
+    }
+    public function getLesteMeldinger()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1");
+       }
+       catch(PDOException $e)
+       {
+          echo $e->getMessage();
+       }
+    }
+
     public function sOk($interesseId)
     {
       try{

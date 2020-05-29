@@ -54,7 +54,7 @@ if(isset($_POST['nyPassordKnapp']))
         header('location: pending.php?email=' . $email);
         }
         else{
-            echo ("Vi har ingen brukere med den eposten addressen.")
+            echo ("Vi har ingen brukere med den eposten addressen.");
     }
 }
 include "./minmeny.php";
