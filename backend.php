@@ -111,6 +111,8 @@ include "./minmeny.php";
                         $veibeskrivelse = $row['veibeskrivelse'];
                         $tidspunkt = $row['tidspunkt'];
                         $fylke = $row['fylke'];
+                        $fylkeNavn = $user->getFylkeNavn($fylke);
+                        $fylkeNavn = $fylkeNavn[0]['fylkenavn'];
                         $Bilde = $user->getEventBilde($eventID);
                         if(empty($Bilde)){
                             $hvor='images/iceberg.jpg';
@@ -129,7 +131,7 @@ include "./minmeny.php";
                                     <a class="btn-floating halfway-fab waves-effect waves-light red" href="eventer.php?eventid=$eventID"><i class="material-icons">add</i></a>
                                 </div>
                                 <div class="card-content">
-                                    <p> $fylke </p>
+                                    <p> $fylkeNavn </p>
                                 </div>
                                 </div>
                             </div>
