@@ -51,54 +51,7 @@ if(isset($_POST['sletteInteresseKnapp']))
     $userid = $brukerid;
     $user->sletteInteresse($userid, $interesseid);
 }
-#Skriver artikkel og laster opp bilde
-if(isset($_POST['setArtikkel']))
-{   
-   
-    $tittel = trim($_POST['tittel']);
-    $artikkel = trim($_POST['artikkeltekst']);
-    $user->largeArtikkel($tittel, $artikkel, $brukerid);
-    echo $tittel;
-    echo $artikkel;
-    $file = $_FILES['file'];
-    $fileName = $file['name'];
-    $fileType = $file['type'];
-    $fileTempName = $file['tmp_name'];
-    $fileError = $file['error'];
-    $fileSize = $file['size'];
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-    $allowed = array("jpg", "jpeg", "png");
 
-    if (in_array($fileActualExt, $allowed)) {
-      if ($fileError === 0) {
-        if ($fileSize < 500000) {
-          $result = $user->getidArtikkel($tittel);
-          var_dump($result);
-          foreach($result as $row) {
-            echo $row['idartikkel'], '<br>';
-            $ArtikkelIDtilBilde = $row['idartikkel'];
-            }
-          print_r($ArtikkelIDtilBilde);
-          $fileNameNew = $ArtikkelIDtilBilde.".".$fileActualExt;
-          
-          $fileDestination = 'uploads/'.$fileNameNew;
-          move_uploaded_file($fileTempName, $fileDestination);
-          $user->uploadBilde($ArtikkelIDtilBilde, $fileDestination);
-
-        }
-        else {
-          echo "Your file is too big!";
-        }
-      }
-      else {
-        echo "There was an error uploading your file, try again!";
-      }
-    }
-    else {
-      echo "You cannot upload files of this type!";
-    }
-  }
 if(isset($_POST['setProfilBilde']))
 {   
     $file = $_FILES['file'];
@@ -139,11 +92,7 @@ if(isset($_POST['setBio']))
     $Bio = trim($_POST['biotekst']);
     $user->setBeskrivelse($brukerid, $Bio);
 }
-if(isset($_POST['regelKnapp']))
-{
-    $regel = trim($_POST['regel']);
-    $user->setRegel($regel,$brukerid);
-}
+
 $profilBilde = $user->getProfilBilde($brukerid);
 
 if(empty($profilBilde)){
@@ -318,23 +267,7 @@ include "./minmeny.php";
         </div>
         
 
-        <!-- SKRIVE ARTIKKEL -->
-        <!-- TODO DAMMEL CSS -->
-        <div class="row">
-            <div class="col m6 s12">
-            <h1> Skriv artikkel </h1>
-                <form method="post" enctype="multipart/form-data">
-                <h2> tittel </h2>
-                    <textarea name="tittel" id="artikkeltittel" cols="50" rows="2" maxlength="45"></textarea>
-                    <h2> Artikkelinnhold</h2>
-                    <textarea name="artikkeltekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
-                    <input type="file" name="file">
-                    <button class="btn-large waves-effect waves-light" type="submit" name="setArtikkel">Publiser Artikkel
-                        <i class="material-icons right">send</i>
-                    </button>
-                </form>
-            </div>
-            <div class="col m6 s12">
+        <div class="col m6 s12">
             <h1>  Ny bio </h1> 
                 <form method="post" enctype="multipart/form-data">
                     <textarea name="biotekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
@@ -344,21 +277,7 @@ include "./minmeny.php";
                     </button>
                 </form>
             </div>
-        </div>
-        <!-- NY REGEL KUNN ADMIN -->
-        <div class="row">
-            <div class="col m12 s12">
-            <h1> Ny regel </h1>
-                <form method="post">
-                <h2> tittel </h2>
-                    <textarea name="regel" id="Regel" cols="50" rows="2" maxlength="45"></textarea>
-                    <h2>Regel</h2>
-                    <button class="btn-large waves-effect waves-light" type="submit" name="regelKnapp">Publiser regel
-                        <i class="material-icons right">send</i>
-                    </button>
-                </form>
-            </div>
-        </div>
+        
     </div>
 <footer class="background-color ">
 <div class ="row">

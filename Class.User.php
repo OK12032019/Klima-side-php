@@ -7,6 +7,47 @@ class USER
    {
      $this->db = $DB_con;
    }
+   public function updateBrukertype($brukeridUppdate, $brukertype)
+   {
+      try{
+         $stmt = $this->db->prepare('UPDATE bruker SET brukertype = :brukertype WHERE idbruker =:brukerid');
+         $stmt->execute(array(':brukertype'=>$brukertype,':brukerid'=>$brukeridUppdate));
+         return true;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getBrukere()
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype = '3' OR brukertype = '2';");
+         $stmt->execute();
+         $brukere=($stmt->fetchAll());
+         return $brukere; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getFylkeNavn($fylke)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT fylkenavn FROM fylke WHERE idfylke = :idfylke");
+         $stmt->execute(array(':idfylke'=>$fylke));
+         $fylkeNavn=($stmt->fetchAll());
+         return $fylkeNavn; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
    public function getEventBilde($eventID)
    {
       $stmt = $this->db->prepare("SELECT * FROM eventbilde WHERE event = :event LIMIT 1");
