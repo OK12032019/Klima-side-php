@@ -46,8 +46,8 @@ foreach($result as $row){
         if(empty($Bilde)){
             $hvor='images/iceberg.jpg';
         }
-        foreach($Bilde as $row){
-            $hvor=$row['hvor'];           
+        else{
+            $hvor=$Bilde[0]['hvor'];           
         }
 }
 if(isset($_POST['kommenter']))

@@ -81,6 +81,11 @@ if(isset($_POST['setArtikkel']))
     $regel = trim($_POST['regel']);
     $user->setRegel($regel,$brukerid);
 }
+if(isset($_POST['regelKnapp']))
+{
+    $regel = trim($_POST['regel']);
+    $user->setRegel($regel,$brukerid);
+}
 if(isset($_POST['setEvent']))
 {   
    
@@ -123,7 +128,14 @@ if(isset($_POST['setEvent']))
       echo "You cannot upload files of this type!";
     }
   }
+if(isset($_POST['brukertypeKnapp'])){
+    
 
+    $brukeridUppdate = $_POST['brukere'];
+    $brukertype = $_POST['brukertype'];
+    $user->updateBrukertype($brukeridUppdate, $brukertype);
+    
+}
 include "./minmeny.php";
 ?>
 
@@ -143,21 +155,16 @@ include "./minmeny.php";
     <title>Klima ADMIN Logget Inn</title>
 </head>
 <body>
-
-
-    <div class="container">
+<div class="container">
         <h1>Klima</h1>
-	<!-- 	
-	<section id="tekst">
-	<h2 id="adminmelding" style="margin-left:580px;"> Du er logget inn som administrator</h2>
-	<div class="administrer" style="margin-left:700px;">
-	
-	<p><a href="Brukerside.php"><p> Administrer brukere</p> </a>
-	<a href="Brukerside.php"><p> Sett bruker i karantene</p> </a>
-	<a href="Brukerside.php"><p> Utvise bruker</p></a>
-	<a href="Brukerside.php"><p> Gi advarsel</p></a>
-    -->
-	
+	<h2> Du er logget inn som administrator</h2>
+
+	<a href="advarsel.php"><p> Sett bruker i karantene</p> </a>
+	<a href="backendadmin.php"><p> Utvise bruker</p></a>
+    <a href="advarsel.php"><p> Gi advarsel</p></a>
+    <p><a href="#lageEvent"> Lage et nytt event</a></p>
+    <p><a href="#skrivArtikkel"> Skriv ny Artikkel </a></p>
+	<p><a href="#nyRegel"> Lag en ny regel </a></p>
                 <div class="calendar">
                     <script>
                     function getDate(clicked_id) 
@@ -210,6 +217,8 @@ include "./minmeny.php";
                         $veibeskrivelse = $row['veibeskrivelse'];
                         $tidspunkt = $row['tidspunkt'];
                         $fylke = $row['fylke'];
+                        $fylkeNavn = $user->getFylkeNavn($fylke);
+                        $fylkeNavn = $fylkeNavn[0]['fylkenavn'];
                         $Bilde = $user->getEventBilde($eventID);
                         if(empty($Bilde)){
                             $hvor='images/iceberg.jpg';
@@ -228,7 +237,7 @@ include "./minmeny.php";
                                     <a class="btn-floating halfway-fab waves-effect waves-light red" href="eventer.php?eventid=$eventID"><i class="material-icons">add</i></a>
                                 </div>
                                 <div class="card-content">
-                                    <p> $fylke </p>
+                                    <p> $fylkeNavn </p>
                                 </div>
                                 </div>
                             </div>
@@ -242,7 +251,7 @@ include "./minmeny.php";
             
         <div class="row">
             <div class="col m6 s12">
-            <h1> Lag Event </h1>
+            <h1 id="lageEvent">Lag Event</h1>
                 <form method="post" enctype="multipart/form-data">
                 <h2> event navn </h2>
                     <textarea name="eventnavn" id="tittel" cols="50" rows="2" maxlength="45"></textarea>
@@ -274,7 +283,7 @@ include "./minmeny.php";
             </div>
         <div class="row">
             <div class="col m6 s12">
-            <h1> Skriv artikkel </h1>
+            <h1 id="skrivArtikkel"> Skriv artikkel </h1>
                 <form method="post" enctype="multipart/form-data">
                 <h2> tittel </h2>
                     <textarea name="tittel" id="artikkeltittel" cols="50" rows="2" maxlength="45"></textarea>
@@ -289,8 +298,8 @@ include "./minmeny.php";
         </div>
         <div class="row">
             <!-- NY REGEL KUNN ADMIN -->
-            <div class="col m12 s12">
-            <h1> Ny regel </h1>
+            <div class="col m6 s12">
+            <h1 id="nyRegel"> Ny regel </h1>
                 <form method="post">
                 <h2> tittel </h2>
                     <textarea name="regel" id="Regel" cols="50" rows="2" maxlength="45"></textarea>
@@ -300,6 +309,34 @@ include "./minmeny.php";
                     </button>
                 </form>
             </div>
+            <!-- Promotering av andre brukere -->
+            <div class="col m6 s12">
+            <h1><a href="Promotere">Promoter er bruker til redaktør eller admin</a></h1>
+            <form method="post">
+                <h2> velg bruker </h2>
+                <select name ="brukere">
+                    <?php
+                    $brukere = $user->getBrukere();
+                    foreach($brukere as $row)
+                    {
+                        $brukernavn = $row['brukernavn'];
+                        $brukerid = $row['idbruker'];
+                        echo <<<EOT
+                            <option value="$brukerid">$brukernavn</option> 
+                        EOT;
+
+                    }
+                    ?>
+                </select>
+                <h2> Velg Brukerntype </h2>
+                <select name="brukertype">
+                    <option value ="1">Admin</option>
+                    <option value ="2">Redaktør</option>
+                </select>
+                <button class="btn-large waves-effect waves-light" type="submit" name="brukertypeKnapp">Promoter bruker
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
         </div>
     </div>
     </section>

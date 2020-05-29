@@ -40,6 +40,23 @@ if(isset($_POST['btn-login']))
         }     
     }
 }
+if(isset($_POST['nyPassordKnapp']))
+{
+    $email = $_POST['email'];
+    if($user->epostFinnes($email))
+    {
+        $to = $email;
+        $subject = "Reset your password on examplesite.com";
+        $msg = "Hi there, click on this <a href=\'nyttPassword.php'>link</a> to reset your password on our site";
+        $msg = wordwrap($msg,70);
+        $headers = "From: info@examplesite.com";
+        mail($to, $subject, $msg, $headers);
+        header('location: pending.php?email=' . $email);
+        }
+        else{
+            echo ("Vi har ingen brukere med den eposten addressen.")
+    }
+}
 include "./minmeny.php";
 ?>
 
@@ -58,52 +75,44 @@ include "./minmeny.php";
 </head>
 
 <body>
-    <div class="femtien">
-        <div class="container">
-            <div class="form-container">
-                <form method="post">
-                    <h2 style="text-align:center;">Logg Inn</h2><hr />
-                    <?php
-                    if(isset($error))
-                    {
-                        ?>
-                        <div class="alert alert-danger">
-                            <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
-                        </div>
-                        <?php
-                    }
-                    ?>
-                    <div class="form-group">
-                    <input type="text" class="form-control input" name="brukernavn" placeholder="Brukernavn eller epost" required />
-                    </div>
-                    <div class="form-group">
-                    <input type="password" class="form-control input" name="pass" placeholder="Passord" required />
-                    </div>
-                    <div class="clearfix"></div><hr />
-                    <div class="form-group">
-                    <button type="submit" name="btn-login" class="btn btn-block btn-primary input">
-                        <i class="glyphicon glyphicon-log-in"></i>&nbsp;LOGG INN
-                        </button>
-                    </div>
-                    <br />
-                    <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
-                </form>
-            </div>
+<div class="container">
+    <div class ="row">
+        <div class="card blue-grey darken-1">
+            <form method="post">
+                <h2>Logg Inn</h2><hr />
+                <input type="text" name="brukernavn" placeholder="Brukernavn eller epost" required />
+                
+                <input type="password"  name="pass" placeholder="Passord" required />
+                
+                <button class="btn waves-effect waves-light" type="submit" name="btn-login">Kommenter
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        
+            <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
         </div>
-    </div>
+        <div class="card blue-grey darken-1">
+            <form method="post">
+                <h2> glemt passord? </h2>
+                <label>Skriv eposten din</label>
+                <input type="email" name="email">
+                <button class="btn waves-effect waves-light" type="submit" name="nyPassordKnapp">Kommenter
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
 
-    <div class="c123">	
-                <footer class="hovedfooter">
 
-            <section class="lenker_footer">
-                <a href="">Om oss</a>
-                <a href="">Sidekart</a>
-                <a href="">Kariarre</a>
-                <a href="">Støtt oss</a>
-                <a href="">In English</a>
-            </section>
-            <section class="copyright">Gruppe 30 | copyright 2019</section>
-            </footer>
-    </div>
+    <footer>
+        <section">
+            <a href="">Om oss</a>
+            <a href="">Sidekart</a>
+            <a href="">Kariarre</a>
+            <a href="">Støtt oss</a>
+            <a href="">In English</a>
+        </section>
+        <section class="copyright">Gruppe 30 | copyright 2019</section>
+        </footer>
+</div>
 </body>
 </html>
