@@ -82,6 +82,7 @@ foreach($result as $row) {
         $user->deleteEkskludering($brukerid);
     }
 }
+
      ?>
      <nav class="nav-extended">
     <div class="nav-wrapper">
@@ -106,28 +107,33 @@ foreach($result as $row) {
 else{
    ?>
 <nav>
-<div class="nav-wrapper">
-    <a href="default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:60px;"><img></a>
-    <ul id="myLinks" class="right Mobil">
-    <li class="test"><a href="logginn.php">Logg inn</a></li>
-    <li class="test"><a href="registrer.php">Registrer</a></li>
-</ul>
-</div>
-<a href="javascript:void(0);" class="icon invis" onclick="myFunction()">
-    <i class="material-icons right">send</i>
-  </a>
-</nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="registrer.php">registrer</a></li>
+        <li><a href="logginn.php">Logg in</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav hide-on-large-only" id="mobile-demo">
+  <li><a href="registrer.php">registrer</a></li>
+    <li><a href="logginn.php">Logg in</a></li>
+  </ul>
 
 	 <?php
    }
     ?>
 <script>
 function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
+  var x = document.getElementById("mobile-demo");
+  if (x.style.display === "none") {
     x.style.display = "block";
+  } else {
+    x.style.display = "none";
   }
 }
 </script>
+
+
