@@ -54,12 +54,16 @@ include "./minmeny.php";
                     <p><a href="nyMelding.php">Skriv ny melding</a></p>
                     <h2>Alle meldinger:</h2>
                     <?php
+                    //Gammel metode, slett senere
+                    //Flytt mysqli på til class.user
                     $mysqli = new mysqli("localhost", "root", "", "klima");
                     mysqli_set_charset($mysqli,'utf8');
                     //To sql spørringer er utførte, en for uleste medlinger og en for leste meldinger
                     $ulestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0";
                     $lestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1";
                     $ulestmeldingsliste = $mysqli->query($ulestmeld);
+                    //Ny metode
+                    //$ulestmeldingsliste = $user->getUlesteMeldinger();
                     ?>
                     <h3>Uleste Meldinger (<?php echo(mysqli_num_rows($ulestmeldingsliste));?>)</h3>
                     
@@ -91,11 +95,15 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
+                        //Ny metode
+                        //$result = $user->getUlesteMeldinger();
                         $result = $mysqli->query($ulestmeld);
                         $row = mysqli_fetch_array($result);
                     
                     }
                     //Hvis det er ingen så vises det en melding
+                    //Ny metode
+                    //$result = $user->getUlesteMeldinger();
                     $result = $mysqli->query($ulestmeld);
                     if(intval(mysqli_num_rows($result))==0)
                     {
@@ -110,7 +118,11 @@ include "./minmeny.php";
                     </table>
                     <br />
                     <!--Leste medlinger-->
-                    <?php $lestmeldingsliste = $mysqli->query($lestmeld); ?>
+                    <?php
+                    //Ny metode
+                    //$lestmeldingsliste = $user->getUlesteMeldinger(); 
+                    $lestmeldingsliste = $mysqli->query($lestmeld); 
+                    ?>
                     <h3>Leste Meldinger (<?php echo(mysqli_num_rows($lestmeldingsliste)); ?>):</h3>
                     <table>
                         <tr class="meldrow">
@@ -139,11 +151,15 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
+                        //Ny metode
+                        //$result = $user->getUlesteMeldinger();
                         $result = $mysqli->query($lestmeld);
                         $row = mysqli_fetch_array($result);
                     
                     }
                     //Hvis det er ingen så vises det en melding
+                    //Ny metode
+                    //$result = $user->getUlesteMeldinger();
                     $result = $mysqli->query($lestmeld);
                     if(intval(mysqli_num_rows($result))==0)
                     {
