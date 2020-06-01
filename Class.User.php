@@ -623,14 +623,29 @@ class USER
            echo $e->getMessage();
        } 
     }
-   public function getBrukerliste() 
+   public function getBrukerliste()
+   {
+      try
+      {
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3");
+         $stmt->execute();
+         $result=$stmt->fetchAll();
+         return $result;
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+   } 
+   public function getBrukerlisteMeld($brukerid)
    {
       try
       {
          $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, 
-         brukernavn FROM bruker WHERE idbruker = '{$brukerid}'");
+         brukernavn FROM bruker WHERE idbruker = :brukerid");
+         $stmt->bindparam(":brukerid", $brukerid);
          $stmt->execute();
-         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         $result=$stmt->fetchAll();
          return $result;
       }
       catch(PDOException $e)
@@ -728,13 +743,30 @@ class USER
       } 
     }
 
+    public function getBrukernavn($brukerid) {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT brukernavn from bruker WHERE idbruker = :brukerid");
+
+         $stmt->bindparam(":brukerid", $brukerid);
+         $stmt->execute();
+         $result=($stmt->fetch());
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+         echo $e->getMessage();
+       }
+    }
+
+
     public function getUlesteMeldinger()
     {
        try
        {
-         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0");
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND lest = 0");
          $stmt->execute();
-         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         $result=($stmt->fetchAll());
          return $result;
        }
        catch(PDOException $e)
@@ -746,7 +778,7 @@ class USER
     {
        try
        {
-         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1");
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND lest = 1");
        }
        catch(PDOException $e)
        {
