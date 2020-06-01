@@ -109,7 +109,7 @@ include "./minmeny.php";
             <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" style="margin-left:510px;" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="email" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
              <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" style="margin-left:510px;" />

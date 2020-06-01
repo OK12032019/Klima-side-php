@@ -46,15 +46,22 @@ if(isset($_POST['nyPassordKnapp']))
     if($user->epostFinnes($email))
     {
         $to = $email;
-        $subject = "Reset your password on examplesite.com";
-        $msg = "Hi there, click on this <a href=\'nyttPassword.php'>link</a> to reset your password on our site";
+        $subject = "Reset your password on app2000.notreal";
+        $msg = "Hi there, click on this <a href=localhost\loggintest\nyttPassord.php>link</a> to reset your password on our site";
         $msg = wordwrap($msg,70);
-        $headers = "From: info@examplesite.com";
-        mail($to, $subject, $msg, $headers);
-        header('location: pending.php?email=' . $email);
-        }
-        else{
-            echo ("Vi har ingen brukere med den eposten addressen.");
+        $headers = "From: admin@app2000.notreal";
+        if(mail($to, $subject, $msg, $headers))
+            {
+                echo("mail er sent til din epost");
+                $_SESSION['pwReset'] = ('True');
+            }
+            else
+            {
+                echo("Vi kunne ikke sende deg mail, venligst kontakt en admin.");
+            }
+    }
+    else{
+        echo ("Vi har ingen brukere med den eposten addressen.");
     }
 }
 include "./minmeny.php";
@@ -84,7 +91,7 @@ include "./minmeny.php";
                 
                 <input type="password"  name="pass" placeholder="Passord" required />
                 
-                <button class="btn waves-effect waves-light" type="submit" name="btn-login">Kommenter
+                <button class="btn waves-effect waves-light" type="submit" name="btn-login">Logg in
                     <i class="material-icons right">send</i>
                 </button>
             </form>
@@ -96,7 +103,7 @@ include "./minmeny.php";
                 <h2> glemt passord? </h2>
                 <label>Skriv eposten din</label>
                 <input type="email" name="email">
-                <button class="btn waves-effect waves-light" type="submit" name="nyPassordKnapp">Kommenter
+                <button class="btn waves-effect waves-light" type="submit" name="nyPassordKnapp">Reset passord
                     <i class="material-icons right">send</i>
                 </button>
             </form>
