@@ -84,15 +84,9 @@ elseif($Brukertype == 1){ ?>
         <h2 class="nymeldtit">Mottaker</h2>
             <select name="mottakermeny">
             <?php 
-                //Gammel metode, slett senere
-                $mysqli = new mysqli("localhost", "root", "", "klima");
-                //Henter ut en liste av alle brukere utenom den som er logget inn
-                $sql = "SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
-                $result = $mysqli->query($sql);
-                //Ny metode
-                //$result = $user->getBrukerliste();
+                $result = $user->getBrukerliste();
                 if ($result) {
-                    while($row = mysqli_fetch_array($result)) {
+                    foreach($result as $row) {
                     echo "<option value='",$row['idbruker'],"'>",$row['brukernavn'],"</option>";
                     }
                 }
@@ -123,15 +117,9 @@ elseif($Brukertype == 1){ ?>
         <h2 class="nymeldtit">Mottaker</h2>
             <select name="mottakermeny">
             <?php 
-                //Gammel metode, slett senere
-                $mysqli = new mysqli("localhost", "root", "", "klima");
-                //Henter ut en liste av alle brukere utenom den som er logget inn
-                $sql = "SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, brukernavn FROM bruker WHERE idbruker = '{$brukerid}'";
-                $result = $mysqli->query($sql);
-                //Ny metode
-                //$result = $user->getBrukerliste();
+                $result = $user->getBrukerliste();
                 if ($result) {
-                    while($row = mysqli_fetch_array($result)) {
+                    foreach($result as $row) {
                     echo "<option value='",$row['idbruker'],"'>",$row['brukernavn'],"</option>";
                     }
                 }

@@ -54,18 +54,15 @@ include "./minmeny.php";
                     <p><a href="nyMelding.php">Skriv ny melding</a></p>
                     <h2>Alle meldinger:</h2>
                     <?php
-                    //Gammel metode, slett senere
-                    //Flytt mysqli på til class.user
-                    $mysqli = new mysqli("localhost", "root", "", "klima");
-                    mysqli_set_charset($mysqli,'utf8');
-                    //To sql spørringer er utførte, en for uleste medlinger og en for leste meldinger
-                    $ulestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0";
-                    $lestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1";
-                    $ulestmeldingsliste = $mysqli->query($ulestmeld);
-                    //Ny metode
-                    //$ulestmeldingsliste = $user->getUlesteMeldinger();
+                    $ulestmeldingsliste = $user->getUlesteMeldinger();
                     ?>
-                    <h3>Uleste Meldinger (<?php echo(mysqli_num_rows($ulestmeldingsliste));?>)</h3>
+                    <h3>Uleste Meldinger (<?php
+                    $counter = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $counter = $counter + 1;
+                    }
+                    echo($counter);
+                    ?>)</h3>
                     
                     <table>
                         <tr class="meldrow">
@@ -76,7 +73,7 @@ include "./minmeny.php";
                         </tr>
                     <?php
                     //Vis liste av alle uleste meldinger
-                    while($row = mysqli_fetch_array($ulestmeldingsliste))
+                    foreach($ulestmeldingsliste as $row)
                     {
                         $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
@@ -84,9 +81,10 @@ include "./minmeny.php";
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
                         $result = $user -> getBrukernavn($senderid);
+                        $brukernavn = $result['brukernavn'];
                         //Sender, tittel, tid sendt
                         echo '<tr class="meldrow"> 
-                        <td>',$result['brukernavn'],'</td>
+                        <td>',$brukernavn,'</td>
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
@@ -95,17 +93,18 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
-                        //Ny metode
-                        //$result = $user->getUlesteMeldinger();
-                        $result = $mysqli->query($ulestmeld);
-                        $row = mysqli_fetch_array($result);
+                        $result = $user->getUlesteMeldinger();
                     
                     }
                     //Hvis det er ingen så vises det en melding
-                    //Ny metode
-                    //$result = $user->getUlesteMeldinger();
-                    $result = $mysqli->query($ulestmeld);
-                    if(intval(mysqli_num_rows($result))==0)
+                    $result = $user->getUlesteMeldinger();
+
+                    $ulestMeldTeller = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $ulestMeldTeller = $ulestMeldTeller + 1;
+                    }
+
+                    if($ulestMeldTeller==0)
                     {
                     ?>
                         <tr class="meldrow">
@@ -119,11 +118,15 @@ include "./minmeny.php";
                     <br />
                     <!--Leste medlinger-->
                     <?php
-                    //Ny metode
-                    //$lestmeldingsliste = $user->getUlesteMeldinger(); 
-                    $lestmeldingsliste = $mysqli->query($lestmeld); 
+                    $lestmeldingsliste = $user->getUlesteMeldinger(); 
                     ?>
-                    <h3>Leste Meldinger (<?php echo(mysqli_num_rows($lestmeldingsliste)); ?>):</h3>
+                    <h3>Leste Meldinger (<?php
+                    $counter = 0;
+                    foreach($lestmeldingsliste as $row) {
+                        $counter = $counter + 1;
+                    }
+                    echo($counter);
+                    ?>):</h3>
                     <table>
                         <tr class="meldrow">
                             <th>Sender</th>
@@ -132,17 +135,17 @@ include "./minmeny.php";
                         </tr>
                     <?php
                     //Vis liste av alle leste meldinger
-                    while($row = mysqli_fetch_array($lestmeldingsliste))
+                    foreach($lestmeldingsliste as $row)
                     {
                         $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
                         $tittel = $row['tittel'];
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
-                        $result = $user -> getBrukernavn($senderid);
+                        $brukernavn = $user -> getBrukernavn($senderid);
                         //Sender, tittel, tid sendt
                         echo '<tr class="meldrow"> 
-                        <td>',$result['brukernavn'],'</td>
+                        <td>',$brukernavn['brukernavn'],'</td>
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
@@ -151,17 +154,16 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
-                        //Ny metode
-                        //$result = $user->getUlesteMeldinger();
-                        $result = $mysqli->query($lestmeld);
-                        $row = mysqli_fetch_array($result);
+                        $result = $user->getUlesteMeldinger();
                     
                     }
                     //Hvis det er ingen så vises det en melding
-                    //Ny metode
-                    //$result = $user->getUlesteMeldinger();
-                    $result = $mysqli->query($lestmeld);
-                    if(intval(mysqli_num_rows($result))==0)
+                    $lestMeldTeller = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $lestMeldTeller = $lestMeldTeller + 1;
+                    }
+
+                    if($lestMeldTeller==0)  
                     {
                     ?>
                         <tr class="meldrow">
