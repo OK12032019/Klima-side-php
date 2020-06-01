@@ -7,6 +7,28 @@ class USER
    {
      $this->db = $DB_con;
    }
+   public function epostFinnes($email)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT idbruker, epost FROM bruker WHERE epost = :epost LIMIT 1;");
+
+         $stmt->execute(array(':epost'=>$email));
+         $epost=($stmt->fetchAll());
+         if(!empty($epost))
+         {
+            return true; 
+         }
+         else
+         {
+            return false;
+         }
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
    public function updateBrukertype($brukeridUppdate, $brukertype)
    {
       try{
@@ -601,7 +623,7 @@ class USER
            echo $e->getMessage();
        } 
     }
-    public function getBrukerliste()
+   public function getBrukerliste()
    {
       try
       {
@@ -720,7 +742,7 @@ class USER
          echo $e->getMessage();
       } 
     }
-    
+
     public function getBrukernavn($brukerid) {
        try
        {
@@ -794,8 +816,8 @@ class USER
          $beskrivelse = 'eksempel';
          $new_password = sha1($salt.$pw);
 
-         $stmt = $this->db->prepare("INSERT INTO bruker(brukernavn,passord,fnavn,enavn,epost,feillogginnteller,feillogginnsiste,telefonnummer,beskrivelse,brukertype) 
-                                                VALUES(:bnavn, :pw, :fnavn, :enavn, :epost, 0, '0000-00-00 00:00:00', :telefonnummer,:beskrivelse, :brukertype)");
+         $stmt = $this->db->prepare("INSERT INTO bruker(brukernavn,passord,fnavn,enavn,epost,telefonnummer,beskrivelse,brukertype) 
+                                                VALUES(:bnavn, :pw, :fnavn, :enavn, :epost, :telefonnummer,:beskrivelse, :brukertype)");
             
          $stmt->bindparam(":bnavn", $bnavn);
          $stmt->bindparam(":pw", $new_password);
@@ -844,12 +866,12 @@ class USER
        }   
 
     }
-    public function PassordReset($bnavn,$pw,$npw)
+    public function PassordReset($brukerid,$pw,$npw)
     {
        try
        {
-           $stmt = $this->db->prepare('SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1');
-           $stmt->execute(array(':bnavn'=>$bnavn));
+           $stmt = $this->db->prepare('SELECT * FROM bruker WHERE idbruker=:bid LIMIT 1');
+           $stmt->execute(array(':bid'=>$brukerid));
            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
            if($stmt->rowCount() > 0)
            {
@@ -858,8 +880,8 @@ class USER
               $npw =sha1($salt,$npw);
               if($userRow['passord']==$pw)
               {
-                 $stmt = $this->db->prepare('UPDATE bruker SET passord = :npassord WHERE brukernavn =:bnavn');
-                 $stmt->execute(array(':npassord'=>$npw,':bnavn'=>$bnavn));
+                 $stmt = $this->db->prepare('UPDATE bruker SET passord = :npassord WHERE idbruker =:bid');
+                 $stmt->execute(array(':npassord'=>$npw,':bid'=>$brukerid));
                  return true;
               }
               else
