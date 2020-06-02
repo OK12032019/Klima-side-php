@@ -65,6 +65,7 @@ if(isset($_POST['nyPassordKnapp']))
     }
 }
 include "./minmeny.php";
+include "./includefooter.php";
 ?>
 
 <!DOCTYPE html>
@@ -109,17 +110,6 @@ include "./minmeny.php";
             </form>
         </div>
 
-
-    <footer>
-        <section">
-            <a href="">Om oss</a>
-            <a href="">Sidekart</a>
-            <a href="">Kariarre</a>
-            <a href="">Støtt oss</a>
-            <a href="">In English</a>
-        </section>
-        <section class="copyright">Gruppe 30 | copyright 2019</section>
-        </footer>
 </div>
 </body>
 </html>

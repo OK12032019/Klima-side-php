@@ -30,7 +30,7 @@ if(isset($_POST['btn-logout']))
 
 }
 include "./minmeny.php";
-
+include "./includefooter.php";
   
 
 $eventID = $_GET["eventid"];
