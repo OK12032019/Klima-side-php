@@ -42,6 +42,7 @@ if(isset($_POST['btn-logout']))
 // $date .= $Month;
 // echo ($date);
 include "./minmeny.php";
+include "./includefooter.php";
 ?>
 
 
@@ -157,6 +158,6 @@ include "./minmeny.php";
 <a href="">In English</a>
 </section>
 <section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
-</footer>
+</footer
 </body>
 </html>

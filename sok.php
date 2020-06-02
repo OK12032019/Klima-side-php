@@ -33,6 +33,7 @@ else{
     $lagTabel= False;
 }
 include "./minmeny.php";
+include "./includefooter.php";
 
 ?>
 
