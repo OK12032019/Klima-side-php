@@ -8,7 +8,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -20,7 +20,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -32,9 +32,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset ="UTF-8">
-        <link rel="stylesheet" href="FellesCSS.css">
+        <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+	<meta charset ="UTF-8">
     </head>
     <body>
     <div class="Regler">

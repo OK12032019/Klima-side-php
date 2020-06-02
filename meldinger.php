@@ -7,7 +7,7 @@ $brukerid = $_SESSION['brukerid'];
 
 if($user->is_loggedin()=="")
 {
-  $user->redirect('Default.php');
+  $user->redirect('default.php');
 } 
 else 
 { 
@@ -17,7 +17,7 @@ if(isset($_POST['btn-logout']))
 {
     if($user->logout())
     {
-    $user->redirect('Default.php');
+    $user->redirect('default.php');
     }
     else
     {
@@ -30,9 +30,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
 	<meta charset ="UTF-8">
-    <link rel="stylesheet" href="FellesCSS.css">
     <title>Meldinger</title>
 </head>
 <body>
@@ -45,17 +51,18 @@ include "./minmeny.php";
 	    <div class="content clearfix">
             <div class="main-content">
                 <div class="meldinger">
-                    <p><a href="NyMelding.php">Skriv ny melding</a></p>
+                    <p><a href="nyMelding.php">Skriv ny melding</a></p>
                     <h2>Alle meldinger:</h2>
                     <?php
-                    $mysqli = new mysqli("localhost", "Logginn", "asd", "klima");
-                    mysqli_set_charset($mysqli,'utf8');
-                    //To sql spørringer er utførte, en for uleste medlinger og en for leste meldinger
-                    $ulestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 0";
-                    $lestmeld = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND lest = 1";
-                    $ulestmeldingsliste = $mysqli->query($ulestmeld);
+                    $ulestmeldingsliste = $user->getUlesteMeldinger();
                     ?>
-                    <h3>Uleste Meldinger (<?php echo(mysqli_num_rows($ulestmeldingsliste));?>)</h3>
+                    <h3>Uleste Meldinger (<?php
+                    $counter = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $counter = $counter + 1;
+                    }
+                    echo($counter);
+                    ?>)</h3>
                     
                     <table>
                         <tr class="meldrow">
@@ -66,7 +73,7 @@ include "./minmeny.php";
                         </tr>
                     <?php
                     //Vis liste av alle uleste meldinger
-                    while($row = mysqli_fetch_array($ulestmeldingsliste))
+                    foreach($ulestmeldingsliste as $row)
                     {
                         $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
@@ -74,24 +81,30 @@ include "./minmeny.php";
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
                         $result = $user -> getBrukernavn($senderid);
+                        $brukernavn = $result['brukernavn'];
                         //Sender, tittel, tid sendt
                         echo '<tr class="meldrow"> 
-                        <td>',$result['brukernavn'],'</td>
+                        <td>',$brukernavn,'</td>
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
-                        <form method="POST" action="Lesmelding.php">
+                        <form method="POST" action="lesmelding.php">
                             <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>
                         </tr>';
-                        $result = $mysqli->query($ulestmeld);
-                        $row = mysqli_fetch_array($result);
+                        $result = $user->getUlesteMeldinger();
                     
                     }
                     //Hvis det er ingen så vises det en melding
-                    $result = $mysqli->query($ulestmeld);
-                    if(intval(mysqli_num_rows($result))==0)
+                    $result = $user->getUlesteMeldinger();
+
+                    $ulestMeldTeller = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $ulestMeldTeller = $ulestMeldTeller + 1;
+                    }
+
+                    if($ulestMeldTeller==0)
                     {
                     ?>
                         <tr class="meldrow">
@@ -104,8 +117,16 @@ include "./minmeny.php";
                     </table>
                     <br />
                     <!--Leste medlinger-->
-                    <?php $lestmeldingsliste = $mysqli->query($lestmeld); ?>
-                    <h3>Leste Meldinger (<?php echo(mysqli_num_rows($lestmeldingsliste)); ?>):</h3>
+                    <?php
+                    $lestmeldingsliste = $user->getUlesteMeldinger(); 
+                    ?>
+                    <h3>Leste Meldinger (<?php
+                    $counter = 0;
+                    foreach($lestmeldingsliste as $row) {
+                        $counter = $counter + 1;
+                    }
+                    echo($counter);
+                    ?>):</h3>
                     <table>
                         <tr class="meldrow">
                             <th>Sender</th>
@@ -114,32 +135,35 @@ include "./minmeny.php";
                         </tr>
                     <?php
                     //Vis liste av alle leste meldinger
-                    while($row = mysqli_fetch_array($lestmeldingsliste))
+                    foreach($lestmeldingsliste as $row)
                     {
                         $meldingid = $row['idmelding'];
                         $senderid = $row['sender'];
                         $tittel = $row['tittel'];
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
-                        $result = $user -> getBrukernavn($senderid);
+                        $brukernavn = $user -> getBrukernavn($senderid);
                         //Sender, tittel, tid sendt
                         echo '<tr class="meldrow"> 
-                        <td>',$result['brukernavn'],'</td>
+                        <td>',$brukernavn['brukernavn'],'</td>
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
-                        <form method="POST" action="Lesmelding.php">
+                        <form method="POST" action="lesmelding.php">
                             <button type="submit" name="btn_lesmelding" value="',$meldingid,'">Les melding</button>
                         </form>
                         </td>
                         </tr>';
-                        $result = $mysqli->query($lestmeld);
-                        $row = mysqli_fetch_array($result);
+                        $result = $user->getUlesteMeldinger();
                     
                     }
                     //Hvis det er ingen så vises det en melding
-                    $result = $mysqli->query($lestmeld);
-                    if(intval(mysqli_num_rows($result))==0)
+                    $lestMeldTeller = 0;
+                    foreach($ulestmeldingsliste as $row) {
+                        $lestMeldTeller = $lestMeldTeller + 1;
+                    }
+
+                    if($lestMeldTeller==0)  
                     {
                     ?>
                         <tr class="meldrow">

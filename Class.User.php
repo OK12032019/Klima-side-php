@@ -1,12 +1,500 @@
 <?php
 class USER
 {
-    private $db;
+   private $db;
  
-    function __construct($DB_con)
+   public function __construct($DB_con)
+   {
+     $this->db = $DB_con;
+   }
+   public function epostFinnes($email)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT idbruker, epost FROM bruker WHERE epost = :epost LIMIT 1;");
+
+         $stmt->execute(array(':epost'=>$email));
+         $epost=($stmt->fetchAll());
+         if(!empty($epost))
+         {
+            return true; 
+         }
+         else
+         {
+            return false;
+         }
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function updateBrukertype($brukeridUppdate, $brukertype)
+   {
+      try{
+         $stmt = $this->db->prepare('UPDATE bruker SET brukertype = :brukertype WHERE idbruker =:brukerid');
+         $stmt->execute(array(':brukertype'=>$brukertype,':brukerid'=>$brukeridUppdate));
+         return true;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getBrukere()
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype = '3' OR brukertype = '2';");
+         $stmt->execute();
+         $brukere=($stmt->fetchAll());
+         return $brukere; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getFylkeNavn($fylke)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT fylkenavn FROM fylke WHERE idfylke = :idfylke");
+         $stmt->execute(array(':idfylke'=>$fylke));
+         $fylkeNavn=($stmt->fetchAll());
+         return $fylkeNavn; 
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getEventBilde($eventID)
+   {
+      $stmt = $this->db->prepare("SELECT * FROM eventbilde WHERE event = :event LIMIT 1");
+         $stmt->execute(array(':event'=>$eventID));
+         $Bilde=($stmt->fetchAll());
+         if(!empty($Bilde)){
+         foreach($Bilde as $row){
+         $bildeID = $row["bilde"];}
+         
+         
+
+         $stmt = $this->db->prepare("SELECT hvor FROM bilder WHERE idbilder = :idbilde LIMIT 1");
+         $stmt->execute(array(':idbilde'=>$bildeID));
+         $Bilde=($stmt->fetchAll());
+         return $Bilde; 
+         }
+   }
+   public function getEvent($eventID)
     {
-      $this->db = $DB_con;
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM event WHERE idevent = :idevent LIMIT 1");
+         $stmt->execute(array(':idevent'=>$eventID));
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
     }
+   public function getEvents($date, $nextMonth)
+    {
+    try
+        {
+            $stmt = $this->db->prepare('SELECT * FROM Event WHERE tidspunkt BETWEEN :tidspunkt AND :nextMonth');
+            $stmt->bindparam(":tidspunkt", $date);
+            $stmt->bindparam(":nextMonth", $nextMonth);
+            $stmt->execute();
+            $result=$stmt->fetchAll();
+            return $result;
+        }
+    catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+   public function uploadEventBilde($fileDestination, $InsertID)
+   {
+      try{
+         $stmt = $this->db->prepare("INSERT INTO bilder (hvor) VALUES (:bilde)");
+         $stmt->bindparam(":bilde", $fileDestination);
+         $stmt->execute();
+         
+         $bildeInsertID = $this->db->lastInsertId();
+         $stmt = $this->db->prepare("INSERT INTO eventbilde (event, bilde) VALUES (:event, :bilde);");
+         $stmt->bindparam(":event", $InsertID);
+         $stmt->bindparam(":bilde", $bildeInsertID);
+         $stmt->execute();
+         return true;
+   }
+   catch(PDOException $e)
+   {
+       echo $e->getMessage();
+       return false;
+   }
+}
+   public function setEvent($eventnavn, $eventtekst, $tidspunkt, $veibeskrivelse, $brukerid, $fylke)
+   {
+      $stmt = $this->db->prepare("SELECT * FROM fylke");
+      $stmt->execute();
+      $fylkerReturn=($stmt->fetchAll());
+      if(empty($fylkerReturn)){
+         $stmt = $this->db->prepare("INSERT INTO fylke (fylkenavn) VALUES ('testdal'),
+         ('Oslo'),
+         ('Rogaland'),
+         ('Møre og Romsdal'),
+         ('Norland'),
+         ('Viken'),
+         ('Innland'),
+         ('Vestfold og Telemark'), 
+         ('Agder'), 
+         ('Vestland'), 
+         ('Trøndelag'),
+         ('Troms og Finnmark');");
+         $stmt->execute();
+      }
+      $stmt = $this->db->prepare("INSERT INTO event (eventnavn, eventtekst, tidspunkt, veibeskrivelse, idbruker, fylke)
+         VALUES(:eventnavn, :eventtekst, :tidspunkt, :veibeskrivelse, :idbruker, :fylke)");
+
+         $stmt->bindparam(":eventnavn", $eventnavn);
+         $stmt->bindparam(":eventtekst", $eventtekst);
+         $stmt->bindparam(":tidspunkt", $tidspunkt);
+         $stmt->bindparam(":veibeskrivelse", $veibeskrivelse);
+         $stmt->bindparam(":idbruker", $brukerid);
+         $stmt->bindparam(":fylke", $fylke);
+         $stmt->execute();
+         $InsertID = $this->db->lastInsertId();
+         return $InsertID;
+
+   }
+   public function setRegel($regel,$brukerid)
+   {
+      $goAhead = False;
+      try{
+         if(is_dir('./regler') === false)
+         {
+            mkdir('C:\xampp\htdocs\loggintest\regler');
+         }
+
+         $path = ('regler/regler.php');
+         $filename = ('/regler.php');
+         if(file_exists($path))
+         {
+            $_SESSION['debug'] = ('Funka');
+            $file = fopen($path,"r+");
+            $goAhead = True;
+         }
+         else{
+            try{
+               $head = ('<!DOCTYPE html>
+               <html>
+                  <head>
+                     <meta charset ="UTF-8">
+                     <?php include "../minmeny.php"; ?>
+                     <!--Import Google Icon Font-->
+                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                     <link type="text/css" rel="stylesheet" href="../css/Flat.css"  media="screen,projection"/>
+                     <!--Let browser know website is optimized for mobile-->
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/></head>');
+               $file = fopen($path,"x+");
+               
+               fwrite($file,$head);
+               fwrite($file,"\t<body><div class='container'><h1>Regler:</h1>\n");
+               try
+            {
+               $result = $this->getRegler();
+               fwrite($file, "\n<ol>");
+               foreach($result as $row)
+               {
+                  $_SESSION['debug'] = $row;
+                  fwrite($file,"<li><p>");
+                  fwrite($file, $row['regeltekst']);
+                  fwrite($file,"</p></li>\n");
+               }
+               fwrite($file,"</ol>\n");
+            }
+            catch(PDOException $e)
+            {
+               echo $e->getMessage();
+            }
+               fwrite($file,'</div><footer class="background-color ">
+               <div class ="row">
+               <section class="col m6 s12 center-align">
+               <a href="">Om oss</a>
+               <a href="">Sidekart</a>
+               <a href="">Kariarre</a>
+               <a href="">Støtt oss</a>
+               <a href="">In English</a>
+               </section>
+               <section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
+               </footer>
+               </div>
+               </body>
+               </html>');
+               $goAhead = True;
+            }
+            catch(PDOException $e)
+            {
+                  echo $e->getMessage();
+            }
+         }
+         if($goAhead == True)
+         {
+            
+            try
+            {
+               fseek($file, -557, SEEK_END);
+               $endcopy = fread($file, 9999);
+               fseek($file, -557, SEEK_END);
+               fwrite($file,"<li><p>");
+               fwrite($file, $regel);
+               fwrite($file,"</li></p>\n");
+               fwrite($file, $endcopy);
+               $regeltekst=$regel;
+               $this->setRegler($regeltekst, $brukerid);
+            }
+            catch(PDOException $e)
+            {
+               echo $e->getMessage();
+            }
+         }
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+   }
+   public function setBeskrivelse($brukerid, $Bio)
+   {
+      try{
+         $stmt = $this->db->prepare('UPDATE bruker SET beskrivelse = :beskrivelse WHERE idbruker =:brukerid');
+         $stmt->execute(array(':beskrivelse'=>$Bio,':brukerid'=>$brukerid));
+         return true;
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+   }
+   public function lastInsertId()
+   {
+      return $this->db->lastInsertId();
+   }
+   public function getProfilBilde($brukerid)
+   {
+      try{
+        $stmt = $this->db->prepare("SELECT bilde FROM brukerbilde WHERE bruker= :brukerid");
+        $stmt->bindparam(':brukerid', $brukerid);
+        $stmt->execute();
+        $bildeID=($stmt->fetchAll());
+        $stmt = $this->db->prepare("SELECT * FROM bilder WHERE idbilder= :bildeid");
+        $stmt->bindparam(':bildeid', $bildeID[0]['bilde']);
+        $stmt->execute();
+        $profilBilde=($stmt->fetchAll());
+        return $profilBilde;
+      }
+      catch(PDOException $e)
+      {
+          echo $e->getMessage();
+      }
+   }
+   public function uploadProfilBilde($fileDestination, $brukerid)
+    {
+      try{
+      $stmt = $this->db->prepare("SELECT * FROM brukerbilde WHERE bruker= :brukerid");
+      $stmt->bindparam(':brukerid', $brukerid);
+      $stmt->execute();
+      $bildeID=($stmt->fetchAll());
+      if($bildeID!= 0){
+         $stmt = $this->db->prepare("DELETE FROM brukerbilde WHERE bruker = :brukerid");
+         $stmt->bindparam(":brukerid", $brukerid);
+         $stmt->execute();
+      }
+      $stmt = $this->db->prepare("INSERT INTO bilder (hvor) VALUES (:bilde)");
+      $stmt->bindparam(":bilde", $fileDestination);
+      $stmt->execute();
+      
+      $InsertID = $this->db->lastInsertId();
+      $stmt = $this->db->prepare("INSERT INTO brukerbilde (bruker, bilde) VALUES (:bruker, :bilde);");
+      $stmt->bindparam(":bruker", $brukerid);
+      $stmt->bindparam(":bilde", $InsertID);
+      $stmt->execute();
+      return true;
+    }
+    catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getBio($brukerid)
+   {
+      $stmt = $this->db->prepare("SELECT beskrivelse FROM bruker WHERE idbruker= :brukerid");
+      $stmt->bindparam(':brukerid', $brukerid);
+      $stmt->execute();
+      $Bio=($stmt->fetchAll(PDO::FETCH_ASSOC));
+      return $Bio;
+   }
+   public function getBrukersInterreser($brukerid)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT * FROM brukerinteresse WHERE bruker = :brukerid;");
+         $stmt->bindparam(":brukerid", $brukerid);
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         $interesseNavnArray = [];
+         foreach($result as $row){
+            $stmt = $this->db->prepare("SELECT * FROM interesse WHERE idinteresse = :interesse;");
+            $stmt->bindparam(":interesse", $row['interesse']);
+            $stmt->execute();
+            $interesseNavn=($stmt->fetchAll(PDO::FETCH_ASSOC));
+            array_push($interesseNavnArray, $interesseNavn);
+         }
+         return $interesseNavnArray;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function setInteresse($interessenavn)
+   {
+      try{
+         #$interessenavn = 'testdata';
+         $stmt = $this->db->prepare("INSERT INTO interesse (interessenavn) VALUES (:interessenavn);");
+         $stmt->bindparam(":interessenavn", $interessenavn);
+         $stmt->execute(); 
+
+            return true;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function sjekkOmInteresseEksisterer($interessenavn)
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT * FROM interesse WHERE interessenavn = :interessenavn; ");
+         $stmt->bindparam(":interessenavn", $interessenavn);
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         if(empty($result)){
+            return false;
+         }
+         else{
+            return true;
+         }
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function setEksisterendeInteresse($brukerid, $interesseid)
+   {
+      try{
+         $stmt = $this->db->prepare("INSERT INTO brukerinteresse (bruker, interesse) VALUES (:bruker, :interesse)");
+         $stmt->bindparam(":bruker", $brukerid);
+         $stmt->bindparam(":interesse", $interesseid);
+         $stmt->execute(); 
+
+            return true;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+   public function getInterreser()
+   {
+      try{
+         $stmt = $this->db->prepare("SELECT * FROM interesse; ");
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         return $result;
+      }
+      catch(PDOException $e)
+      {
+         echo $e->getMessage();
+         return false;
+      }
+   }
+    public function getArtikkel($artID)
+    {
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM Artikkel WHERE idartikkel = :idartikkel LIMIT 1");
+         $stmt->execute(array(':idartikkel'=>$artID));
+         $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $result;
+       }
+       catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getArtikkler()
+    {
+    try
+        {
+            $stmt = $this->db->prepare("SELECT * FROM Artikkel");
+            $stmt->execute();
+            $result=$stmt->fetchAll();
+            return $result;
+        }
+    catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function uploadBilde($ArtikkelIDtilBilde, $fileDestination)
+    {
+      $stmt = $this->db->prepare("INSERT INTO bilder (idbilder, hvor) VALUES (:idbilder, :hvor)");
+      $stmt->bindparam(":idbilder", $ArtikkelIDtilBilde);
+      $stmt->bindparam(":hvor", $fileDestination);
+      $stmt->execute(); 
+
+         return true;
+    }
+    public function getBilde($artID)
+    {
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM bilder WHERE idBilder= :idBilder");
+         $stmt->bindparam(':idBilder', $artID);
+         $stmt->execute();
+         $Bilde=($stmt->fetchAll(PDO::FETCH_ASSOC));
+         return $Bilde;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+    }
+    public function getidArtikkel($tittel)
+{
+    try{
+      $stmt = $this->db->prepare("SELECT * FROM artikkel WHERE artnavn= :artnavn;");
+      $stmt->bindparam(":artnavn", $tittel); 
+      $stmt->execute();
+      $result=($stmt->fetchAll(PDO::FETCH_ASSOC));
+      return $result;
+    }
+    catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+      }
     public function getRegler()
     {
        try
@@ -135,11 +623,40 @@ class USER
            echo $e->getMessage();
        } 
     }
+   public function getBrukerliste()
+   {
+      try
+      {
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3");
+         $stmt->execute();
+         $result=$stmt->fetchAll();
+         return $result;
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+   } 
+   public function getBrukerlisteMeld($brukerid)
+   {
+      try
+      {
+         $stmt = $this->db->prepare("SELECT idbruker, brukernavn FROM bruker WHERE brukertype=3 EXCEPT SELECT idbruker, 
+         brukernavn FROM bruker WHERE idbruker = :brukerid");
+         $stmt->bindparam(":brukerid", $brukerid);
+         $stmt->execute();
+         $result=$stmt->fetchAll();
+         return $result;
+      }
+      catch(PDOException $e)
+      {
+        echo $e->getMessage();
+      }
+   } 
     public function sletteInteresse($userid, $interesseid)
     {
        try
        {
-      echo ('test69');
       $stmt = $this->db->prepare("DELETE FROM brukerinteresse WHERE bruker = :userid AND interesse = :interesseid"); 
       $stmt->execute(array(':userid'=>$userid, ':interesseid'=>$interesseid));
       
@@ -190,6 +707,19 @@ class USER
             echo $e->getMessage();
       } 
     }
+    public function getKommentar($artID)
+    {
+       try{
+         $stmt = $this->db->prepare("SELECT * FROM kommentar WHERE artikkel = :artikkel"); 
+         $stmt->execute(array(':artikkel'=>$artID));
+         $result=($stmt->fetchAll());
+         return $result;
+       }
+       catch(PDOException $e)
+      {
+         echo $e->getMessage();
+      }
+    }
     public function artikkelKommentar($ingress, $tekst, $tid, $artikkelid, $bruker)
     { 
       try
@@ -212,13 +742,65 @@ class USER
          echo $e->getMessage();
       } 
     }
-    public function sOk($brukersOk)
+
+    public function getBrukernavn($brukerid) {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT brukernavn from bruker WHERE idbruker = :brukerid");
+
+         $stmt->bindparam(":brukerid", $brukerid);
+         $stmt->execute();
+         $result=($stmt->fetch());
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+         echo $e->getMessage();
+       }
+    }
+
+
+    public function getUlesteMeldinger()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND lest = 0");
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+         echo $e->getMessage();
+       }
+    }
+    public function getLesteMeldinger()
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND lest = 1");
+       }
+       catch(PDOException $e)
+       {
+          echo $e->getMessage();
+       }
+    }
+
+    public function sOk($interesseId)
     {
       try{
-         $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE brukernavn = :brukersOk LIMIT 1"); 
-         $stmt->execute(array(':brukersOk'=>$brukersOk));
-         $result=($stmt->fetch(PDO::FETCH_ASSOC));
-         return $result;
+         $stmt = $this->db->prepare("SELECT * FROM brukerinteresse WHERE interesse = :interesseId"); 
+         $stmt->execute(array(':interesseId'=>$interesseId));
+         $result=($stmt->fetchAll());
+         $BrukereArray = [];
+         foreach($result as $row){
+            $stmt = $this->db->prepare("SELECT brukernavn FROM bruker WHERE idbruker = :brukerID"); 
+            $stmt->execute(array(':brukerID'=>$row['bruker']));
+            $result=($stmt->fetchAll());
+
+            array_push($BrukereArray, $result);
+         }
+         return $BrukereArray;
       }
       catch(PDOException $e)
        {
@@ -284,12 +866,12 @@ class USER
        }   
 
     }
-    public function PassordReset($bnavn,$pw,$npw)
+    public function PassordReset($brukerid,$pw,$npw)
     {
        try
        {
-           $stmt = $this->db->prepare('SELECT * FROM bruker WHERE brukernavn=:bnavn LIMIT 1');
-           $stmt->execute(array(':bnavn'=>$bnavn));
+           $stmt = $this->db->prepare('SELECT * FROM bruker WHERE idbruker=:bid LIMIT 1');
+           $stmt->execute(array(':bid'=>$brukerid));
            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
            if($stmt->rowCount() > 0)
            {
@@ -298,8 +880,8 @@ class USER
               $npw =sha1($salt,$npw);
               if($userRow['passord']==$pw)
               {
-                 $stmt = $this->db->prepare('UPDATE bruker SET passord = :npassord WHERE brukernavn =:bnavn');
-                 $stmt->execute(array(':npassord'=>$npw,':bnavn'=>$bnavn));
+                 $stmt = $this->db->prepare('UPDATE bruker SET passord = :npassord WHERE idbruker =:bid');
+                 $stmt->execute(array(':npassord'=>$npw,':bid'=>$brukerid));
                  return true;
               }
               else
@@ -409,7 +991,7 @@ class USER
           echo $e->getMessage();
       }
     }
- 
+    
     public function login($bnavn,$pw)
     {
        try
@@ -429,6 +1011,8 @@ class USER
                 $_SESSION['user_session'] = $userRow['idbruker'];
                 $_SESSION['fnavn'] = $userRow['fnavn'];
                 $_SESSION['enavn'] = $userRow['enavn'];
+                $_SESSION['date'] = date("Y-m-d");
+                $_SESSION['debug'] = '';
                 return true;
              }
              else
@@ -605,5 +1189,17 @@ class USER
       }
       }
    }   
-
+/* INSERT INTO fylke (fylkenavn) VALUES ('testdal'),
+('Oslo'),
+('Rogaland'),
+('Møre og Romsdal'),
+('Norland'),
+('Viken'),
+('Innland'),
+('Vestfold og Telemark'), 
+('Agder'), 
+('Vestland'), 
+('Trøndelag'),
+('Troms og Finnmark');
+*/
 ?>

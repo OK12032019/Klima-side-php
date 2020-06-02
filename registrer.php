@@ -4,7 +4,7 @@ require_once 'PDO.php';
 
 if($user->is_loggedin()!="")
 {
-    $user->redirect('Backend.php');
+    $user->redirect('backend.php');
 }
 
 if(isset($_POST['registrer']))
@@ -15,8 +15,8 @@ if(isset($_POST['registrer']))
    $fnavn = trim($_POST['Fnavn']);
    $enavn = trim($_POST['Enavn']);
    $telefon = trim($_POST['Telefon']);
-   $btype= trim($_POST['Brukertype']);
- 
+   $btype= "3";
+
    if($bnavn=="") {
       $error[] = "Oppgi brukernavn!"; 
    }
@@ -28,10 +28,6 @@ if(isset($_POST['registrer']))
    }
    else if($pw=="") {
       $error[] = "Oppgi passord!";
-   }
-   else if($btype=="") {
-      $error[] = "Oppgi brukertype!";
-	  
    }
    else if(strlen($pw) < 6){
       $error[] = "Passord må være i hvert fall 6 tegn"; 
@@ -54,7 +50,7 @@ if(isset($_POST['registrer']))
          {
             if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon,$btype)) 
             {
-                $user->redirect('Logginn.php');
+                $user->redirect('logginn.php');
             }
          }
      }
@@ -70,10 +66,15 @@ include "./minmeny.php";
 <!DOCTYPE HTML>
 <html>
   <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script language="Javascript" src=""></script>
-  <link rel="stylesheet" href="FellesCSS.css">  
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+	<meta charset ="UTF-8">
   <title>Registrering</title>
   </head>
  
@@ -108,7 +109,7 @@ include "./minmeny.php";
             <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" style="margin-left:510px;" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="email" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
              <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" style="margin-left:510px;" />
@@ -122,9 +123,6 @@ include "./minmeny.php";
             <div class="form-group">
              <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" style="margin-left:510px;" />
             </div>
-			<div class="form-group">
-             <input type="text" class="form-control" name="Brukertype" placeholder="Brukertype" style="margin-left:510px;" />
-            </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
              <button type="submit" class="btn btn-block btn-primary" name="registrer">
@@ -132,14 +130,13 @@ include "./minmeny.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;">Har du konto? <a href="Logginn.php">Log inn</a></label>
+            <label style="margin-left:496px;">Har du konto? <a href="logginn.php">Log inn</a></label>
         </form>
        </div>
-</div>
+   </div>
 </div>
 
-</body>
-   <footer class="hovedfooter">
+<footer class="hovedfooter">
       <section class="lenker_footer">
       <a href="">Om oss</a>
       <a href="">Sidekart</a>
@@ -149,5 +146,6 @@ include "./minmeny.php";
       </section>
       <section class="copyright">Gruppe 30 | copyright 2019</section>
    </footer>
+</body>
 
 </html>

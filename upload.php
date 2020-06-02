@@ -46,7 +46,7 @@ if ($uploadOk == 0) {
         $newname .= $brukerid;
         $newname .= ".jpg";
         rename($oldname, $newname);
-        $user->redirect('Brukerside.php');
+        $user->redirect('brukerside.php');
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
