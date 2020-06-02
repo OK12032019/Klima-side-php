@@ -42,6 +42,7 @@ if(isset($_POST['PassordReset']))
 }
 }
 include "./minmeny.php";
+include "./includefooter.php";
 ?>
 
 <!DOCTYPE HTML>

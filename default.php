@@ -14,6 +14,7 @@ else
 }
 
 include "./minmeny.php";
+include "./includefooter.php"; 
 ?>
 
 <!DOCTYPE HTML>
@@ -22,7 +23,7 @@ include "./minmeny.php";
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
-  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/Flat.css"  media="screen,projection"/>	
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -62,17 +63,7 @@ include "./minmeny.php";
 
 
   
-      <footer class="hovedfooter">
-        <section class="lenker_footer">
-        <a href="">Om oss</a>
-        <a href="">Sidekart</a>
-        <a href="">Kariarre</a>
-        <a href="">Støtt oss</a>
-        <a href="">In English</a>
-        </section>
-        <section class="copyright">Gruppe 30 | copyright 2019 - <?php echo date("Y"); ?>
-</section>
-      </footer>
+
       </div>
 </div>
   </body>
