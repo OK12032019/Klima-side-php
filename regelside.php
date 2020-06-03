@@ -28,7 +28,7 @@ if(isset($_POST['btn-logout']))
     } 
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -84,7 +84,9 @@ if(isset($_POST['nyRegel']))
     $user->setRegler($regeltekst, $brukerid);
 }
 ?>
-
+						<?php
+include "./includefooter.php";
+?>
 </body>
 
 

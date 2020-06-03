@@ -42,7 +42,7 @@ if(isset($_POST['btn-logout']))
 // $date .= $Month;
 // echo ($date);
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 
@@ -78,6 +78,9 @@ include "./includefooter.php";
                 ?>
             </div>   
             <h2>Ting som skjer denne måneden</h2>
+						<?php
+include "./includefooter.php";
+?>
                     <br>
                     <?php
                     if(isset($_GET['month'])){
@@ -121,7 +124,9 @@ include "./includefooter.php";
                         else{
                             $hvor=$Bilde[0]['hvor'];           
                         }
-                        echo <<<EOT
+                        echo
+
+						<<<EOT
                         
                         $newRow
                             <div class="col s12 m6">

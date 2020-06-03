@@ -33,7 +33,7 @@ if(isset($_POST['btn-logout']))
 
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +51,9 @@ include "./includefooter.php";
 <title> Klima</title>
 </head>
 <body>
+						<?php
+include "./includefooter.php";
+?>
     <?php 
     $result=$user->getArtikkler();
     $counter = 1;
