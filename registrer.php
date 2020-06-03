@@ -61,7 +61,7 @@ if(isset($_POST['registrer']))
   } 
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -137,7 +137,9 @@ include "./includefooter.php";
    </div>
 </div>
 
-
+						<?php
+include "./includefooter.php";
+?>
 </body>
 
 </html>

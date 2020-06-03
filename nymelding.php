@@ -25,7 +25,7 @@ if(isset($_POST['btn-logout']))
     } 
 }
 include "./minmeny.php";
- include "./includefooter.php"; 
+
 ?>
 
 
@@ -100,6 +100,8 @@ include "./minmeny.php";
     }
       
     ?>
-
+						<?php
+include "./includefooter.php";
+?>
 </body>
 </html>

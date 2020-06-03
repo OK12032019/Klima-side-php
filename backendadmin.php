@@ -137,7 +137,7 @@ if(isset($_POST['brukertypeKnapp'])){
     
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 
@@ -184,6 +184,9 @@ include "./includefooter.php";
 
 			   <div>
                     <h2>Ting som skjer denne måneden</h2>
+											<?php
+include "./includefooter.php";
+?>
                     <br>
                     <?php
                     if(isset($_GET['month'])){

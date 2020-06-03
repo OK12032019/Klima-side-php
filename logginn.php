@@ -65,7 +65,7 @@ if(isset($_POST['nyPassordKnapp']))
     }
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -111,5 +111,8 @@ include "./includefooter.php";
         </div>
 
 </div>
+						<?php
+include "./includefooter.php";
+?>
 </body>
 </html>
