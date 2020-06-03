@@ -43,7 +43,7 @@ include "./includefooter.php";
     <div class="col s12">
       <div class="card">
         <div class="card-image">
-          <img src="images/iceberg.jpg">
+          <img src="img/iceberg.jpg">
           <span class="card-title">Klima</span>
           </div>
           <div class="card-content">
