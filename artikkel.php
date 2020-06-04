@@ -33,7 +33,7 @@ if(isset($_POST['btn-logout']))
 
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 
   
 
@@ -99,6 +99,9 @@ if(isset($_POST['kommenter']))
         
       </div>
     </div>
+							<?php
+include "./includefooter.php";
+?>
   <!-- KOMMENTARER -->
     <?php 
     $result = $user->getKommentar($artID);

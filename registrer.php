@@ -107,22 +107,22 @@ include "./includefooter.php";
             }
             ?>
             <div class="form-group">
-            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn" style="margin-left:510px;" value="<?php if(isset($error)){echo $bnavn;}?>" />
+            <input type="text" class="form-control" name="Brukernavn" placeholder="Skriv inn brukernavn"" value="<?php if(isset($error)){echo $bnavn;}?>" />
             </div>
             <div class="form-group">
-            <input type="email" class="form-control" name="Epost" placeholder="Skriv inn epost" style="margin-left:510px; value="<?php if(isset($error)){echo $epost;}?>" />
+            <input type="email" class="form-control" name="Epost" placeholder="Skriv inn epost" value="<?php if(isset($error)){echo $epost;}?>" />
             </div>
             <div class="form-group">
-             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" style="margin-left:510px;" />
+             <input type="password" class="form-control" name="Passord" placeholder="Skriv inn passord" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" style="margin-left:510px;" />
+             <input type="text" class="form-control" name="Fnavn" placeholder="Fornavn" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" style="margin-left:510px;" />
+             <input type="text" class="form-control" name="Enavn" placeholder="Etternavn" />
             </div>
             <div class="form-group">
-             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" style="margin-left:510px;" />
+             <input type="text" class="form-control" name="Telefon" placeholder="Telefonnummer" />
             </div>
             <div class="clearfix"></div><hr />
             <div class="form-group">
@@ -131,7 +131,9 @@ include "./includefooter.php";
                 </button>
             </div>
             <br />
-            <label style="margin-left:496px;">Har du konto? <a href="logginn.php">Log inn</a></label>
+            <div class="form-group">
+               <label>Har du konto? <a style="font-weight:bold" href="logginn.php">Log Inn Her</a></label>
+            </div>
         </form>
        </div>
    </div>

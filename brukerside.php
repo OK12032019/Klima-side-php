@@ -104,7 +104,7 @@ foreach($profilBilde as $row){
 
 
 include "./minmeny.php";
-include "./includefooter.php";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -196,6 +196,9 @@ include "./includefooter.php";
             <div class="card-content white-text">
             <!-- INTERRESSER NY -->
             <!-- DROPDOWN LISTE MED ALLEREDE REGISTRERTE INTERRESER -->
+									<?php
+include "./includefooter.php";
+?>
             <form method="post">
             <h2> Legg til en ny interesse </h2>
             <select name ="interesser">

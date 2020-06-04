@@ -33,7 +33,7 @@ else{
     $lagTabel= False;
 }
 include "./minmeny.php";
-include "./includefooter.php";
+
 
 ?>
 
@@ -56,7 +56,11 @@ include "./includefooter.php";
  
 <main>
 <div class="container">
+
 <table>
+						<?php
+include "./includefooter.php";
+?>
     <?php
     if($lagTabel == True){
         #echo ('<tr><td>');

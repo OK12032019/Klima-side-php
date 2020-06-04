@@ -21,6 +21,18 @@ hr {
     overflow: visible;
     /* 2 */
 }
+
+
+/* LOGIN OG REGISTRERING INPUT BOX STYLING */
+.form-group input {
+    margin: auto;
+    display: block;
+}
+
+.form-group {
+    text-align: center;
+}
+
 /* CUSTOM */
 .invis
 {
@@ -29,7 +41,7 @@ hr {
 @media (max-width: 600px)
 {
     nav .nav-wrapper{
-        height: auto !important; 
+        height: auto !important;
     }
     .nav-wrapper
     {
@@ -42,9 +54,9 @@ hr {
       }
       .nav-wrapper a {
         color: white;
-        padding: 14px 16px;
+        padding: 18px 10px;
         text-decoration: none;
-        font-size: 50px;
+        font-size: 20px;
         display: block;
         
       }
@@ -153,22 +165,20 @@ https://codepen.io/erikterwan/pen/EVzeRP */
   }
   
   .sidenav li > a {
+    background-color: #ee6e73;
     color: rgba(0, 0, 0, 0.87);
     display: block;
     font-size: 14px;
     font-weight: 500;
-    height: 48px;
-    line-height: 48px;
-    padding: 0 32px;
+    height: 40px;
+    line-height: 35px;
+    padding: 2px 40px;
   }
   
   .sidenav li > a:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: lightsalmon;
   }
-  
-  .sidenav li > a.btn, .sidenav li > a.btn-large, .sidenav li > a.btn-small, .sidenav li > a.btn-large, .sidenav li > a.btn-flat, .sidenav li > a.btn-floating {
-    margin: 10px 15px;
-  }
+
   
   .sidenav li > a.btn, .sidenav li > a.btn-large, .sidenav li > a.btn-small, .sidenav li > a.btn-large, .sidenav li > a.btn-floating {
     color: #fff;
@@ -179,7 +189,7 @@ https://codepen.io/erikterwan/pen/EVzeRP */
   }
   
   .sidenav li > a.btn:hover, .sidenav li > a.btn-large:hover, .sidenav li > a.btn-small:hover, .sidenav li > a.btn-large:hover {
-    background-color: #2bbbad;
+    background-color: lightsalmon;
   }
   
   .sidenav li > a.btn-floating:hover {
@@ -312,7 +322,7 @@ https://codepen.io/erikterwan/pen/EVzeRP */
   
   .sidenav .collapsible-body > ul:not(.collapsible) > li.active a,
   .sidenav.sidenav-fixed .collapsible-body > ul:not(.collapsible) > li.active a {
-    color: #fff;
+    color: lightgreen;
   }
   
   .sidenav .collapsible-body {
@@ -653,7 +663,8 @@ div#calendar{
     color: black;
   }  
 /* TOAST  TO DO */
-#toast-container {
+#toast-
+ {
     display: block;
     position: fixed;
     z-index: 10000;
@@ -905,13 +916,10 @@ nav.nav-extended {
     nav .brand-logo.right {
       right: 0.5rem;
       left: auto;
+      padding: 0;
     }
   }
   
-  nav .brand-logo.right {
-    right: 0.5rem;
-    padding: 0;
-  }
   
   nav .brand-logo i,
   nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"],
