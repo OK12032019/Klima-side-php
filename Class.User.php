@@ -1189,17 +1189,4 @@ class USER
       }
       }
    }   
-/* INSERT INTO fylke (fylkenavn) VALUES ('testdal'),
-('Oslo'),
-('Rogaland'),
-('Møre og Romsdal'),
-('Norland'),
-('Viken'),
-('Innland'),
-('Vestfold og Telemark'), 
-('Agder'), 
-('Vestland'), 
-('Trøndelag'),
-('Troms og Finnmark');
-*/
 ?>
