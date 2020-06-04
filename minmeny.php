@@ -18,7 +18,7 @@ if($btype == 1){
     <div class="nav-wrapper">
         <a href="default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="backend.php">Artikler</a></li>
+        <li><a href="artikkler.php">Artikler</a></li>
         <li><a href="brukerside.php">Profil</a></li>
         <li><a href="sok.php">Administrere brukere</a></li>
         <li><a href="meldinger.php">Meldinger</a></li>
@@ -52,9 +52,9 @@ else if($btype == 2){
     <div class="nav-wrapper">
         <a href="default.php" class="brand-logo"><img src="images/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
         <ul id="nav-mobile" class="right">
-        <li><a href="backend.php">Artikler</a></li>
+        <li><a href="artikkler.php">Artikler</a></li>
         <li><a href="brukerside.php">Profil</a></li>
-        <li><a href="sok.php">Administrere brukere</a></li>
+        <li><a href="sok.php">Søk</a></li>
         <li><a href="meldinger.php">Meldinger</a></li>
         <li><a href="regelside.php">Regler</a></li>
         <li><a href="lesmelding.php">Lesmelding</a></li>
