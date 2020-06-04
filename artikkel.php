@@ -46,7 +46,7 @@ $arttekst = $row['arttekst'];
 }
 $Bilde = $user->getBilde($artID);
         if(empty($Bilde)){
-            $hvor='images/iceberg.jpg';
+            $hvor='img/iceberg.jpg';
         }
         foreach($Bilde as $row){
             $hvor=$row['hvor'];           
@@ -107,7 +107,9 @@ include "./includefooter.php";
     $result = $user->getKommentar($artID);
     foreach($result as $row){
         $komtekst = $row['komtekst'];
-        $komBruker = $row['bruker'];
+        $komBrukerid = $row['bruker'];
+        $brukeravnResult = $user->getBrukernavn($komBrukerid);
+        $komBruker = $brukeravnResult['brukernavn'];
         echo <<<EOT
         <div class="card-panel grey lighten-5 z-depth-1">
           <div class="row valign-wrapper">
