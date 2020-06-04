@@ -12,17 +12,20 @@ else{
 if($btype == 1){
 
    ?>   
+
     <nav class>
         <div class="nav-wrapper">
             <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
-            <li><a href="backend.php">Artikler</a></li>
-            <li><a href="brukerside.php">Profil</a></li>
-            <li><a href="sok.php">Administrere brukere</a></li>
-            <li><a href="meldinger.php">Meldinger</a></li>
-            <li><a href="regelside.php">Regler</a></li>
-            <li><a href="lesmelding.php">Lesmelding</a></li>
-            <li><a href="nymelding.php">Nymelding</a></li>
-            <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
+            <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="backend.php">Artikler</a></li>
+                <li><a href="brukerside.php">Profil</a></li>
+                <li><a href="sok.php">Administrere brukere</a></li>
+                <li><a href="meldinger.php">Meldinger</a></li>
+                <li><a href="regelside.php">Regler</a></li>
+                <li><a href="lesmelding.php">Lesmelding</a></li>
+                <li><a href="nymelding.php">Nymelding</a></li>
+                <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
             </ul>
         </div>
 
@@ -111,7 +114,8 @@ foreach($result as $row) {
     <nav class>
         <div class="nav-wrapper">
             <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
-            <ul id="nav-mobile" class="right ">
+            <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
                 <li class="customLi"><a href="artikkler.php">Artikler</a></li>
                 <li class="customLi"><a href="brukerside.php">Profil</a></li>
                 <li class="customLi"><a href="regelside.php">Regler</a></li>
@@ -149,15 +153,15 @@ else{
             <a href="#!" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
             <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="registrer.php">registrer</a></li>
-                <li><a href="logginn.php">Logg in</a></li>
+                <li><a href="registrer.php">Registrer</a></li>
+                <li><a href="logginn.php">Logg Inn</a></li>
             </ul>
         </div>
     </nav>
 
   <ul class="sidenav hide-on-large-only" id="mobile-demo">
-    <li><a href="registrer.php">registrer</a></li>
-    <li><a href="logginn.php">Logg in</a></li>
+    <li><a href="registrer.php">Registrer</a></li>
+    <li><a href="logginn.php">Logg Inn</a></li>
   </ul>
 
 	 <?php
