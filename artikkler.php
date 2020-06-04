@@ -71,7 +71,7 @@ include "./includefooter.php";
         $artID = $row['idartikkel'];
         $Bilde = $user->getBilde($artID);
         if(empty($Bilde)){
-            $hvor='images/iceberg.jpg';
+            $hvor='img/iceberg.jpg';
         }
         foreach($Bilde as $row){
             $hvor=$row['hvor'];           
