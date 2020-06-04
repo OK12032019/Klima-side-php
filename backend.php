@@ -119,7 +119,7 @@ include "./includefooter.php";
                         $fylkeNavn = $fylkeNavn[0]['fylkenavn'];
                         $Bilde = $user->getEventBilde($eventID);
                         if(empty($Bilde)){
-                            $hvor='images/iceberg.jpg';
+                            $hvor='img/iceberg.jpg';
                         }
                         else{
                             $hvor=$Bilde[0]['hvor'];           

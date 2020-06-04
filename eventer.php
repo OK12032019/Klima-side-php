@@ -41,10 +41,12 @@ foreach($result as $row){
     $eventtekst = $row['eventtekst'];
     $veibeskrivelse = $row['veibeskrivelse'];
     $tidspunkt = $row['tidspunkt'];
-    $fylke = $row['fylke'];
+    $fylkeid = $row['fylke'];
+    $fylkenavnresult = $user->getFylkeNavn($fylkeid);
+    $fylkenavn = $fylkenavnresult[0]['fylkenavn'];
     $Bilde = $user->getEventBilde($eventID);
         if(empty($Bilde)){
-            $hvor='images/iceberg.jpg';
+            $hvor='img/iceberg.jpg';
         }
         else{
             $hvor=$Bilde[0]['hvor'];           
@@ -97,7 +99,7 @@ if(isset($_POST['kommenter']))
             <section> <h3>tidspunkt:</h3>
             <?php echo $tidspunkt; ?><br><div class="divider"></div>
             <section> <h3>Fylke:</h3>
-            <?php echo $fylke; ?><br><div class="divider"></div>
+            <?php echo $fylkenavn; ?><br><div class="divider"></div>
             </p>
          </div>
         </div>

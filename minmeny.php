@@ -23,8 +23,7 @@ if($btype == 1){
         <li><a href="sok.php">Administrere brukere</a></li>
         <li><a href="meldinger.php">Meldinger</a></li>
         <li><a href="regelside.php">Regler</a></li>
-        <li><a href="lesmelding.php">Lesmelding</a></li>
-        <li><a href="nymelding.php">Nymelding</a></li>
+        <li><a href="nymelding.php">Ny Melding</a></li>
         <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
         </ul>
     </div>
@@ -52,14 +51,13 @@ else if($btype == 2){
     <div class="nav-wrapper">
         <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
         <ul id="nav-mobile" class="right">
-        <li><a href="Artikkel.php">Artikler</a></li>
-        <li><a href="brukerside.php">Profil</a></li>
-        <li><a href="sok.php">Administrere brukere</a></li>
-        <li><a href="meldinger.php">Meldinger</a></li>
-        <li><a href="regelside.php">Regler</a></li>
-        <li><a href="lesmelding.php">Lesmelding</a></li>
-        <li><a href="nymelding.php">Nymelding</a></li>
-        <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
+        <li class="customLi"><a href="Artikkel.php">Artikler</a></li>
+        <li class="customLi"><a href="brukerside.php">Profil</a></li>
+        <li class="customLi"><a href="sok.php">Søk</a></li>
+        <li class="customLi"><a href="meldinger.php">Meldinger</a></li>
+        <li class="customLi"><a href="regelside.php">Regler</a></li>
+        <li class="customLi"><a href="nymelding.php">Ny Melding</a></li>
+        <li class="customLi"><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
         </ul>
     </div>
 </nav>
@@ -90,12 +88,13 @@ foreach($result as $row) {
         <ul id="nav-mobile" class="right ">
         <li class="customLi"><a href="artikkler.php">Artikler</a></li>
 		<li class="customLi"><a href="brukerside.php">Profil</a></li>
-		<li><a href="regelside.php">Regler</a></li>
+		<li class="customLi"><a href="regelside.php">Regler</a></li>
 		<li class="customLi"><a href="backend.php">Arrangementer</a></li>
 		<li class="customLi"><a href="sok.php">Søk</a></li>
 		<li class="customLi"><a href="meldinger.php">Meldinger</a></li>
 		<li class="customLi"><a href="rapport.php">Rapporter bruker</a></li>
 		<li class="customLi"><a href="passord.php">Nullstill Passord</a></li>
+        <li class="customLi"><a href="nymelding.php">Ny Melding</a></li>
         <li class="customLi"><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
         </ul>
     </div>
