@@ -65,7 +65,7 @@ if(isset($_POST['nyPassordKnapp']))
     }
 }
 include "./minmeny.php";
-
+include "./includefooter.php";
 ?>
 
 <!DOCTYPE html>
@@ -87,23 +87,28 @@ include "./minmeny.php";
     <div class ="row">
         <div class="card blue-grey darken-1">
             <form method="post">
-                <h2>Logg Inn</h2><hr />
-                <input type="text" name="brukernavn" placeholder="Brukernavn eller epost" required />
-                
+                <h2 style="text-align: center;">Logg Inn</h2><hr />
+                <div class="form-group">
+                    <input type="text" name="brukernavn" placeholder="Brukernavn eller epost" required />
+                </div>
+                <div class="form-group">
                 <input type="password"  name="pass" placeholder="Passord" required />
-                
-                <button class="btn waves-effect waves-light" type="submit" name="btn-login">Logg in
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="btn-login">Logg Inn
                     <i class="material-icons right">send</i>
                 </button>
+                <div class="form-group">
+                    <label>Har du ikke konto? <a style="font-weight:bold" href="registrer.php">Registrer her</a></label>
+                </div>
             </form>
-        
-            <label>Har du ikke konto? <a href="registrer.php">Registrer her</a></label>
+
         </div>
         <div class="card blue-grey darken-1">
             <form method="post">
-                <h2> glemt passord? </h2>
-                <label>Skriv eposten din</label>
-                <input type="email" name="email">
+                <h2 style="text-align: center;"> Glemt Passord? </h2><hr />
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Skriv eposten din">
+                </div>
                 <button class="btn waves-effect waves-light" type="submit" name="nyPassordKnapp">Reset passord
                     <i class="material-icons right">send</i>
                 </button>
@@ -111,8 +116,5 @@ include "./minmeny.php";
         </div>
 
 </div>
-						<?php
-include "./includefooter.php";
-?>
 </body>
 </html>
