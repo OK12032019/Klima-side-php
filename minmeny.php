@@ -40,7 +40,7 @@ if($btype == 1){
             <li><a href="nymelding.php">Nymelding</a></li>
             <li><a href="logout.php">Logg ut</a></li>   
         </ul>
-
+    </nav> 
         <nav class="nav-extended">
             <div class="nav-content">
                 <ul class="tabs tabs-transparent">
@@ -53,7 +53,7 @@ if($btype == 1){
                     <li class="tab"><a href="backendadmin.php">Kvalifiser Bruker</a></li>
                 </ul>
             </div>
-    </nav>   
+        </nav>   
 
 	<?php
    }
