@@ -87,7 +87,7 @@ include "./minmeny.php";
                     <table>
                         <tr>
                             <td>Brukernavn:</td> 
-                            <td class="regtextbox"><input type="text" name="Brukernavn" placeholder="Epost" value="<?php if(isset($error)){echo $bnavn;}?>"></td>
+                            <td class="regtextbox"><input type="text" name="Brukernavn" placeholder="brukernavn" value="<?php if(isset($error)){echo $bnavn;}?>"></td>
                         </tr>
                         <tr>
                             <td>Gammelt Passord:</td> 

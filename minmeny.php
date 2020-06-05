@@ -24,8 +24,7 @@ if($btype == 1){
                 <li><a href="sok.php">Administrere brukere</a></li>
                 <li><a href="meldinger.php">Meldinger</a></li>
                 <li><a href="regelside.php">Regler</a></li>
-                <li><a href="lesmelding.php">Lesmelding</a></li>
-                <li><a href="nymelding.php">Nymelding</a></li>
+                <li><a href="nymelding.php">Ny melding</a></li>
                 <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
             </ul>
         </div>
@@ -38,7 +37,6 @@ if($btype == 1){
         <li><a href="sok.php">Administrere brukere</a></li>
         <li><a href="meldinger.php">Meldinger</a></li>
         <li><a href="regelside.php">Regler</a></li>
-        <li><a href="lesmelding.php">Lesmelding</a></li>
         <li><a href="nymelding.php">Nymelding</a></li>
         <li><a href="logout.php">Logg ut</a></li>
     </ul>
@@ -61,8 +59,7 @@ else if($btype == 2){
                 <li><a href="sok.php">Administrere brukere</a></li>
                 <li><a href="meldinger.php">Meldinger</a></li>
                 <li><a href="regelside.php">Regler</a></li>
-                <li><a href="lesmelding.php">Lesmelding</a></li>
-                <li><a href="nymelding.php">Nymelding</a></li>
+                <li><a href="nymelding.php">Ny melding</a></li>
                 <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
             </ul>
         </div>
@@ -75,8 +72,7 @@ else if($btype == 2){
         <li><a href="sok.php">Administrere brukere</a></li>
         <li><a href="meldinger.php">Meldinger</a></li>
         <li><a href="regelside.php">Regler</a></li>
-        <li><a href="lesmelding.php">Lesmelding</a></li>
-        <li><a href="nymelding.php">Nymelding</a></li>
+        <li><a href="nymelding.php">Ny Melding</a></li>
         <li><a href="logout.php">Logg ut</a></li>
     </ul>
     
@@ -115,6 +111,7 @@ foreach($result as $row) {
                 <li class="customLi"><a href="meldinger.php">Meldinger</a></li>
                 <li class="customLi"><a href="rapport.php">Rapporter bruker</a></li>
                 <li class="customLi"><a href="passord.php">Nullstill Passord</a></li>
+                <li class="customLi"><a href="nymelding.php">Ny melding</a></li>
                 <li class="customLi"><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
             </ul>
         </div>
