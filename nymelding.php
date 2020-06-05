@@ -100,7 +100,7 @@ include "./minmeny.php";
     }
       
     ?>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>

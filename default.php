@@ -66,7 +66,7 @@ include "./minmeny.php";
 
       </div>
 </div>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
   </body>

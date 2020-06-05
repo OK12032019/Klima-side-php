@@ -110,7 +110,7 @@ if(isset($_POST['kommenter']))
     </div>
 </div>
 </div>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>

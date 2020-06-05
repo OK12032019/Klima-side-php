@@ -51,9 +51,6 @@ include "./minmeny.php";
 <title> Klima</title>
 </head>
 <body>
-						<?php
-include "./includefooter.php";
-?>
     <?php 
     /* Get and Show Articles*/
     $result=$user->getArtikkler();
@@ -102,6 +99,8 @@ include "./includefooter.php";
     </div>
 </div>
 <div class ="row">
-
+<?php
+include "./includefooter.php";
+?>
 </body>
 </html>

@@ -107,7 +107,7 @@ include "./minmeny.php";
                 </form>
             </div>
         </main>
-								<?php
+<?php
 include "./includefooter.php";
 ?>
     </body>

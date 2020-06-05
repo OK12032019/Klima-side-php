@@ -86,7 +86,7 @@ if(isset($_POST['nyRegel']))
     $user->setRegler($regeltekst, $brukerid);
 }
 ?>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>

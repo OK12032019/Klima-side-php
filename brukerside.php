@@ -131,9 +131,9 @@ include "./minmeny.php";
 
 
 <body>
-    <h3>DEBUGGER:</h3>
+    <!--<h3>DEBUGGER:</h3>
     <?php
-    var_dump($debug);
+    //var_dump($debug);
     ?>
     -->
     <div  class="container">
@@ -200,9 +200,6 @@ include "./minmeny.php";
             <div class="card-content white-text">
             <!-- INTERRESSER NY -->
             <!-- DROPDOWN LISTE MED ALLEREDE REGISTRERTE INTERRESER -->
-									<?php
-include "./includefooter.php";
-?>
             <form method="post">
             <h2> Legg til en ny interesse </h2>
             <select name ="interesser">
@@ -289,7 +286,9 @@ include "./includefooter.php";
             </div>
         
     </div>
-
+    <?php
+    include "./includefooter.php";
+    ?>
 </body>
 
    <!-- SKRIVE ARTIKLER TODO kun for brukertype 2elns 
