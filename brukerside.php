@@ -127,11 +127,6 @@ include "./minmeny.php";
 
 
 <body>
-    <h3>DEBUGGER:</h3>
-    <?php
-    var_dump($debug);
-    ?>
-    -->
     <div  class="container">
         <h1 style="margin-top: 150px;">Brukerside for <?php echo $username;?></h1>
         <!-- TODO Bruker bilde -->
@@ -149,7 +144,7 @@ include "./minmeny.php";
                         <form method="post" enctype="multipart/form-data">
                         Select image to upload:
                         <input type="file" name="file">
-                        <button type="submit" class="btn" name="setProfilBilde">
+                        <button type="submit" class="btn" name="setProfilBilde">Legg til Profilbilde
                         <i class="material-icons right">send</i>
                         </button>
                         </form>
@@ -179,12 +174,12 @@ include "./minmeny.php";
             <div class="col s12 m6">
                 <div class="card blue-grey darken-1 ">
                     <div class="card-content white-text">
-                    <span class="card-title">Bio</span>
-                    <p>
-                        <?php $bio = $user->getBio($brukerid);
-                        echo $bio[0]['beskrivelse'];
-                        ?>
-                    </p>
+                        <h2>Bio</h2>
+                        <p>
+                            <?php $bio = $user->getBio($brukerid);
+                            echo $bio[0]['beskrivelse'];
+                            ?>
+                        </p>
                     </div>
                 </div>
             </div>
