@@ -62,27 +62,14 @@ include "./minmeny.php";
 
     <body>
         <main>
- 
-
-            
-            <div class="Passord">
+        <div class="container">
+    <div class="center-align">
+    <div class ="row">
+        <div class="card blue-grey darken-1">
               <!--  Password Reset Form -->
                 <form method="POST">
                   <h1>Nytt Passord</h1>
-                  <?php
-                  /* Show Errors Here*/
-            if(isset($error))
-            {
-               foreach($error as $error)
-               {
-                  ?>
-                  <div class="alert alert-danger">
-                      <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
-                  </div>
-                  <?php
-               }
-            }
-            ?>
+                  
                   <p>Vennligst skriv inn brukernavnet din og det nye passordet</p>
                     <table>
                         <tr>
@@ -104,7 +91,11 @@ include "./minmeny.php";
                         </table>
                     <input type='submit' id='btn' value='PassordReset' name='PassordReset' />
                 </form>
-            </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            
         </main>
 <?php
 include "./includefooter.php";

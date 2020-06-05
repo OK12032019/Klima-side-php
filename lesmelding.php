@@ -44,7 +44,7 @@ include "./minmeny.php";
 </head>
 <body>
 
-    <div class="container1">
+    <div class="container">
         <h1 class="meldinger-tittel">Meldinger</h1>
       </div>
 		

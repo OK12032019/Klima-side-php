@@ -44,9 +44,9 @@ include "./minmeny.php";
 </head>
 <body>
 
-    <div class="container1">
+    <div class="container">
         <h1>Meldinger</h1>
-      </div>
+      
 		
 	<section id="tekst">
 	    <div class="content clearfix">
@@ -163,7 +163,8 @@ include "./minmeny.php";
                 </div>
             </div>    
         </div>
-    </section>
+    </div>
+    </div>
 <?php
 include "./includefooter.php";
 ?>

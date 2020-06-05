@@ -398,6 +398,7 @@ ol {
     height: 2.5rem;  
     background-color: #ee6e73;
     border-bottom:50px solid #ee6e73;
+    position: absolute;
 }
 /* RANDOM CSS IMPORT see https://i.redd.it/8a5ccw86uvc11.jpg 
 Stryling for noen kort men kan ikke gjøres på noen annen måte, "!important" ???? */

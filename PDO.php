@@ -39,6 +39,5 @@ include_once 'Class.User.php';
 $user = new USER($DB_con);
 
 include 'Class.Calendar.php';
-include 'Class.Artikkel.php';
 
 ?>

@@ -45,9 +45,9 @@ include "./minmeny.php";
     </head>
     <body>
 
-    <div class="container1">
+    <div class="container">
         <h1>Advarsel</h1>
-    </div>
+    
 
 
 <?php
@@ -181,7 +181,7 @@ if(isset($_POST['Ekskluder']))
     $user->setEkskludering($grunnlag, $datofra, $datotil, $mottaker, $brukerid);
 }
 ?>  
-
+</div>
 
 <?php
 include "./includefooter.php";
