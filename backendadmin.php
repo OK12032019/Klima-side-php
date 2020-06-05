@@ -164,15 +164,25 @@ include "./minmeny.php";
 </head>
 <body>
 <div class="container">
-        <h1>Klima</h1>
-	<h2> Du er logget inn som administrator</h2>
+    <h1 style="text-align: center;">Klima</h1>
+	<h2 style="text-align: center;"> Du er logget inn som administrator</h2><br>
 
-	<a href="advarsel.php"><p> Sett bruker i karantene</p> </a>
-	<a href="backendadmin.php"><p> Utvise bruker</p></a>
-    <a href="advarsel.php"><p> Gi advarsel</p></a>
-    <p><a href="#lageEvent"> Lage et nytt event</a></p>
-    <p><a href="#skrivArtikkel"> Skriv ny Artikkel </a></p>
-	<p><a href="#nyRegel"> Lag en ny regel </a></p>
+
+    <h3 style="text-align: center;">Admin Verktøy:</h3>
+	<p style="text-align: center;"><a href="advarsel.php"><u> Sett bruker i karantene</u></a></p>
+	<p style="text-align: center;"><a href="backendadmin.php"><u> Utvise bruker</u></a></p>
+    <p style="text-align: center;"><a href="advarsel.php"><u> Gi advarsel</u></a></p>
+    <p style="text-align: center;"><a href="#lageEvent"><u>Lage et nytt event</u></a></p>
+    <p style="text-align: center;"><a href="#skrivArtikkel"><u>Skriv ny Artikkel</u></a></p>
+    <p style="text-align: center;"><a href="#nyRegel"><u>Lag en ny regel</u></a></p>
+    <p style="text-align: center;"><a href="advarsel.php"><u>Advare Bruker</u></a></p>
+    <p style="text-align: center;"><a href="advarsel.php"><u>Karantene Ekskluderer Bruker</u></a></p>
+    <p style="text-align: center;"><a href="advarsel.php"><u>Avregistrering Bruker</u></a></p>
+    <p style="text-align: center;"><a href="#lageEvent"><u>Rapport om Brukermisbruk</u></a></p>
+    <p style="text-align: center;"><a href="#lageEvent"><u>Rediger Regler</u></a></p>
+    <p style="text-align: center;"><a href="#lageEvent"><u>Kvalifiser Bruker</u></a></p><br>
+
+
                 <div class="calendar">
                     <script>
                     function getDate(clicked_id) 
@@ -190,10 +200,8 @@ include "./minmeny.php";
                
 
 			   <div>
-                    <h2>Ting som skjer denne måneden</h2>
-											<?php
-include "./includefooter.php";
-?>
+                    <br> 
+                    <h2 style="text-align: center;">Ting som skjer denne måneden</h2>
                     <br>
                     <?php
                     if(isset($_GET['month'])){
@@ -355,6 +363,11 @@ include "./includefooter.php";
             </form>
         </div>
     </div>
+
+    <?php
+        include "./includefooter.php";
+    ?>
+    
     </section>
 
 </body>
