@@ -23,6 +23,7 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+/* brukere har same interest*/
 if(isset($_POST['interesse']))
 {
     $interesseId= trim($_POST['interesser']);
@@ -55,50 +56,51 @@ include "./minmeny.php";
 
  
 <main>
-    
-    <div class="container">
-        <form method="post">
-            <h2> Søk etter andre brukere etter interrese </h2>
-                <select name ="interesser">
-                    <?php
-                        $result = $user-> getInterreser();
-                        foreach($result as $row)
-                        {
-                            $interesse = $row['interessenavn'];
-                            $interesseid = $row['idinteresse'];
-                            echo <<<EOT
-                                <option value="$interesseid">$interesse</option> 
-                            EOT;
+<div class="container">
 
-                        }
-                    ?>
-                </select>
-                <button class="btn-large waves-effect waves-light" type="submit" name="interesse">Søk
-                    <i class="material-icons right">send</i>
-                </button>
-        </form>
-
-    <table>              
-        <?php
-            if($lagTabel == True){
-                foreach($BrukerArray as $brukernavnSok)
-                    {
-                        $bn = $brukernavnSok[0]['brukernavn'];
-                        {
-                            echo <<<EOT
-                                <tr><td>$bn</td></tr>
-                                EOT;
-                        }
-                }
-            }
-        ?>
-    </table>    
-
+<table>
+						<?php
+include "./includefooter.php";
+?>
     <?php
-        include "./includefooter.php";
+    if($lagTabel == True){
+        #echo ('<tr><td>');
+        #print_r($BrukerArray);
+        #echo ('</td></tr><br> <br>');
+        foreach($BrukerArray as $brukernavnSok)
+        {
+            $bn = $brukernavnSok[0]['brukernavn'];
+            {
+                echo <<<EOT
+                    <tr><td>$bn</td></tr>
+                    EOT;
+            }
+        }
+    }
     ?>
 
+</table>
+<!--  Other user interest form -->
+    <form method="post">
+            <h2> Søk etter andre brukere etter interrese </h2>
+            <select name ="interesser">
+                <?php
+                $result = $user-> getInterreser();
+                foreach($result as $row)
+                {
+                    $interesse = $row['interessenavn'];
+                    $interesseid = $row['idinteresse'];
+                    echo <<<EOT
+                        <option value="$interesseid">$interesse</option> 
+                    EOT;
 
+                }
+                ?>
+            </select>
+        <button class="btn-large waves-effect waves-light" type="submit" name="interesse">Søk
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
 </main>
 </body>
 

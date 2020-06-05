@@ -7,16 +7,17 @@ if($user->is_loggedin()!="")
 {
  $user->redirect('backend.php');
 }
-
+/* Logged User Button*/
 if(isset($_POST['btn-login']))
 {
 	$bnavn = $_POST['brukernavn'];
     $pw = $_POST['pass'];
-        
+       /* Check User if exist or not */   
     if($user->feilLoginAntall($bnavn))
     {
         if($user->sjekkOgNullstill($bnavn))
         {
+            /* Do login user and set SESSION for user */
             if($user->login($bnavn, $pw));
             {
                 $user->redirect($url);
@@ -35,14 +36,17 @@ if(isset($_POST['btn-login']))
         }
         else
         {
+            /* If Already login so update date time*/
             $user->setFeilLoginSiste($bnavn);
             $user->feilLoginTeller($bnavn);
         }     
     }
 }
+/* Password Button */
 if(isset($_POST['nyPassordKnapp']))
 {
     $email = $_POST['email'];
+      /* check user email already exist or not*/
     if($user->epostFinnes($email))
     {
         $to = $email;

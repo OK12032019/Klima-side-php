@@ -7,6 +7,7 @@ if($user->is_loggedin()!="")
     $user->redirect('backend.php');
 }
 
+/* When User SignUp*/
 if(isset($_POST['registrer']))
 {
    $bnavn = trim($_POST['Brukernavn']);
@@ -17,6 +18,7 @@ if(isset($_POST['registrer']))
    $telefon = trim($_POST['Telefon']);
    $btype= "3";
 
+   /* Validation for Registration */
    if($bnavn=="") {
       $error[] = "Oppgi brukernavn!"; 
    }
@@ -36,10 +38,12 @@ if(isset($_POST['registrer']))
    {
       try
       {
+         /* Get Users */
          $stmt = $DB_con->prepare("SELECT brukernavn,epost FROM bruker WHERE brukernavn=:bnavn OR epost=:epost");
          $stmt->execute(array(':bnavn'=>$bnavn, ':epost'=>$epost));
          $row=$stmt->fetch(PDO::FETCH_ASSOC);
     
+         /* condition for already exist user name and email*/
          if($row['brukernavn']==$bnavn) {
             $error[] = "Bekalger, brukernavnen er allerede i bruk!";
          }
@@ -48,6 +52,7 @@ if(isset($_POST['registrer']))
          }
          else
          {
+              /* Otherwise registered user with given data*/
             if($user->register($bnavn,$epost,$pw,$btype,$fnavn,$enavn,$telefon,$btype)) 
             {
                 $user->redirect('logginn.php');
@@ -83,11 +88,13 @@ include "./includefooter.php";
   <div class="femti">
 <div class="container">
      <div class="form-container">
+       <!--  Register Form -->
         <form method="post">
             <h2 style="text-align:center;">Registrering</h2><hr />
             <?php
             if(isset($error))
             {
+               /* Show Errors */
                foreach($error as $error)
                {
                   ?>

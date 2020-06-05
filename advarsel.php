@@ -51,6 +51,7 @@ include "./minmeny.php";
 
 
 <?php
+/* Get ads for unregistered users*/
 if($Brukertype == 3){ ?>
     <section id="tekst">
         <div class="content clearfix">
@@ -68,11 +69,12 @@ if($Brukertype == 3){ ?>
     </section>
 <?php
 }
-
+/* Det her er for Admin*/
 elseif($Brukertype == 1){ ?>
 
 <div class="advarsel">
     <?php
+    /* Get all ads for admin */
         $result = $user ->getAdvarselAdmin();
         foreach($result as $row) {
             echo $row['advarseltekst'], '<br>';
@@ -163,12 +165,13 @@ else{
 
 
 <?php
-
+/* for insert ad*/
 if(isset($_POST['Advarsel']))
 {
     $advarseltekst = trim($_POST['advarseltekst']);
     $user->setAdvarsel($advarseltekst, $brukerid, $mottaker);
 }
+/* for insert Exclude Detail */
 if(isset($_POST['Ekskluder']))
 {
     $grunnlag = trim($_POST['grunnlag']);

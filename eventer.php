@@ -32,7 +32,7 @@ if(isset($_POST['btn-logout']))
 include "./minmeny.php";
 
   
-
+/* Get Event by event ID*/
 $eventID = $_GET["eventid"];
 $result = $user->getevent($eventID);
 foreach($result as $row){
@@ -42,6 +42,7 @@ foreach($result as $row){
     $veibeskrivelse = $row['veibeskrivelse'];
     $tidspunkt = $row['tidspunkt'];
     $fylkeid = $row['fylke'];
+    /* Get Event Images */
     $fylkenavnresult = $user->getFylkeNavn($fylkeid);
     $fylkenavn = $fylkenavnresult[0]['fylkenavn'];
     $Bilde = $user->getEventBilde($eventID);
@@ -52,6 +53,7 @@ foreach($result as $row){
             $hvor=$Bilde[0]['hvor'];           
         }
 }
+/* Get Article Comments */
 if(isset($_POST['kommenter']))
 {
     $ingress = 'test';

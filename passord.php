@@ -10,7 +10,7 @@ if (EMPTY($_SESSION['user_session'] )) {
 
 } 
 
-
+/* User Redirecto Password reset*/
 if(isset($_POST['PassordReset']))
 {
   $bnavn = $_POST['Brukernavn'];
@@ -25,6 +25,7 @@ if(isset($_POST['PassordReset']))
     {
     try
     {  
+      /* Update Password given by user*/
       if($user->PassordReset($bnavn,$pw,$npw))
         {
         $user->redirect('backend.php');
@@ -66,9 +67,11 @@ include "./minmeny.php";
 
             
             <div class="Passord">
+              <!--  Password Reset Form -->
                 <form method="POST">
                   <h1>Nytt Passord</h1>
                   <?php
+                  /* Show Errors Here*/
             if(isset($error))
             {
                foreach($error as $error)

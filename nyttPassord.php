@@ -15,6 +15,8 @@ if(isset($_SESSION['pwReset']) === False)
 {
     $user->redirect('default.php');
 }
+
+/* Password Reset Button*/
 if(isset($_POST['passordKnapp']))
 {
     $pw= $_POST['pass'];
@@ -48,6 +50,7 @@ if(isset($_POST['passordKnapp']))
     <div class="center-align">
     <div class ="row">
         <div class="card blue-grey darken-1">
+        <!--  Password Reset form -->
             <form method="post">
                 <h2>Logg Inn</h2><hr />
                 <input type="password" name="pass1" placeholder="Passord" required />
