@@ -40,6 +40,9 @@ hr {
 }
 @media (max-width: 600px)
 {
+  nav a {
+    text-decoration: none;
+  }
     nav .nav-wrapper{
         height: auto !important;
     }
@@ -1038,7 +1041,7 @@ nav.nav-extended {
     }
   }
   
-  a {
+  nav a {
     text-decoration: none;
   }
 /* /NAV IMPORT */ 
