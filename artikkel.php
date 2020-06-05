@@ -35,8 +35,7 @@ if(isset($_POST['btn-logout']))
 include "./minmeny.php";
 
 
-  
-
+ /* Get Article by given ID*/ 
 $artID = $_GET["artID"];
 $result = $user->getArtikkel($artID);
 foreach($result as $row){
@@ -44,13 +43,17 @@ $artnavn = $row['artnavn'];
 $artinngress = $row['artinngress'];
 $arttekst = $row['arttekst'];
 }
+/* Get Aritcle Images*/
 $Bilde = $user->getBilde($artID);
+/* Check condition for default image*/
         if(empty($Bilde)){
             $hvor='img/iceberg.jpg';
         }
         foreach($Bilde as $row){
             $hvor=$row['hvor'];           
         }
+
+        /* When Comment Post*/
 if(isset($_POST['kommenter']))
 {
     $ingress = 'test';
@@ -104,6 +107,7 @@ include "./includefooter.php";
 ?>
   <!-- KOMMENTARER -->
     <?php 
+    /* Get and show comments*/
     $result = $user->getKommentar($artID);
     foreach($result as $row){
         $komtekst = $row['komtekst'];
@@ -126,6 +130,7 @@ include "./includefooter.php";
         EOT;
     }
     ?>
+    <!--  Comment Form -->
     <form method="post">
         <div class="form-group shadow-textarea">
             <label for="exampleFormControlTextarea6">Kommentar</label>

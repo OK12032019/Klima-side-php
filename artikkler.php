@@ -55,9 +55,11 @@ include "./minmeny.php";
 include "./includefooter.php";
 ?>
     <?php 
+    /* Get and Show Articles*/
     $result=$user->getArtikkler();
     $counter = 1;
     foreach($result as $row) {
+        /* End after 3 iteration*/
         if($counter % 3 == 0){ 
             $newRow = '';
             $endRow = '</div>';
@@ -66,6 +68,7 @@ include "./includefooter.php";
             $newRow = '<div class="row">';
             $endRow = '';
         } 
+        /* Get image*/
         $artnavn = $row['artnavn'];
         $artinngress = $row['artinngress'];
         $artID = $row['idartikkel'];

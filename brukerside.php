@@ -28,6 +28,7 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+/* Add user Interest */
 if(isset($_POST['interesse']))
 {
     $interesseid = $_POST['interesser'];
@@ -36,6 +37,7 @@ if(isset($_POST['interesse']))
 if(isset($_POST['nyInteresseKnapp']))
 {
     $interessenavn = $_POST['nyInteresse'];
+    /* Check condition on already exist interest */
     if($user->sjekkOmInteresseEksisterer($interessenavn) == True){
         #$interessenavn = 'hahahahha';
         echo('Denne interessen finnes allerede');
@@ -45,13 +47,14 @@ if(isset($_POST['nyInteresseKnapp']))
     }
 
 }
+/* For Simple Interest */
 if(isset($_POST['sletteInteresseKnapp']))
 {
     $interesseid = $_POST['sletteInteresser'];
     $userid = $brukerid;
     $user->sletteInteresse($userid, $interesseid);
 }
-
+/* Set Profile image */
 if(isset($_POST['setProfilBilde']))
 {   
     $file = $_FILES['file'];
@@ -63,7 +66,7 @@ if(isset($_POST['setProfilBilde']))
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
     $allowed = array("jpg", "jpeg", "png");
-
+/* condition on image extenstion and size and then upload */
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 500000) {
@@ -86,6 +89,7 @@ if(isset($_POST['setProfilBilde']))
     echo "You cannot upload files of this type!";
     }
 }
+/* Set Bio here*/
 if(isset($_POST['setBio']))
 {   
    
@@ -94,7 +98,7 @@ if(isset($_POST['setBio']))
 }
 
 $profilBilde = $user->getProfilBilde($brukerid);
-
+/* Set Default image if image is not exist */
 if(empty($profilBilde)){
     $hvor='images/iceberg.jpg';
 }
@@ -127,6 +131,11 @@ include "./minmeny.php";
 
 
 <body>
+    <h3>DEBUGGER:</h3>
+    <?php
+    var_dump($debug);
+    ?>
+    -->
     <div  class="container">
         <h1 style="margin-top: 150px;">Brukerside for <?php echo $username;?></h1>
         <!-- TODO Bruker bilde -->
@@ -144,7 +153,7 @@ include "./minmeny.php";
                         <form method="post" enctype="multipart/form-data">
                         Select image to upload:
                         <input type="file" name="file">
-                        <button type="submit" class="btn" name="setProfilBilde">Legg til Profilbilde
+                        <button type="submit" class="btn" name="setProfilBilde">
                         <i class="material-icons right">send</i>
                         </button>
                         </form>
@@ -174,12 +183,12 @@ include "./minmeny.php";
             <div class="col s12 m6">
                 <div class="card blue-grey darken-1 ">
                     <div class="card-content white-text">
-                        <h2>Bio</h2>
-                        <p>
-                            <?php $bio = $user->getBio($brukerid);
-                            echo $bio[0]['beskrivelse'];
-                            ?>
-                        </p>
+                    <span class="card-title">Bio</span>
+                    <p>
+                        <?php $bio = $user->getBio($brukerid);
+                        echo $bio[0]['beskrivelse'];
+                        ?>
+                    </p>
                     </div>
                 </div>
             </div>
@@ -253,6 +262,7 @@ include "./includefooter.php";
             <div class="card blue-grey darken-1 center-align">
             <div class="card-content white-text">
             <form method="post">
+            <!--  Interest Form -->
             <h2> Lag en ny interesse </h2>
             <textarea name="nyInteresse" id="nyInteresse" cols="35" rows="1" maxlength="45"></textarea>
             <button class="btn-large waves-effect waves-light" type="submit" name="nyInteresseKnapp">Leggtil ny interesse
@@ -268,6 +278,7 @@ include "./includefooter.php";
 
         <div class="col m6 s12">
             <h1>  Ny bio </h1> 
+            <!--  Bio Form -->
                 <form method="post" enctype="multipart/form-data">
                     <textarea name="biotekst" id="artikkelinnhold" cols="50" rows="8" maxlength="1000"></textarea>
                     <input type="file" name="file">

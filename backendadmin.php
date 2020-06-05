@@ -31,6 +31,7 @@ if(isset($_POST['btn-logout']))
     $error = "Kunne ikke logge ut";
     } 
 }
+/* Insert Article*/
 if(isset($_POST['setArtikkel']))
 {   
    
@@ -45,6 +46,7 @@ if(isset($_POST['setArtikkel']))
     $fileTempName = $file['tmp_name'];
     $fileError = $file['error'];
     $fileSize = $file['size'];
+    /* Condition on image check extension and size and upload image*/
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
     $allowed = array("jpg", "jpeg", "png");
@@ -76,6 +78,7 @@ if(isset($_POST['setArtikkel']))
       echo "You cannot upload files of this type!";
     }
   }
+  /* Add Rule */
   if(isset($_POST['regelKnapp']))
 {
     $regel = trim($_POST['regel']);
@@ -86,6 +89,7 @@ if(isset($_POST['regelKnapp']))
     $regel = trim($_POST['regel']);
     $user->setRegel($regel,$brukerid);
 }
+/* Add Event*/
 if(isset($_POST['setEvent']))
 {   
    
@@ -94,6 +98,7 @@ if(isset($_POST['setEvent']))
     $veibeskrivelse = trim($_POST['veibeskrivelse']);
     $tidspunkt = $_POST['eventTime'];
     $fylke = $_POST['fylke'];
+    /* Insert event*/
     $InsertID = $user->setEvent($eventnavn, $eventtekst, $tidspunkt, $veibeskrivelse, $brukerid, $fylke);
     $file = $_FILES['file'];
     $fileName = $file['name'];
@@ -105,6 +110,7 @@ if(isset($_POST['setEvent']))
     $fileActualExt = strtolower(end($fileExt));
     $allowed = array("jpg", "jpeg", "png");
 
+    /* Check the condition on file size and extension and then upload it*/
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
           if ($fileSize < 500000) {
@@ -128,6 +134,7 @@ if(isset($_POST['setEvent']))
       echo "You cannot upload files of this type!";
     }
   }
+  /* Update Bruker Type */
 if(isset($_POST['brukertypeKnapp'])){
     
 
@@ -202,12 +209,15 @@ include "./includefooter.php";
                     #echo $date;
                     #echo $nextMonth;
 
+                    /* Get Events*/
+
                     $result=$user->getEvents($date, $nextMonth);
                     #var_dump($result);
                     if(!empty($result)){
                     $counter = 1;
                     foreach($result as $row) {
                         if($counter % 2 == 0){ 
+                            /* End After 2 records */
                             $newRow = '';
                             $endRow = '</div>';
                         } 
@@ -255,6 +265,7 @@ include "./includefooter.php";
             
         <div class="row">
             <div class="col m6 s12">
+            <!--  Event Form -->
             <h1 id="lageEvent">Lag Event</h1>
                 <form method="post" enctype="multipart/form-data">
                 <h2> event navn </h2>
@@ -287,6 +298,7 @@ include "./includefooter.php";
             </div>
         <div class="row">
             <div class="col m6 s12">
+            <!--  Article Form -->
             <h1 id="skrivArtikkel"> Skriv artikkel </h1>
                 <form method="post" enctype="multipart/form-data">
                 <h2> tittel </h2>
