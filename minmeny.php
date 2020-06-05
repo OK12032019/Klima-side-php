@@ -9,6 +9,7 @@ else{
     $btype = 0;
 }
 
+/* For Admin Option*/
 if($btype == 1){
 
    ?>   
@@ -39,7 +40,7 @@ if($btype == 1){
             <li><a href="nymelding.php">Nymelding</a></li>
             <li><a href="logout.php">Logg ut</a></li>   
         </ul>
-
+    </nav> 
         <nav class="nav-extended">
             <div class="nav-content">
                 <ul class="tabs tabs-transparent">
@@ -52,13 +53,13 @@ if($btype == 1){
                     <li class="tab"><a href="backendadmin.php">Kvalifiser Bruker</a></li>
                 </ul>
             </div>
-    </nav>   
+        </nav>   
 
 	<?php
    }
 else if($btype == 2){
+    /* For User option*/  
 
-   
     ?>
 	
     <nav class>
@@ -97,14 +98,15 @@ else if($btype == 2){
     #$user->getEkskludering($brukerid)
     #$tildato = 
     $brukerid = $_SESSION['brukerid'];
-
+/* Get Exclusion of user*/
 $result=$user->getEkskludering($brukerid);
 foreach($result as $row) {
     $tildato = $row['datotil'];
+    /* Til dato must be smaller than current date*/
     if($tildato > date()){
         $user->logout();
         $user->redirect('default.php');
-    }
+    }/* Otherwise delete*/
     elseif ($tildato < date()){
         $user->deleteEkskludering($brukerid);
     }
@@ -177,4 +179,3 @@ function myFunction() {
   }
 }
 </script>
-
