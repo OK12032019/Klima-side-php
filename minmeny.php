@@ -9,6 +9,7 @@ else{
     $btype = 0;
 }
 
+/* For Admin Option*/
 if($btype == 1){
 
    ?>   
@@ -57,8 +58,8 @@ if($btype == 1){
 	<?php
    }
 else if($btype == 2){
+    /* For User option*/  
 
-   
     ?>
 	
     <nav class>
@@ -97,14 +98,15 @@ else if($btype == 2){
     #$user->getEkskludering($brukerid)
     #$tildato = 
     $brukerid = $_SESSION['brukerid'];
-
+/* Get Exclusion of user*/
 $result=$user->getEkskludering($brukerid);
 foreach($result as $row) {
     $tildato = $row['datotil'];
+    /* Til dato must be smaller than current date*/
     if($tildato > date()){
         $user->logout();
         $user->redirect('default.php');
-    }
+    }/* Otherwise delete*/
     elseif ($tildato < date()){
         $user->deleteEkskludering($brukerid);
     }

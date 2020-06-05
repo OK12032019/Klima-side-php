@@ -48,6 +48,7 @@ include "./minmeny.php";
         <h1>Regler for nettsiden</h1>
         
         <?php
+        /* Get All rules*/
         $result = $user ->getRegler();
         #var_dump($result);
         #echo ('test');
@@ -59,6 +60,7 @@ include "./minmeny.php";
 
 <?php
 if($Brukertype == 1){ ?>
+<!--  Add Rule for Admin -->
     <form method="post">
     <h2> Ny Regel</h2>
             <textarea name="regeltekst" id="regeltekst" cols="50" rows="8" maxlength="255"></textarea>
@@ -77,7 +79,7 @@ if($Brukertype == 1){ ?>
        </form>
        <?php
 }
-
+/* Inser a new Rule*/
 if(isset($_POST['nyRegel']))
 {
     $regeltekst = trim($_POST['regeltekst']);

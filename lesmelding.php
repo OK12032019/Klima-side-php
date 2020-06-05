@@ -53,6 +53,7 @@ include "./minmeny.php";
             <div class="main-content">
                 <div class="meldinger">
                     <?php 
+                    /* Here Get the messages */
                     $mysqli = new mysqli("localhost", "root", "", "klima");
                     mysqli_set_charset($mysqli,'utf8');
                     $meldingid = $_POST['btn_lesmelding'];

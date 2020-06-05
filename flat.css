@@ -1,3 +1,10 @@
+/* 
+CSS står for Cascading Style Sheets
+CSS beskriver hvordan HTML-elementer skal vises på skjerm, papir eller i andre medier
+CSS sparer mye arbeid. Den kan kontrollere utformingen av flere websider på en gang
+Eksterne StyleSheets lagres i CSS-filer som denne filen.
+*/
+
 html {
     line-height: 1.5;
     font-family:"Segoe UI", "Helvetica Neue", sans-serif;

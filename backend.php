@@ -64,6 +64,7 @@ include "./minmeny.php";
     <div class="container">
         <h1>Klima</h1>
             <div class="calendar">
+                <!-- Here make year from date -->
                 <script>
                 function getDate(clicked_id) 
                 {
@@ -73,6 +74,7 @@ include "./minmeny.php";
                 }
                 </script>
                 <?php
+                /* Set Calendar instance */
                 $calendar = new Calendar();
                 echo $calendar->show();
                 ?>
@@ -96,6 +98,7 @@ include "./includefooter.php";
                     #echo $date;
                     #echo $nextMonth;
 
+                    /* Get event of current and next month*/
                     $result=$user->getEvents($date, $nextMonth);
                     #var_dump($result);
                     if(!empty($result)){
@@ -115,8 +118,10 @@ include "./includefooter.php";
                         $veibeskrivelse = $row['veibeskrivelse'];
                         $tidspunkt = $row['tidspunkt'];
                         $fylke = $row['fylke'];
+                        /* Get Countries*/
                         $fylkeNavn = $user->getFylkeNavn($fylke);
                         $fylkeNavn = $fylkeNavn[0]['fylkenavn'];
+                        /* Get Event pictures*/
                         $Bilde = $user->getEventBilde($eventID);
                         if(empty($Bilde)){
                             $hvor='img/iceberg.jpg';
