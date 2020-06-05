@@ -2,7 +2,6 @@
 
 require_once 'PDO.php';
 
-SESSION_START();
 $USER = $_SESSION['user_session'];
 if (EMPTY($_SESSION['user_session'] )) {
     
