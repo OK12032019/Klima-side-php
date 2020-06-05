@@ -55,50 +55,50 @@ include "./minmeny.php";
 
  
 <main>
-<div class="container">
+    
+    <div class="container">
+        <form method="post">
+            <h2> Søk etter andre brukere etter interrese </h2>
+                <select name ="interesser">
+                    <?php
+                        $result = $user-> getInterreser();
+                        foreach($result as $row)
+                        {
+                            $interesse = $row['interessenavn'];
+                            $interesseid = $row['idinteresse'];
+                            echo <<<EOT
+                                <option value="$interesseid">$interesse</option> 
+                            EOT;
 
-<table>
-						<?php
-include "./includefooter.php";
-?>
-    <?php
-    if($lagTabel == True){
-        #echo ('<tr><td>');
-        #print_r($BrukerArray);
-        #echo ('</td></tr><br> <br>');
-        foreach($BrukerArray as $brukernavnSok)
-        {
-            $bn = $brukernavnSok[0]['brukernavn'];
-            {
-                echo <<<EOT
-                    <tr><td>$bn</td></tr>
-                    EOT;
+                        }
+                    ?>
+                </select>
+                <button class="btn-large waves-effect waves-light" type="submit" name="interesse">Søk
+                    <i class="material-icons right">send</i>
+                </button>
+        </form>
+
+    <table>              
+        <?php
+            if($lagTabel == True){
+                foreach($BrukerArray as $brukernavnSok)
+                    {
+                        $bn = $brukernavnSok[0]['brukernavn'];
+                        {
+                            echo <<<EOT
+                                <tr><td>$bn</td></tr>
+                                EOT;
+                        }
+                }
             }
-        }
-    }
+        ?>
+    </table>    
+
+    <?php
+        include "./includefooter.php";
     ?>
 
-</table>
-    <form method="post">
-            <h2> Søk etter andre brukere etter interrese </h2>
-            <select name ="interesser">
-                <?php
-                $result = $user-> getInterreser();
-                foreach($result as $row)
-                {
-                    $interesse = $row['interessenavn'];
-                    $interesseid = $row['idinteresse'];
-                    echo <<<EOT
-                        <option value="$interesseid">$interesse</option> 
-                    EOT;
 
-                }
-                ?>
-            </select>
-        <button class="btn-large waves-effect waves-light" type="submit" name="interesse">Søk
-            <i class="material-icons right">send</i>
-        </button>
-    </form>
 </main>
 </body>
 
