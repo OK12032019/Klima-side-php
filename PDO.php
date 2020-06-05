@@ -14,9 +14,9 @@ Unlike a cookie, the information is not stored on the
 users computer.*/
 session_start();
 
-$DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "";
+$DB_host = "s120.hbv.no";
+$DB_user = "usr_klima";
+$DB_pass = "pw_klima";
 $DB_name = "klima";
 
 try
