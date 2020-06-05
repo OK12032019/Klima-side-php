@@ -89,6 +89,10 @@ include "./minmeny.php";
                     
                     $date = ($year."-".$month."-".$day);
                     }
+                    else
+                    {
+                        $date = date("Y-m-d");
+                    }
                     #$nextMonth = strtotime($date);
                     $nextMonth = date('Y-m-d', strtotime($date. ' + 1 months'));
 
@@ -150,7 +154,7 @@ include "./minmeny.php";
                 }?>
                     </div>
                 </div> 
-        <h2>Regler<h2>
+        <h2>Regler</h2>
         <p><a href="regelside.php">finner du her</a></p>
             
     </div>         

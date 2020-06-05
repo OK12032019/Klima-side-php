@@ -19,7 +19,7 @@ if($btype == 1){
             <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
             <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="Artikkel.php">Artikler</a></li>
+                <li><a href="Artikkler.php">Artikler</a></li>
                 <li><a href="brukerside.php">Profil</a></li>
                 <li><a href="sok.php">Administrere brukere</a></li>
                 <li><a href="meldinger.php">Meldinger</a></li>
@@ -56,7 +56,7 @@ else if($btype == 2){
             <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
             <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="Artikkel.php">Artikler</a></li>
+                <li><a href="Artikkler.php">Artikler</a></li>
                 <li><a href="brukerside.php">Profil</a></li>
                 <li><a href="sok.php">Administrere brukere</a></li>
                 <li><a href="meldinger.php">Meldinger</a></li>
