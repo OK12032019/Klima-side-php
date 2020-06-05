@@ -19,7 +19,7 @@ if($btype == 1){
             <a href="default.php" class="brand-logo"><img src="img/Klimalogo.png" alt="Logoen" style="width:48px;"><img></a>
             <a href="javascript:void(0);" onclick="myFunction()" data-target="mobile-demo" class="top-nav sidenav-trigger hide-on-large-only   "><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="backend.php">Artikler</a></li>
+                <li><a href="Artikkel.php">Artikler</a></li>
                 <li><a href="brukerside.php">Profil</a></li>
                 <li><a href="sok.php">Administrere brukere</a></li>
                 <li><a href="meldinger.php">Meldinger</a></li>
@@ -29,31 +29,20 @@ if($btype == 1){
                 <li><a class="waves-effect waves-light btn-large" href="logout.php">Logg ut</a></li>
             </ul>
         </div>
+    </nav>
 
-        <ul class="sidenav hide-on-large-only" id="mobile-demo">
-            <li><a href="backend.php">Artikler</a></li>
-            <li><a href="brukerside.php">Profil</a></li>
-            <li><a href="sok.php">Administrere brukere</a></li>
-            <li><a href="meldinger.php">Meldinger</a></li>
-            <li><a href="regelside.php">Regler</a></li>
-            <li><a href="lesmelding.php">Lesmelding</a></li>
-            <li><a href="nymelding.php">Nymelding</a></li>
-            <li><a href="logout.php">Logg ut</a></li>   
-        </ul>
-    </nav> 
-        <nav class="nav-extended">
-            <div class="nav-content">
-                <ul class="tabs tabs-transparent">
-                    <li class="tab disabled">ADMIN VERKTØY:</a></li>
-                    <li class="tab"><a href="advarsel.php">Advare Brukeren</a></li>
-                    <li class="tab"><a href="advarsel.php">Karantene Ekskluderer Bruker</a></li>
-                    <li class="tab"><a href="advarsel.php">Avregistrering Bruker</a></li>
-                    <li class="tab"><a href="meldinger.php">Rapport om Brukermisbruk</a></li>
-                    <li class="tab"><a href="regelside.php">Rediger Regler</a></li>
-                    <li class="tab"><a href="backendadmin.php">Kvalifiser Bruker</a></li>
-                </ul>
-            </div>
-        </nav>   
+
+    <ul class="sidenav hide-on-large-only" id="mobile-demo">
+        <li><a href="artikkler.php">Artikler</a></li>
+        <li><a href="brukerside.php">Profil</a></li>
+        <li><a href="sok.php">Administrere brukere</a></li>
+        <li><a href="meldinger.php">Meldinger</a></li>
+        <li><a href="regelside.php">Regler</a></li>
+        <li><a href="lesmelding.php">Lesmelding</a></li>
+        <li><a href="nymelding.php">Nymelding</a></li>
+        <li><a href="logout.php">Logg ut</a></li>
+    </ul>
+    
 
 	<?php
    }
