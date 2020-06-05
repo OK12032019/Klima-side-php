@@ -50,8 +50,8 @@ if(isset($_POST['nyPassordKnapp']))
     if($user->epostFinnes($email))
     {
         $to = $email;
-        $subject = "Reset your password on app2000.notreal";
-        $msg = "Hi there, click on this <a href=localhost\loggintest\nyttPassord.php>link</a> to reset your password on our site";
+        $subject = "Reset your password";
+        $msg = "Hi there, click on this <a href=s120.hbv.no\gruppe30\nyttPassord.php>link</a> to reset your password on our site";
         $msg = wordwrap($msg,70);
         $headers = "From: admin@app2000.notreal";
         if(mail($to, $subject, $msg, $headers))
