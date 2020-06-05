@@ -54,22 +54,19 @@ include "./minmeny.php";
                 <div class="meldinger">
                     <?php 
                     /* Here Get the messages */
-                    $mysqli = new mysqli("localhost", "root", "", "klima");
-                    mysqli_set_charset($mysqli,'utf8');
                     $meldingid = $_POST['btn_lesmelding'];
                     //sql spørring for å hente fram melding
-                    $sql = "SELECT * FROM melding WHERE mottaker = '{$brukerid}' AND idmelding = '{$meldingid}'";
+                    $result = $user->getMelding($meldingid);
                     //Merkerer meldingen som lest
                     $user->meldingLest($meldingid);
                     //Henter ut data om meldingen
-                    $result = $mysqli->query($sql);
-                    $row = mysqli_fetch_array($result);
+                    foreach($result as $row){
                     $senderid = $row['sender'];
                     $tittel = $row['tittel'];
                     $tekst = $row['tekst'];
                     $tidsendt = $row['tid'];
                     $result = $user -> getBrukernavn($senderid);
-
+                    }
                     ?>
                     <h2><?php echo $tittel ?></h2>
                     <div>Sendt av <b><?php echo $result['brukernavn'] ?></b> på <?php echo $tidsendt ?></div>

@@ -58,11 +58,11 @@ include "./minmeny.php";
                     $ulestmeldingsliste = $user->getUlesteMeldinger();
                     ?>
                     <h3>Uleste Meldinger (<?php
-                    $counter = 0;
+                    $ulestMeldTeller = 0;
                     foreach($ulestmeldingsliste as $row) {
-                        $counter = $counter + 1;
+                        $ulestMeldTeller = $ulestMeldTeller + 1;
                     }
-                    echo($counter);
+                    echo($ulestMeldTeller);
                     ?>)</h3>
                     
                     <table>
@@ -81,11 +81,10 @@ include "./minmeny.php";
                         $tittel = $row['tittel'];
                         $tidsendt = $row['tid'];
                         //Spørring for å hente ut brukernavn til sender
-                        $result = $user -> getBrukernavn($senderid);
-                        $brukernavn = $result['brukernavn'];
+                        $brukernavn = $user -> getBrukernavn($senderid);
                         //Sender, tittel, tid sendt
                         echo '<tr class="meldrow"> 
-                        <td>',$brukernavn,'</td>
+                        <td>',$brukernavn['brukernavn'],'</td>
                         <td>',$tittel,'</td>
                         <td>',$tidsendt,'</td>
                         <td>
@@ -94,15 +93,7 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
-                        $result = $user->getUlesteMeldinger();
                     
-                    }
-                    //Hvis det er ingen så vises det en melding
-                    $result = $user->getUlesteMeldinger();
-
-                    $ulestMeldTeller = 0;
-                    foreach($ulestmeldingsliste as $row) {
-                        $ulestMeldTeller = $ulestMeldTeller + 1;
                     }
 
                     if($ulestMeldTeller==0)
@@ -119,14 +110,14 @@ include "./minmeny.php";
                     <br />
                     <!--Leste medlinger-->
                     <?php
-                    $lestmeldingsliste = $user->getUlesteMeldinger(); 
+                    $lestmeldingsliste = $user->getLesteMeldinger(); 
                     ?>
                     <h3>Leste Meldinger (<?php
-                    $counter = 0;
+                    $lestMeldTeller = 0;
                     foreach($lestmeldingsliste as $row) {
-                        $counter = $counter + 1;
+                        $lestMeldTeller = $lestMeldTeller + 1;
                     }
-                    echo($counter);
+                    echo($lestMeldTeller);
                     ?>):</h3>
                     <table>
                         <tr class="meldrow">
@@ -155,15 +146,9 @@ include "./minmeny.php";
                         </form>
                         </td>
                         </tr>';
-                        $result = $user->getUlesteMeldinger();
                     
                     }
                     //Hvis det er ingen så vises det en melding
-                    $lestMeldTeller = 0;
-                    foreach($ulestmeldingsliste as $row) {
-                        $lestMeldTeller = $lestMeldTeller + 1;
-                    }
-
                     if($lestMeldTeller==0)  
                     {
                     ?>

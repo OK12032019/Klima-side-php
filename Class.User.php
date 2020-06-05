@@ -779,10 +779,27 @@ class USER
        try
        {
          $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND lest = 1");
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         return $result;
        }
        catch(PDOException $e)
        {
           echo $e->getMessage();
+       }
+    }
+    public function getMelding($meldingid) 
+    {
+       try
+       {
+         $stmt = $this->db->prepare("SELECT * FROM melding WHERE mottaker = '{$_SESSION['brukerid']}' AND idmelding = '{$meldingid}'");
+         $stmt->execute();
+         $result=($stmt->fetchAll());
+         return $result;
+       }
+       catch(PDOException $e)
+       {
+         echo $e->getMessage();
        }
     }
 
@@ -1116,6 +1133,20 @@ class USER
          echo $e->getMessage();
       }
    }
+
+   public function meldingLest($meldingid)
+    {
+    try
+    {
+      $stmt = $this->db->prepare('UPDATE melding SET lest = 1 WHERE idmelding =:meldingid');
+      $stmt->execute(array(':meldingid'=>$meldingid));
+      return true;
+    }
+    catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+      }
 
    public function nyRapport($rapporttekst, $dato, $rapportertbruker, $rapportertav) {
       try
