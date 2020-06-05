@@ -102,9 +102,6 @@ if(isset($_POST['kommenter']))
         
       </div>
     </div>
-							<?php
-include "./includefooter.php";
-?>
   <!-- KOMMENTARER -->
     <?php 
     /* Get and show comments*/
@@ -144,5 +141,8 @@ include "./includefooter.php";
 
 </div>
 </div>
+<?php
+include "./includefooter.php";
+?>
 </body>
 </html>

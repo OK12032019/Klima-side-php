@@ -80,9 +80,6 @@ include "./minmeny.php";
                 ?>
             </div>   
             <h2>Ting som skjer denne måneden</h2>
-						<?php
-include "./includefooter.php";
-?>
                     <br>
                     <?php
                     if(isset($_GET['month'])){
@@ -154,20 +151,12 @@ include "./includefooter.php";
                     </div>
                 </div> 
         <h2>Regler<h2>
-        <a href="regelside.php">finner du her</a>
+        <p><a href="regelside.php">finner du her</a></p>
             
     </div>         
     </section>
-    <footer class="background-color ">
-<div class ="row">
-<section class="col m6 s12 center-align">
-<a href="">Om oss</a>
-<a href="">Sidekart</a>
-<a href="">Kariarre</a>
-<a href="">Støtt oss</a>
-<a href="">In English</a>
-</section>
-<section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
-</footer>
+<?php
+include "./includefooter.php";
+?>
 </body>
 </html>

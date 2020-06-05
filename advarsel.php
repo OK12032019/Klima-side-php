@@ -183,7 +183,7 @@ if(isset($_POST['Ekskluder']))
 ?>  
 
 
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>

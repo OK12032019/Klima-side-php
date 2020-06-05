@@ -59,9 +59,6 @@ include "./minmeny.php";
 <div class="container">
 
 <table>
-						<?php
-include "./includefooter.php";
-?>
     <?php
     if($lagTabel == True){
         #echo ('<tr><td>');
@@ -102,6 +99,8 @@ include "./includefooter.php";
         </button>
     </form>
 </main>
+<?php
+include "./includefooter.php";
+?>
 </body>
-
 </html>

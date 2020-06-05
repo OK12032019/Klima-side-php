@@ -76,7 +76,7 @@ if(isset($_POST['passordKnapp']))
 </section>
 <section class="col m6 s12 center-align">Gruppe 30 | copyright 2019</section>
 </footer>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>

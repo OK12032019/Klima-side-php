@@ -79,7 +79,7 @@ include "./minmeny.php";
             </div>    
         </div>
     </section>
-						<?php
+<?php
 include "./includefooter.php";
 ?>
 </body>
